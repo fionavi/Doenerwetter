@@ -1,0 +1,25 @@
+{
+  "name": "package_eia2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@types/mongodb": "^3.5.34",
+    "mongodb": "^3.6.3",
+    "typescript": "^4.2.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node L07/server7.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fionavi/EIA2.git"
+  },
+  "author": "fiona",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fionavi/EIA2/issues"
+  },
+  "homepage": "https://github.com/fionavi/EIA2#readme"
+}
