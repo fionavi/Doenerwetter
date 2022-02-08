@@ -2,8 +2,14 @@
 var Doener;
 (function (Doener) {
     let workers = [];
+    let customers = [];
     window.addEventListener("load", handleload);
     document.querySelector("#start").addEventListener("click", startGame);
+    document.querySelector("#refillBread").addEventListener("click", refill);
+    document.querySelector("#refillTomato").addEventListener("click", refill);
+    document.querySelector("#refillLettuce").addEventListener("click", refill);
+    document.querySelector("#refillOnion").addEventListener("click", refill);
+    document.querySelector("#refillMeat").addEventListener("click", refill);
     let currentCostumerAmount = 0;
     console.log(currentCostumerAmount);
     let storageLeft = {
@@ -29,8 +35,6 @@ var Doener;
         Doener.crc2 = canvas.getContext("2d");
         console.log(Doener.crc2);
         drawBackground();
-        /*   drawWorker({ x: 100, y: 100 });
-          drawCostumer(); */
     }
     function startGame() {
         console.log("START");
@@ -45,29 +49,32 @@ var Doener;
         let stock = parseInt(amountStock); //string in number parsen
         storageLeft.bread = storageLeft.tomato = storageLeft.lettuce = storageLeft.onion = storageLeft.meat = stock;
         console.log("Stock Amount: " + amountStock);
-        /* //chart in bread stock div soll angepasst werden
-        let chart: any = document.querySelector('.onionStockChart');
-        let displayStockOnion: any = chart.getAttribute('style');
-        displayStockOnion.innerHTML = "height: " + amountStock + 'px';
+        //chart in bread stock div soll angepasst werden
+        let chart = document.querySelector('.onionStockChart');
+        let displayStockOnion = chart.getAttribute('style');
+        //displayStockOnion.innerHTML = "height" + stock + 'px';
+        displayStockOnion.innerHTML = "height" + amountStock + 'px';
         console.log("Chart Height: " + amountStock);
- */
         console.log("Onion Amount: " + storageLeft.onion + " bzw. " + amountStock);
-        const amountWorker = data.get('amountWorker'); //form Data anzahl worker als string holen
-        console.log("Anzahl Worker: " + amountWorker);
         const stressLevel = data.get('stressLevel'); //form Data stressLevel of worker als string holen
         console.log("Stresslevel Worker: " + stressLevel);
-        // createWorker(amountWorker);
+        const amountWorker = data.get('amountWorker'); //form Data anzahl worker als string holen
+        console.log("Anzahl Worker: " + amountWorker);
         let amount = parseInt(amountWorker); //string in number parsen
-        let worker = new Doener.Worker(300, 300);
-        workers.push(worker);
+        // let worker: Human = new Worker(300, 300);
         console.log(workers[0]);
         for (let index = 0; index < amount; index++) { //solange index kleiner als anzahl worker ist soll ein neuer worker erstellt werden
-            let worker = new Doener.Worker(300, 300);
-            console.log(index + "workers erstellt");
+            let randomX = Math.random() * 300 + Math.random() * 300 + 80;
+            let worker = new Doener.Worker(1, randomX, 200);
+            worker.draw();
+            workers.push(worker);
+            console.log(index + " workers erstellt");
             console.log(worker.position);
         }
         const amountCostumer = data.get('amountCostumer'); //form Data anzahl worker als string holen
         console.log("Anzahl Costumer per min: " + amountCostumer);
+        let amountC = parseInt(amountCostumer);
+        drawCostumer(amountC);
         //return false; // prevent reload // Quelle: https://dev.to/deciduously/formdata-in-typescript-24cl
     }
     ;
@@ -282,27 +289,18 @@ var Doener;
         Doener.crc2.stroke();
         Doener.crc2.restore();
     }
-    function createWorker(_amountWorker) {
-        /*
-           let inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll("input");
-           console.log(inputs);
-     
-           let formData2: FormData = new FormData(document.forms[0]);           //Formular (<form> - Tag) -> 0 ist falls es mehrere gibt, dass es 1. Formular wählt, alle Inhalte aus Formular werden ausgewählt
-           for (let entry of formData2) {                   // solange Einträge im Formular
-               //debugger;
-               let item: HTMLInputElement = <HTMLInputElement>document.querySelector("[value='" + entry[1] + "']"); //item mitsamt Infos wird aufgegriffen bzw selektiert
-               //let stepper: HTMLInputElement = <HTMLInputElement>document.querySelector("[value='" + entry[0] + "']");
-     
-               if (item != null && item.type == "checkbox") {
-                   // let mengenangabe: string = document.getElementById(item.name + "_anzahl").getAttribute("mengenangabe")!; //Attribut mengenangabe vom elemnet mit id _anzahl wird aufgegriffen
-                   let price: number = parseInt(item.getAttribute("price")!);                                                  //string zu number geparsed, Attribute price wird rausgegriffen         price * parseInt(item.getElementById(item.name + "_anzahl").getAttribute("value")!)   geht nicht
-                   console.log((<HTMLInputElement>document.getElementById(item.id + "_stepper")).value);
-                   anweisung.innerHTML += "Füge " + (<HTMLInputElement>document.getElementById(item.id + "_stepper")).value + (<HTMLInputElement>document.getElementById(item.name)).value + " " + item.value + " hinzu" + " (" + price + "Galleonen)" + "<br>"; // schreibt in Rezept den Wert des Attributs mit id anzahl + mengenangabe + preis
-                   /* console.log((<HTMLInputElement>document.getElementById(item.getAttribute("id") + "_anzahl")).value);
-                   console.log(document.getElementById(item.name + "_anzahl"));
-               } */
+    function refill() {
+        console.log("worker is going to refill stock");
     }
-    function drawCostumer() {
+    function drawCostumer(_amount) {
+        for (let index = 0; index < _amount; index++) { //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
+            let randomX = Math.random() * 300 + Math.random() * 300 + 80;
+            let customer = new Doener.Costumer(1, 500, 500);
+            customer.draw();
+            customers.push(customer);
+            console.log(index + " customers erstellt");
+            console.log("c position = " + customer.position);
+        }
     }
 })(Doener || (Doener = {}));
 //# sourceMappingURL=main.js.map

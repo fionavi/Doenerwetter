@@ -8,7 +8,7 @@ var Doener;
             this.position = new Doener.Vector(_x, _y);
             // this.velocity = new Vector(0, 0);
             // this.velocity.random(100, 150);
-            this.velocity.scale(5);
+            //this.velocity.scale(5);
         }
         move(_timeslice) {
             console.log("Worker move");

@@ -2,6 +2,7 @@ namespace Doener {
     export let crc2: CanvasRenderingContext2D;
 
     let workers: Worker[] = [];
+    let customers: Costumer[] = [];
 
     export interface Vector {
         x: number;
@@ -10,12 +11,19 @@ namespace Doener {
 
     window.addEventListener("load", handleload);
     document.querySelector("#start").addEventListener("click", startGame);
+   
+   
+    document.querySelector("#refillBread").addEventListener("click", refill);
+    document.querySelector("#refillTomato").addEventListener("click", refill);
+    document.querySelector("#refillLettuce").addEventListener("click", refill);
+    document.querySelector("#refillOnion").addEventListener("click", refill);
+    document.querySelector("#refillMeat").addEventListener("click", refill);
 
 
     let currentCostumerAmount: number = 0;
     console.log(currentCostumerAmount);
 
-    
+
     interface Storage {
         bread: number;
         tomato: number;
@@ -47,9 +55,9 @@ namespace Doener {
         onion: 100,
         meat: 100,
     };
-    
 
- 
+
+
     function handleload(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
         if (!canvas) {
@@ -61,8 +69,7 @@ namespace Doener {
 
 
         drawBackground();
-        /*   drawWorker({ x: 100, y: 100 });
-          drawCostumer(); */
+        
 
 
     }
@@ -72,7 +79,7 @@ namespace Doener {
 
         counterLeft.bread = 100;
         counterLeft.tomato = 100;
-        counterLeft.lettuce= 100;
+        counterLeft.lettuce = 100;
         counterLeft.onion = 100;
         counterLeft.meat = 100;
 
@@ -83,41 +90,45 @@ namespace Doener {
         let stock: number = parseInt(amountStock);    //string in number parsen
         storageLeft.bread = storageLeft.tomato = storageLeft.lettuce = storageLeft.onion = storageLeft.meat = stock;
         console.log("Stock Amount: " + amountStock);
-       
-        /* //chart in bread stock div soll angepasst werden
+
+        //chart in bread stock div soll angepasst werden
         let chart: any = document.querySelector('.onionStockChart');
         let displayStockOnion: any = chart.getAttribute('style');
-        displayStockOnion.innerHTML = "height: " + amountStock + 'px';
+        //displayStockOnion.innerHTML = "height" + stock + 'px';
+        displayStockOnion.innerHTML = "height" + amountStock + 'px';
         console.log("Chart Height: " + amountStock);
- */
-       
-          
-    
+ 
+
+
+
         console.log("Onion Amount: " + storageLeft.onion + " bzw. " + amountStock);
+
+        const stressLevel = data.get('stressLevel') as string;    //form Data stressLevel of worker als string holen
+        console.log("Stresslevel Worker: " + stressLevel);
 
 
 
         const amountWorker = data.get('amountWorker') as string;    //form Data anzahl worker als string holen
         console.log("Anzahl Worker: " + amountWorker);
-        
-        const stressLevel = data.get('stressLevel') as string;    //form Data stressLevel of worker als string holen
-        console.log("Stresslevel Worker: " + stressLevel);
-        
-        // createWorker(amountWorker);
         let amount: number = parseInt(amountWorker);    //string in number parsen
-        let worker: Human = new Worker(300, 300);
-        workers.push(worker);
+        // let worker: Human = new Worker(300, 300);
+
+
         console.log(workers[0]);
         for (let index = 0; index < amount; index++) {      //solange index kleiner als anzahl worker ist soll ein neuer worker erstellt werden
-            let worker: Human = new Worker(300, 300);
-            console.log(index + "workers erstellt");
+            let randomX: number = Math.random() * 300 + Math.random() * 300 + 80;
+            let worker: Human = new Worker(1, randomX, 200);
+            worker.draw();
+            workers.push(worker);
+            console.log(index + " workers erstellt");
             console.log(worker.position);
- 
-    }
+
+        }
 
         const amountCostumer = data.get('amountCostumer') as string;    //form Data anzahl worker als string holen
         console.log("Anzahl Costumer per min: " + amountCostumer);
-
+        let amountC: number = parseInt(amountCostumer);
+        drawCostumer(amountC);
 
 
         //return false; // prevent reload // Quelle: https://dev.to/deciduously/formdata-in-typescript-24cl
@@ -412,29 +423,25 @@ namespace Doener {
         crc2.restore();
     }
 
-    function createWorker(_amountWorker: string): void {
-        /*    
-           let inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll("input");
-           console.log(inputs);
-     
-           let formData2: FormData = new FormData(document.forms[0]);           //Formular (<form> - Tag) -> 0 ist falls es mehrere gibt, dass es 1. Formular wählt, alle Inhalte aus Formular werden ausgewählt
-           for (let entry of formData2) {                   // solange Einträge im Formular
-               //debugger;
-               let item: HTMLInputElement = <HTMLInputElement>document.querySelector("[value='" + entry[1] + "']"); //item mitsamt Infos wird aufgegriffen bzw selektiert
-               //let stepper: HTMLInputElement = <HTMLInputElement>document.querySelector("[value='" + entry[0] + "']");
-     
-               if (item != null && item.type == "checkbox") {
-                   // let mengenangabe: string = document.getElementById(item.name + "_anzahl").getAttribute("mengenangabe")!; //Attribut mengenangabe vom elemnet mit id _anzahl wird aufgegriffen
-                   let price: number = parseInt(item.getAttribute("price")!);                                                  //string zu number geparsed, Attribute price wird rausgegriffen         price * parseInt(item.getElementById(item.name + "_anzahl").getAttribute("value")!)   geht nicht
-                   console.log((<HTMLInputElement>document.getElementById(item.id + "_stepper")).value);
-                   anweisung.innerHTML += "Füge " + (<HTMLInputElement>document.getElementById(item.id + "_stepper")).value + (<HTMLInputElement>document.getElementById(item.name)).value + " " + item.value + " hinzu" + " (" + price + "Galleonen)" + "<br>"; // schreibt in Rezept den Wert des Attributs mit id anzahl + mengenangabe + preis 
-                   /* console.log((<HTMLInputElement>document.getElementById(item.getAttribute("id") + "_anzahl")).value);
-                   console.log(document.getElementById(item.name + "_anzahl")); 
-               } */
+
+    function refill(): void {
+        console.log("worker is going to refill stock");
     }
 
+    function drawCostumer(_amount: number): void {
+       
 
-    function drawCostumer(): void {
+        for (let index = 0; index < _amount; index++) {      //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
+            let randomX: number = Math.random() * 300 + Math.random() * 300 + 80;
+            let customer: Human = new Costumer(1, 500, 500);
+            customer.draw();
+            customers.push(customer);
+            console.log(index + " customers erstellt");
+            console.log("c position = " + customer.position);
+        }
+
+
 
     }
 }
+

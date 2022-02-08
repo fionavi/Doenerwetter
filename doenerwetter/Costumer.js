@@ -6,9 +6,9 @@ var Doener;
             super(_position);
             console.log("Costumer CONSTRUCTOR");
             this.position = new Doener.Vector(_x, _y);
-            this.velocity = new Doener.Vector(0, 0);
+            //this.velocity = new Vector(0, 0);
             // this.velocity.random(100, 150);
-            this.velocity.scale(5);
+            //this.velocity.scale(5);
         }
         move(_timeslice) {
             console.log("Costumer move");
@@ -46,35 +46,69 @@ var Doener;
             }
         }
         draw() {
-            console.log("Costumer is drawing", this.position);
+            console.log("Customer drawing");
             Doener.crc2.resetTransform();
             Doener.crc2.save();
             Doener.crc2.translate(this.position.x, this.position.y);
-            Doener.crc2.fillStyle = "#B04F00";
-            //Schwanz
-            Doener.crc2.save();
-            Doener.crc2.rotate(-0.3);
+            Doener.crc2.fillStyle = "red";
+            //Arm rechts
             Doener.crc2.beginPath();
-            Doener.crc2.moveTo(-5, -5);
-            Doener.crc2.lineTo(-10, -15);
-            Doener.crc2.lineTo(-20, -20);
-            Doener.crc2.lineTo(-16, -25);
-            Doener.crc2.lineTo(-24, -30);
-            Doener.crc2.lineTo(-20, -35);
-            Doener.crc2.lineTo(-28, -40);
-            Doener.crc2.lineTo(-24, -45);
-            Doener.crc2.lineTo(-20, -50);
-            Doener.crc2.lineTo(0, -50);
-            Doener.crc2.lineTo(-5, -45);
-            Doener.crc2.lineTo(3, -40);
-            Doener.crc2.lineTo(0, -35);
-            Doener.crc2.lineTo(5, -30);
-            Doener.crc2.lineTo(10, -25);
-            Doener.crc2.lineTo(5, -20);
+            Doener.crc2.ellipse(35, -30, 5, 12, 2, 20, 40);
+            Doener.crc2.closePath();
+            Doener.crc2.fill();
+            Doener.crc2.stroke();
+            //Arm links
+            Doener.crc2.beginPath();
+            Doener.crc2.ellipse(-15, -30, 5, 12, -2, 20, 40);
+            Doener.crc2.closePath();
+            Doener.crc2.fill();
+            Doener.crc2.stroke();
+            //Bauch
+            Doener.crc2.beginPath();
+            Doener.crc2.ellipse(10, -25, 20, 25, 0, 20, 40);
+            Doener.crc2.closePath();
+            Doener.crc2.fill();
+            Doener.crc2.stroke();
+            //Kopf
+            Doener.crc2.beginPath();
+            Doener.crc2.ellipse(10, -60, 15, 15, 0, 20, 40);
+            Doener.crc2.closePath();
+            Doener.crc2.fill();
+            Doener.crc2.stroke();
+            //Füße -> linker Fuß = Nullpunkt
+            Doener.crc2.beginPath();
+            Doener.crc2.ellipse(0, 0, 8, 7, 0, 20, 40);
+            Doener.crc2.closePath();
+            Doener.crc2.fill();
+            Doener.crc2.stroke();
+            Doener.crc2.beginPath();
+            Doener.crc2.ellipse(20, 0, 8, 7, 0, 20, 40);
             Doener.crc2.closePath();
             Doener.crc2.fill();
             Doener.crc2.stroke();
             Doener.crc2.restore();
+            //Gesicht
+            Doener.crc2.fillStyle = "black";
+            Doener.crc2.beginPath();
+            Doener.crc2.ellipse(15, -50, 2, 2, 0, 20, 40);
+            Doener.crc2.moveTo(15, -50);
+            Doener.crc2.lineTo(15, -45);
+            Doener.crc2.lineTo(10, -45);
+            Doener.crc2.lineTo(20, -45);
+            Doener.crc2.lineTo(15, -45);
+            Doener.crc2.closePath();
+            Doener.crc2.fill();
+            Doener.crc2.stroke();
+            Doener.crc2.beginPath();
+            Doener.crc2.ellipse(10, -55, 1, 1, 0, 20, 40);
+            Doener.crc2.closePath();
+            Doener.crc2.fill();
+            Doener.crc2.stroke();
+            Doener.crc2.beginPath();
+            Doener.crc2.ellipse(20, -55, 1, 1, 0, 20, 40);
+            Doener.crc2.closePath();
+            Doener.crc2.fill();
+            Doener.crc2.stroke();
         }
     }
     Doener.Costumer = Costumer;

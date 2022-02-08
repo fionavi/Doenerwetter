@@ -6,9 +6,9 @@ namespace Doener {
             super(_position);
             console.log("Costumer CONSTRUCTOR");
             this.position = new Vector(_x, _y);
-            this.velocity = new Vector(0, 0);
+            //this.velocity = new Vector(0, 0);
             // this.velocity.random(100, 150);
-            this.velocity.scale(5);
+            //this.velocity.scale(5);
         }
 
         move(_timeslice: number): void {
@@ -60,37 +60,87 @@ namespace Doener {
         }
 
         draw(): void {
-            console.log("Costumer is drawing", this.position);
+            console.log("Customer drawing");
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
     
-            crc2.fillStyle = "#B04F00";
-            //Schwanz
-            crc2.save();
-            crc2.rotate(-0.3);
+            crc2.fillStyle = "red";
+    
+    
+            //Arm rechts
             crc2.beginPath();
-            crc2.moveTo(-5, -5);
-            crc2.lineTo(-10, -15);
-            crc2.lineTo(-20, -20);
-            crc2.lineTo(-16, -25);
-            crc2.lineTo(-24, -30);
-            crc2.lineTo(-20, -35);
-            crc2.lineTo(-28, -40);
-            crc2.lineTo(-24, -45);
-            crc2.lineTo(-20, -50);
-            crc2.lineTo(0, -50);
-            crc2.lineTo(-5, -45);
-            crc2.lineTo(3, -40);
-            crc2.lineTo(0, -35);
-            crc2.lineTo(5, -30);
-            crc2.lineTo(10, -25);
-            crc2.lineTo(5, -20);
+            crc2.ellipse(35, -30, 5, 12, 2, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
+            //Arm links
+            crc2.beginPath();
+            crc2.ellipse(-15, -30, 5, 12, -2, 20, 40);
             crc2.closePath();
             crc2.fill();
             crc2.stroke();
     
+    
+            //Bauch
+            crc2.beginPath();
+            crc2.ellipse(10, -25, 20, 25, 0, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
+    
+       
+    
+            //Kopf
+            crc2.beginPath();
+            crc2.ellipse(10, -60, 15, 15, 0, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
+    
+            //Füße -> linker Fuß = Nullpunkt
+            crc2.beginPath();
+            crc2.ellipse(0, 0, 8, 7, 0, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
+    
+            crc2.beginPath();
+            crc2.ellipse(20, 0, 8, 7, 0, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
+    
+    
             crc2.restore();
+    
+            //Gesicht
+            crc2.fillStyle = "black";
+            crc2.beginPath();
+            crc2.ellipse(15, -50, 2, 2, 0, 20, 40);
+            crc2.moveTo(15, -50);
+            crc2.lineTo(15, -45);
+            crc2.lineTo(10, -45);
+            crc2.lineTo(20, -45);
+            crc2.lineTo(15, -45);
+    
+            crc2.closePath();
+    
+            crc2.fill();
+            crc2.stroke();
+    
+            crc2.beginPath();
+            crc2.ellipse(10, -55, 1, 1, 0, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
+    
+            crc2.beginPath();
+            crc2.ellipse(20, -55, 1, 1, 0, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
+    
         }
     }
 }
