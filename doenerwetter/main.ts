@@ -56,6 +56,14 @@ namespace Doener {
         let stock: number = parseInt(amountStock);    //string in number parsen
         breadStock = tomatoStock = lettuceStock = onionStock = meatStock = stock;
         console.log("Stock Amount: " + breadStock + " bzw. " + amountStock);
+       
+        //chart in bread stock div soll angepasst werden
+        const displayStockBread: any = document.getElementsByClassName('.breadStockChart');
+        displayStockBread.getAttribute('height');
+        displayStockBread.setAttribute('height', amountStock);
+    
+        console.log("Bread Amount: " + breadStock + " bzw. " + amountStock);
+
 
 
         const amountWorker = data.get('amountWorker') as string;    //form Data anzahl worker als string holen

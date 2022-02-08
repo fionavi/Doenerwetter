@@ -35,6 +35,11 @@ var Doener;
         let stock = parseInt(amountStock); //string in number parsen
         breadStock = tomatoStock = lettuceStock = onionStock = meatStock = stock;
         console.log("Stock Amount: " + breadStock + " bzw. " + amountStock);
+        //chart in bread stock div soll angepasst werden
+        const displayStockBread = document.getElementsByClassName('.breadStockChart');
+        displayStockBread.getAttribute('height');
+        displayStockBread.setAttribute('height', amountStock);
+        console.log("Bread Amount: " + breadStock + " bzw. " + amountStock);
         const amountWorker = data.get('amountWorker'); //form Data anzahl worker als string holen
         console.log("Anzahl Worker: " + amountWorker);
         const stressLevel = data.get('stressLevel'); //form Data anzahl worker als string holen
