@@ -1,20 +1,25 @@
 "use strict";
 var Doener;
 (function (Doener) {
+    let workers = [];
     window.addEventListener("load", handleload);
     document.querySelector("#start").addEventListener("click", startGame);
     let currentCostumerAmount = 0;
     console.log(currentCostumerAmount);
-    let breadStock = 80;
-    let tomatoStock = 80;
-    let lettuceStock = 80;
-    let onionStock = 80;
-    let meatStock = 80;
-    let breadCounter = 50;
-    let tomatoCounter = 50;
-    let lettuceCounter = 50;
-    let onionCounter = 50;
-    let meatCounter = 50;
+    let storageLeft = {
+        bread: 50,
+        tomato: 50,
+        lettuce: 50,
+        onion: 50,
+        meat: 50,
+    };
+    let counterLeft = {
+        bread: 100,
+        tomato: 100,
+        lettuce: 100,
+        onion: 100,
+        meat: 100,
+    };
     function handleload(_event) {
         let canvas = document.querySelector("canvas");
         if (!canvas) {
@@ -29,25 +34,33 @@ var Doener;
     }
     function startGame() {
         console.log("START");
+        counterLeft.bread = 100;
+        counterLeft.tomato = 100;
+        counterLeft.lettuce = 100;
+        counterLeft.onion = 100;
+        counterLeft.meat = 100;
         const form = document.querySelector('form');
         const data = new FormData(form);
         const amountStock = data.get('amountIngredients');
         let stock = parseInt(amountStock); //string in number parsen
-        breadStock = tomatoStock = lettuceStock = onionStock = meatStock = stock;
-        console.log("Stock Amount: " + breadStock + " bzw. " + amountStock);
-        //chart in bread stock div soll angepasst werden
-        const displayStockBread = document.getElementsByClassName('.breadStockChart');
-        displayStockBread.getAttribute('height');
-        displayStockBread.setAttribute('height', amountStock);
-        console.log("Bread Amount: " + breadStock + " bzw. " + amountStock);
+        storageLeft.bread = storageLeft.tomato = storageLeft.lettuce = storageLeft.onion = storageLeft.meat = stock;
+        console.log("Stock Amount: " + amountStock);
+        /* //chart in bread stock div soll angepasst werden
+        let chart: any = document.querySelector('.onionStockChart');
+        let displayStockOnion: any = chart.getAttribute('style');
+        displayStockOnion.innerHTML = "height: " + amountStock + 'px';
+        console.log("Chart Height: " + amountStock);
+ */
+        console.log("Onion Amount: " + storageLeft.onion + " bzw. " + amountStock);
         const amountWorker = data.get('amountWorker'); //form Data anzahl worker als string holen
         console.log("Anzahl Worker: " + amountWorker);
-        const stressLevel = data.get('stressLevel'); //form Data anzahl worker als string holen
+        const stressLevel = data.get('stressLevel'); //form Data stressLevel of worker als string holen
         console.log("Stresslevel Worker: " + stressLevel);
         // createWorker(amountWorker);
         let amount = parseInt(amountWorker); //string in number parsen
         let worker = new Doener.Worker(300, 300);
-        worker;
+        workers.push(worker);
+        console.log(workers[0]);
         for (let index = 0; index < amount; index++) { //solange index kleiner als anzahl worker ist soll ein neuer worker erstellt werden
             let worker = new Doener.Worker(300, 300);
             console.log(index + "workers erstellt");

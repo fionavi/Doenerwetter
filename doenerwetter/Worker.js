@@ -6,7 +6,7 @@ var Doener;
             super(_position);
             console.log("Worker CONSTRUCTOR");
             this.position = new Doener.Vector(_x, _y);
-            this.velocity = new Doener.Vector(0, 0);
+            // this.velocity = new Vector(0, 0);
             // this.velocity.random(100, 150);
             this.velocity.scale(5);
         }

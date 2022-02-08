@@ -1,7 +1,9 @@
 namespace Doener {
     export let crc2: CanvasRenderingContext2D;
 
-    interface Vector {
+    let workers: Worker[] = [];
+
+    export interface Vector {
         x: number;
         y: number;
     }
@@ -13,23 +15,41 @@ namespace Doener {
     let currentCostumerAmount: number = 0;
     console.log(currentCostumerAmount);
 
-    let breadStock: number = 80;
-    let tomatoStock: number = 80;
-    let lettuceStock: number = 80;
-    let onionStock: number = 80;
-    let meatStock: number = 80;
+    
+    interface Storage {
+        bread: number;
+        tomato: number;
+        lettuce: number;
+        onion: number;
+        meat: number;
+    }
 
-    let breadCounter: number = 50;
-    let tomatoCounter: number = 50;
-    let lettuceCounter: number = 50;
-    let onionCounter: number = 50;
-    let meatCounter: number = 50;
+    let storageLeft: Storage = {
+        bread: 50,
+        tomato: 50,
+        lettuce: 50,
+        onion: 50,
+        meat: 50,
+    };
 
+    interface Counter {
+        bread: number;
+        tomato: number;
+        lettuce: number;
+        onion: number;
+        meat: number;
+    }
 
+    let counterLeft: Counter = {
+        bread: 100,
+        tomato: 100,
+        lettuce: 100,
+        onion: 100,
+        meat: 100,
+    };
+    
 
-
-
-
+ 
     function handleload(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
         if (!canvas) {
@@ -50,31 +70,44 @@ namespace Doener {
     function startGame(): void {
         console.log("START");
 
+        counterLeft.bread = 100;
+        counterLeft.tomato = 100;
+        counterLeft.lettuce= 100;
+        counterLeft.onion = 100;
+        counterLeft.meat = 100;
+
+
         const form = document.querySelector('form')!;
         const data = new FormData(form);
         const amountStock = data.get('amountIngredients') as string;
         let stock: number = parseInt(amountStock);    //string in number parsen
-        breadStock = tomatoStock = lettuceStock = onionStock = meatStock = stock;
-        console.log("Stock Amount: " + breadStock + " bzw. " + amountStock);
+        storageLeft.bread = storageLeft.tomato = storageLeft.lettuce = storageLeft.onion = storageLeft.meat = stock;
+        console.log("Stock Amount: " + amountStock);
        
-        //chart in bread stock div soll angepasst werden
-        const displayStockBread: any = document.getElementsByClassName('.breadStockChart');
-        displayStockBread.getAttribute('height');
-        displayStockBread.setAttribute('height', amountStock);
+        /* //chart in bread stock div soll angepasst werden
+        let chart: any = document.querySelector('.onionStockChart');
+        let displayStockOnion: any = chart.getAttribute('style');
+        displayStockOnion.innerHTML = "height: " + amountStock + 'px';
+        console.log("Chart Height: " + amountStock);
+ */
+       
+          
     
-        console.log("Bread Amount: " + breadStock + " bzw. " + amountStock);
+        console.log("Onion Amount: " + storageLeft.onion + " bzw. " + amountStock);
 
 
 
         const amountWorker = data.get('amountWorker') as string;    //form Data anzahl worker als string holen
         console.log("Anzahl Worker: " + amountWorker);
-        const stressLevel = data.get('stressLevel') as string;    //form Data anzahl worker als string holen
+        
+        const stressLevel = data.get('stressLevel') as string;    //form Data stressLevel of worker als string holen
         console.log("Stresslevel Worker: " + stressLevel);
         
         // createWorker(amountWorker);
         let amount: number = parseInt(amountWorker);    //string in number parsen
         let worker: Human = new Worker(300, 300);
-        worker;
+        workers.push(worker);
+        console.log(workers[0]);
         for (let index = 0; index < amount; index++) {      //solange index kleiner als anzahl worker ist soll ein neuer worker erstellt werden
             let worker: Human = new Worker(300, 300);
             console.log(index + "workers erstellt");
