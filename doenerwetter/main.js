@@ -5,26 +5,26 @@ var Doener;
     let customers = [];
     window.addEventListener("load", handleload);
     document.querySelector("#start").addEventListener("click", startGame);
-    document.querySelector("#refillBread").addEventListener("click", refill);
-    document.querySelector("#refillTomato").addEventListener("click", refill);
-    document.querySelector("#refillLettuce").addEventListener("click", refill);
-    document.querySelector("#refillOnion").addEventListener("click", refill);
-    document.querySelector("#refillMeat").addEventListener("click", refill);
+    document.querySelector("#refillBread").addEventListener("click", refillBread);
+    document.querySelector("#refillTomato").addEventListener("click", refillTomato);
+    document.querySelector("#refillLettuce").addEventListener("click", refillLettuce);
+    document.querySelector("#refillOnion").addEventListener("click", refillOnion);
+    document.querySelector("#refillMeat").addEventListener("click", refillMeat);
     let currentCostumerAmount = 0;
     console.log(currentCostumerAmount);
     let storageLeft = {
-        bread: 50,
-        tomato: 50,
-        lettuce: 50,
-        onion: 50,
-        meat: 50,
+        bread: 1000,
+        tomato: 1000,
+        lettuce: 1000,
+        onion: 1000,
+        meat: 1000,
     };
     let counterLeft = {
-        bread: 100,
-        tomato: 100,
-        lettuce: 100,
-        onion: 100,
-        meat: 100,
+        bread: 80,
+        tomato: 80,
+        lettuce: 80,
+        onion: 80,
+        meat: 80,
     };
     function handleload(_event) {
         let canvas = document.querySelector("canvas");
@@ -38,37 +38,48 @@ var Doener;
     }
     function startGame() {
         console.log("START");
-        counterLeft.bread = 100;
-        counterLeft.tomato = 100;
-        counterLeft.lettuce = 100;
-        counterLeft.onion = 100;
-        counterLeft.meat = 100;
+        workers = [];
+        customers = [];
+        counterLeft.bread = 80;
+        counterLeft.tomato = 80;
+        counterLeft.lettuce = 80;
+        counterLeft.onion = 80;
+        counterLeft.meat = 80;
         const form = document.querySelector('form');
         const data = new FormData(form);
         const amountStock = data.get('amountIngredients');
-        let stock = parseInt(amountStock); //string in number parsen
+        let stock = parseInt(amountStock + Math.floor); //string in number parsen
         storageLeft.bread = storageLeft.tomato = storageLeft.lettuce = storageLeft.onion = storageLeft.meat = stock;
-        console.log("Stock Amount: " + amountStock);
+        console.log("Stock Amount: " + stock);
         //chart in bread stock div soll angepasst werden
-        let chart = document.querySelector('.onionStockChart');
-        let displayStockOnion = chart.getAttribute('style');
-        //displayStockOnion.innerHTML = "height" + stock + 'px';
-        displayStockOnion.innerHTML = "height" + amountStock + 'px';
-        console.log("Chart Height: " + amountStock);
-        console.log("Onion Amount: " + storageLeft.onion + " bzw. " + amountStock);
+        let meterB = document.querySelector('#stockMeterB');
+        meterB.setAttribute("value", stock / 100);
+        storageLeft.bread = 10 * stock;
+        let meterT = document.querySelector('#stockMeterT');
+        meterT.setAttribute("value", stock / 100);
+        storageLeft.tomato = 10 * stock;
+        let meterL = document.querySelector('#stockMeterL');
+        meterL.setAttribute("value", stock / 100);
+        storageLeft.lettuce = 10 * stock;
+        let meterO = document.querySelector('#stockMeterO');
+        meterO.setAttribute("value", stock / 100);
+        storageLeft.onion = 10 * stock;
+        let meterM = document.querySelector('#stockMeterM');
+        meterM.setAttribute("value", stock / 100);
+        storageLeft.meat = 10 * stock;
+        console.log("Onion bread: " + storageLeft.bread);
         const stressLevel = data.get('stressLevel'); //form Data stressLevel of worker als string holen
         console.log("Stresslevel Worker: " + stressLevel);
         const amountWorker = data.get('amountWorker'); //form Data anzahl worker als string holen
         console.log("Anzahl Worker: " + amountWorker);
         let amount = parseInt(amountWorker); //string in number parsen
         // let worker: Human = new Worker(300, 300);
-        console.log(workers[0]);
         for (let index = 0; index < amount; index++) { //solange index kleiner als anzahl worker ist soll ein neuer worker erstellt werden
-            let randomX = Math.random() * 300 + Math.random() * 300 + 80;
+            let randomX = Math.random() * 300 + Math.random() * 300 + 50;
             let worker = new Doener.Worker(1, randomX, 200);
             worker.draw();
             workers.push(worker);
-            console.log(index + " workers erstellt");
+            console.log(1 + index + " workers erstellt");
             console.log(worker.position);
         }
         const amountCostumer = data.get('amountCostumer'); //form Data anzahl worker als string holen
@@ -289,17 +300,128 @@ var Doener;
         Doener.crc2.stroke();
         Doener.crc2.restore();
     }
-    function refill() {
-        console.log("worker is going to refill stock");
+    function refillBread() {
+        console.log("worker is going to refill bread");
+        //workers[0].move(3)      // walk to bread stock
+        let meterB = document.querySelector('#meterB').getAttribute("value");
+        let amountMissing = 100 - meterB * 100;
+        //console.log("missing: " + amountMissing) 
+        // console.log("before Storage " + storageLeft.bread)
+        storageLeft.bread -= amountMissing;
+        // console.log("after Storage " + storageLeft.bread) 
+        let meterStockB = document.querySelector('#stockMeterB');
+        meterStockB.setAttribute("value", storageLeft.bread / 1000);
+        // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
+        // if workers position is in front of container:
+        setTimeout(bringBread, 5000);
     }
-    function drawCostumer(_amount) {
-        for (let index = 0; index < _amount; index++) { //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
-            let randomX = Math.random() * 300 + Math.random() * 300 + 80;
-            let customer = new Doener.Costumer(1, 500, 500);
+    function bringBread() {
+        console.log("worker is bringing bread to counter");
+        //workers[0].move(3)      // walk back to bread counter
+        //workers[0].draw          // draw extra refillcontainer at worker
+        counterLeft.bread = 100;
+        let meterB = document.querySelector('#meterB');
+        meterB.setAttribute("value", 1);
+    }
+    function refillTomato() {
+        console.log("worker is going to refill tomato");
+        //workers[0].move(3)      // walk to bread stock
+        let meterT = document.querySelector('#meterT').getAttribute("value");
+        let amountMissing = 100 - meterT * 100;
+        //console.log("missing: " + amountMissing) 
+        // console.log("before Storage " + storageLeft.bread)
+        storageLeft.tomato -= amountMissing;
+        // console.log("after Storage " + storageLeft.bread) 
+        let meterStockT = document.querySelector('#stockMeterT');
+        meterStockT.setAttribute("value", storageLeft.tomato / 1000);
+        // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
+        // if workers position is in front of container:
+        setTimeout(bringTomato, 5000);
+    }
+    function bringTomato() {
+        console.log("worker is bringing tomato to counter");
+        //workers[0].move(3)      // walk back to bread counter
+        //workers[0].draw          // draw extra refillcontainer at worker
+        counterLeft.tomato = 100;
+        let meterT = document.querySelector('#meterT');
+        meterT.setAttribute("value", 1);
+    }
+    function refillLettuce() {
+        console.log("worker is going to refill lettuce");
+        //workers[0].move(3)      // walk to bread stock
+        let meterL = document.querySelector('#meterL').getAttribute("value");
+        let amountMissing = 100 - meterL * 100;
+        console.log("missing: " + amountMissing);
+        console.log("before Storage " + storageLeft.lettuce);
+        storageLeft.lettuce -= amountMissing;
+        console.log("after Storage " + storageLeft.lettuce);
+        let meterStockL = document.querySelector('#stockMeterL');
+        meterStockL.setAttribute("value", storageLeft.lettuce / 1000);
+        console.log("rechnung Storage /1000 " + storageLeft.lettuce / 1000);
+        // if workers position is in front of container:
+        setTimeout(bringLettuce, 5000);
+    }
+    function bringLettuce() {
+        console.log("worker is bringing lettuce to counter");
+        //workers[0].move(3)      // walk back to bread counter
+        //workers[0].draw          // draw extra refillcontainer at worker
+        counterLeft.lettuce = 100;
+        let meterL = document.querySelector('#meterL');
+        meterL.setAttribute("value", 1);
+    }
+    function refillOnion() {
+        console.log("worker is going to refill bread");
+        //workers[0].move(3)      // walk to bread stock
+        let meterO = document.querySelector('#meterO').getAttribute("value");
+        let amountMissing = 100 - meterO * 100;
+        //console.log("missing: " + amountMissing) 
+        // console.log("before Storage " + storageLeft.bread)
+        storageLeft.onion -= amountMissing;
+        // console.log("after Storage " + storageLeft.bread) 
+        let meterStockO = document.querySelector('#stockMeterO');
+        meterStockO.setAttribute("value", storageLeft.onion / 1000);
+        // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
+        // if workers position is in front of container:
+        setTimeout(bringOnion, 5000);
+    }
+    function bringOnion() {
+        console.log("worker is bringing onion to counter");
+        //workers[0].move(3)      // walk back to bread counter
+        //workers[0].draw          // draw extra refillcontainer at worker
+        counterLeft.onion = 100;
+        let meterO = document.querySelector('#meterO');
+        meterO.setAttribute("value", 1);
+    }
+    function refillMeat() {
+        console.log("worker is going to refill meat");
+        //workers[0].move(3)      // walk to bread stock
+        let meterM = document.querySelector('#meterM').getAttribute("value");
+        let amountMissing = 100 - meterM * 100;
+        //console.log("missing: " + amountMissing) 
+        // console.log("before Storage " + storageLeft.bread)
+        storageLeft.meat -= amountMissing;
+        // console.log("after Storage " + storageLeft.bread) 
+        let meterStockM = document.querySelector('#stockMeterM');
+        meterStockM.setAttribute("value", storageLeft.meat / 1000);
+        // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
+        // if workers position is in front of container:
+        setTimeout(bringMeat, 5000);
+    }
+    function bringMeat() {
+        console.log("worker is bringing meat to counter");
+        //workers[0].move(3)      // walk back to bread counter
+        //workers[0].draw          // draw extra refillcontainer at worker
+        counterLeft.meat = 100;
+        let meterM = document.querySelector('#meterM');
+        meterM.setAttribute("value", 1);
+    }
+    function drawCostumer(_amountC) {
+        for (let index = 0; index < _amountC; index++) { //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
+            let customer = new Doener.Costumer(1, 810, 380);
             customer.draw();
             customers.push(customer);
-            console.log(index + " customers erstellt");
-            console.log("c position = " + customer.position);
+            console.log(1 + index + " customers erstellt");
+            console.log("c position = " + customer.position.x + " and " + customer.position.y);
         }
     }
 })(Doener || (Doener = {}));

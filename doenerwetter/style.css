@@ -68,138 +68,130 @@
     
     height: 50px;
     width: 50px;
-    border-color: black;
+     background: orange;
+     border-color: black;
     border-style: groove;
 }
-.breadChart {
+#meterB {
     position: absolute;
-    bottom: 0;
-    width: 50px;
-    height: 50%;
-    background: orange;
-    transition: 5s;
-    margin-bottom: -3px;
-    opacity: 0.7;
+    bottom: 1;
+    width: 40px;
+    height: 20px;
+    margin-top: 25px;
+    margin-left: -33px;
 }
 #tomato{
     height: 50px;
     width: 50px;
+    background: red;
     border-color: black;
     border-style: groove;
 }
-.tomatoChart {
+#meterT {
     position: absolute;
-    bottom: 0;
-    width: 50px;
-    height: 50%;
-    background: red;
-    transition: 5s;
-    margin-bottom: -3px;
-    opacity: 0.7;
+    bottom: 1;
+    width: 40px;
+    height: 20px;
+    margin-top: 25px;
+    margin-left: -44px;
 }
-
 #lettuce{
     height: 50px;
     width: 50px;
+    background: greenyellow;
     border-color: black;
     border-style: groove;
 }
-.lettuceChart {
+#meterL {
     position: absolute;
-    bottom: 0;
-    width: 50px;
-    height: 50%;
-    background: greenyellow;
-    transition: 5s;
-    margin-bottom: -3px;
-    opacity: 0.7;
+    bottom: 1;
+    width: 40px;
+    height: 20px;
+    margin-top: 25px;
+    margin-left: -44px;
 }
 
 #onion{
     height: 50px;
     width: 50px;
+    background: purple;
     border-color: black;
     border-style: groove;
 }
-.onionChart {
+#meterO {
     position: absolute;
-    bottom: 0;
-    width: 50px;
-    height: 50%;
-    background: purple;
-    transition: 5s;
-    margin-bottom: -3px;
-    opacity: 0.7;
+    bottom: 1;
+    width: 40px;
+    height: 20px;
+    margin-top: 25px;
+    margin-left: -35px;
+    transition: 3s;
 }
 
 #meat{
     height: 50px;
     width: 50px;
+    background: brown;
     border-color: black;
     border-style: groove;
 }
-.meatChart {
+#meterM {
     position: absolute;
-    bottom: 0;
-    width: 50px;
-    height: 50%;
-    background: brown;
-    transition: 5s;
-    margin-bottom: -3px;
-    opacity: 0.7;
+    bottom: 1;
+    width: 40px;
+    height: 20px;
+    margin-top: 25px;
+    margin-left: -30px;
+    transition: 3s;
 }
 
 
 #breadStock{
     height: 100px;
     width: 100px;
+    background: orange;
     border-color: black;
     border-style: groove;
 }
-.breadStockChart {
+#stockMeterB{
     position: absolute;
     bottom: 1;
-    width: 100px;
-    height: 80px;
-    background: orange;
-    opacity: 0.7;
-    transition: 5s;
-    margin-top: -18.5px;
+    width: 80px;
+    height: 40px;
+    margin-top: 25px;
+    margin-left: -30px;
 }
 
 #tomatoStock{
     height: 100px;
     width: 100px;
+    background: red;
     border-color: black;
     border-style: groove;
 }
-.tomatoStockChart {
+#stockMeterT{
     position: absolute;
     bottom: 1;
-    width: 100px;
-    height: 80px;
-    background: red;
-    opacity: 0.7;
-    transition: 5s;
-    margin-top: -18.5px;
+    width: 80px;
+    height: 40px;
+    margin-top: 25px;
+    margin-left: -40px;
 }
-
 
 #lettuceStock{
     height: 100px;
     width: 100px;
     border-color: black;
     border-style: groove;
+    background: greenyellow;
 }
-.lettuceStockChart {
+#stockMeterL{
     position: absolute;
     bottom: 1;
-    width: 100px;
-    height: 80px;
-    background: greenyellow;
-    opacity: 0.7;
-    transition: 5s;
-    margin-top: -18.5px;
+    width: 80px;
+    height: 40px;
+    margin-top: 25px;
+    margin-left: -40px;
 }
 
 #onionStock{
@@ -207,15 +199,15 @@
     width: 100px;
     border-color: black;
     border-style: groove;
+    background: purple;
 }
-.onionStockChart {
+#stockMeterO{
     position: absolute;
     bottom: 1;
-    width: 100px;
-    background: purple;
-    opacity: 0.7;
-    transition: 5s;
-    margin-top: -18.5px;
+    width: 80px;
+    height: 40px;
+    margin-top: 25px;
+    margin-left: -30px;
 }
 
 #meatStock{
@@ -223,16 +215,16 @@
     width: 100px;
     border-color: black;
     border-style: groove;
+    background: brown;
 }
-.meatStockChart {
+
+#stockMeterM{
     position: absolute;
     bottom: 1;
-    width: 100px;
-    height: 80px;
-    background: brown;
-    opacity: 0.7;
-    transition: 5s;
-    margin-top: -18.5px;
+    width: 80px;
+    height: 40px;
+    margin-top: 25px;
+    margin-left: -25px;
 }
 
 button:hover{
