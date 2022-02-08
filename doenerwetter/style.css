@@ -1,3 +1,242 @@
 #c {
-    color: black;
+    display: inline-block;
+}
+
+.sec1 {
+
+    display: inline-block;
+    margin: 20px;
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+
+.sec2 {
+    display: inline-block;
+    
+    margin-left: 130px;
+    width: 50px;
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#gameArea{
+    display: inline-block;
+    margin: 20px;
+    width: 1300px;
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+#form1 {
+    width: 300px;
+   float: right;
+    margin: 5%;
+    margin-right: 10px;
+}
+
+#start{
+    float: center;
+    width: 150px;
+    height: 50px;
+}
+
+#start:hover{
+    background-color: brown;
+}
+
+#stocking{
+    width: 500px;
+    height: 100px;
+    float: left;
+    align-items: center;
+}
+
+/* #counter{
+    vertical-align: middle;
+} */
+
+.canvas{
+ color: rgb(44, 44, 44);   
+}
+
+
+
+#bread{
+    
+    height: 50px;
+    width: 50px;
+    border-color: black;
+    border-style: groove;
+}
+.breadChart {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50%;
+    background: orange;
+    transition: 5s;
+    margin-bottom: -3px;
+    opacity: 0.7;
+}
+#tomato{
+    height: 50px;
+    width: 50px;
+    border-color: black;
+    border-style: groove;
+}
+.tomatoChart {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50%;
+    background: red;
+    transition: 5s;
+    margin-bottom: -3px;
+    opacity: 0.7;
+}
+
+#lettuce{
+    height: 50px;
+    width: 50px;
+    border-color: black;
+    border-style: groove;
+}
+.lettuceChart {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50%;
+    background: greenyellow;
+    transition: 5s;
+    margin-bottom: -3px;
+    opacity: 0.7;
+}
+
+#onion{
+    height: 50px;
+    width: 50px;
+    border-color: black;
+    border-style: groove;
+}
+.onionChart {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50%;
+    background: purple;
+    transition: 5s;
+    margin-bottom: -3px;
+    opacity: 0.7;
+}
+
+#meat{
+    height: 50px;
+    width: 50px;
+    border-color: black;
+    border-style: groove;
+}
+.meatChart {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    height: 50%;
+    background: brown;
+    transition: 5s;
+    margin-bottom: -3px;
+    opacity: 0.7;
+}
+
+
+#breadStock{
+    height: 100px;
+    width: 100px;
+    border-color: black;
+    border-style: groove;
+}
+.breadStockChart {
+    position: absolute;
+    bottom: 1;
+    width: 100px;
+    height: 80px;
+    background: orange;
+    opacity: 0.7;
+    transition: 5s;
+    margin-top: -18.5px;
+}
+
+#tomatoStock{
+    height: 100px;
+    width: 100px;
+    border-color: black;
+    border-style: groove;
+}
+.tomatoStockChart {
+    position: absolute;
+    bottom: 1;
+    width: 100px;
+    height: 80px;
+    background: red;
+    opacity: 0.7;
+    transition: 5s;
+    margin-top: -18.5px;
+}
+
+
+#lettuceStock{
+    height: 100px;
+    width: 100px;
+    border-color: black;
+    border-style: groove;
+}
+.lettuceStockChart {
+    position: absolute;
+    bottom: 1;
+    width: 100px;
+    height: 80px;
+    background: greenyellow;
+    opacity: 0.7;
+    transition: 5s;
+    margin-top: -18.5px;
+}
+
+#onionStock{
+    height: 100px;
+    width: 100px;
+    border-color: black;
+    border-style: groove;
+}
+.onionStockChart {
+    position: absolute;
+    bottom: 1;
+    width: 100px;
+    height: 100px;
+    background: purple;
+    opacity: 0.7;
+    transition: 5s;
+    margin-top: -18.5px;
+}
+
+#meatStock{
+    height: 100px;
+    width: 100px;
+    border-color: black;
+    border-style: groove;
+}
+.meatStockChart {
+    position: absolute;
+    bottom: 1;
+    width: 100px;
+    height: 80px;
+    background: brown;
+    opacity: 0.7;
+    transition: 5s;
+    margin-top: -18.5px;
+}
+
+button:hover{
+ background-color: black;
+ color: aliceblue;
 }

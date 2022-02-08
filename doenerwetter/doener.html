@@ -1,17 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="main.js" type="text/javascript" charset="utf-8"></script>
-    <script src="Human.js" type="text/javascript" charset="utf-8"></script>
-    <script src="Costumer.js" type="text/javascript" charset="utf-8"></script>
-    <script src="Worker.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+
+
 
     <title>Dönerwetter</title>
 </head>
+
 <body>
-    <canvas width=1300 height=700></canvas></body>
+
+    <!--  <div id="stocking">Stocking -->
+        
+    <section class="sec1">
+        <div id="breadStock">Bread<div class="breadStockChart"></div>
+        </div> 
+        <button id="buyBread">buy new</button>
+    </section>
+    <section class="sec1">
+        <div id="tomatoStock">Tomato <div class="tomatoStockChart"></div>
+        </div>
+        <button id="buyTomato">buy new</button>
+    </section>
+    <section class="sec1">
+        <div id="lettuceStock">Lettuce<div class="lettuceStockChart"></div>
+        </div>
+        <button id="buyLettuce">buy new</button>
+    </section>
+    <section class="sec1">
+        <div id="onionStock">Onion<div class="onionStockChart"></div>
+        </div>
+        <button id="buyOnion">buy new</button>
+    </section>
+    <section class="sec1">
+        <div id="meatStock">Meat<div class="meatStockChart"></div>
+        </div>
+        <button id="buyMeat">buy new</button>
+    </section>
+    <!-- </div> -->
+
+    <!-- <div id="Counter">Counter -->
+
+    <section id="gameArea">
+        <canvas id="c" width=900 height=400></canvas>
+
+        <form id="form1">
+
+            <h2>Dönerwetter</h2>
+
+            <fieldset>
+                <legend> Staff </legend>
+                <legend> Amount of Workers </legend>
+                <input type="number" name="amountWorker" id="worker" step="1" min="1" max="3" value="1" />
+
+                <legend>Stress Level</legend>
+                <input type="radio" name="stressLevel" id="low" value="low" class="stress" />
+                <label for="slim">low</label>
+                <input type="radio" name="stressLevel" id="high" value="high" class="stress" />
+                <label for="wide">high</label>
+            </fieldset>
+
+            <fieldset>
+                <legend> Costumers</legend>
+                <input type="number" name="amountCostumer" id="temperatur" step="1" min="1" max="30" value="1" /> per
+                minute
+            </fieldset>
+
+            <fieldset>
+                <legend>Ingredients </legend>
+                <input type="number" name="amountIngredients" id="ingredients" step="1" min="10" max="100" value="10" />
+                %
+                of each ingedient
+            </fieldset>
+            <button type="button" id="start">Start Game</button>
+        </form>
+
+    </section>
+
+
+
+
+    <section class="sec2" class="chartWrapper">
+        <div id="bread">Bread<div class="breadChart"></div>
+        </div>
+        <button id="refillBread">refill</button>
+    </section>
+    <section class="sec2">
+        <div id="tomato">Tomato<div class="tomatoChart"></div>
+        </div>
+        <button id="refillTomato">refill</button>
+    </section>
+    <section class="sec2">
+        <div id="lettuce">Lettuce<div class="lettuceChart"></div>
+        </div>
+        <button id="refillLettuce">refill</button>
+    </section>
+    <section class="sec2">
+        <div id="onion">Onion<div class="onionChart"></div>
+        </div>
+        <button id="refillOnion">refill</button>
+    </section>
+    <section class="sec2">
+        <div id="meat">Meat<div class="meatChart"></div>
+        </div>
+        <button id="refillMeat">refill</button>
+    </section>
+    <!--  </div> -->
+    <br>
+
+
+
+</body>
+
+<script src="Human.js" type="text/javascript" charset="utf-8"></script>
+<script src="Costumer.js" type="text/javascript" charset="utf-8"></script>
+<script src="Worker.js" type="text/javascript" charset="utf-8"></script>
+<script src="main.js" type="text/javascript" charset="utf-8"></script>
+
 </html>
