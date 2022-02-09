@@ -4,6 +4,11 @@ var Doener;
     let imgData;
     let workers = [];
     let customers = [];
+    let orders = [];
+    // export interface Orders {
+    //     order: Storage;
+    //     nextOrder: Storage
+    // }
     window.addEventListener("load", handleload);
     document.querySelector("#start").addEventListener("click", startGame);
     let currentCostumerAmount = 0;
@@ -28,9 +33,9 @@ var Doener;
         if (!canvas) {
             return;
         }
-        console.log(canvas);
+        // console.log(canvas);
         Doener.crc2 = canvas.getContext("2d");
-        console.log(Doener.crc2);
+        // console.log(crc2);
         drawBackground();
         imgData = Doener.crc2.getImageData(0, 0, Doener.crc2.canvas.width, Doener.crc2.canvas.height);
         window.setInterval(update, 20);
@@ -49,6 +54,7 @@ var Doener;
         document.querySelector("#refillMeat").addEventListener("click", refillMeat);
         workers = [];
         customers = [];
+        orders = [];
         counterLeft.bread = 80;
         counterLeft.tomato = 80;
         counterLeft.lettuce = 80;
@@ -59,7 +65,7 @@ var Doener;
         const amountStock = data.get('amountIngredients');
         let stock = parseInt(amountStock + Math.floor); //string in number parsen
         storageLeft.bread = storageLeft.tomato = storageLeft.lettuce = storageLeft.onion = storageLeft.meat = stock;
-        console.log("Stock Amount: " + stock);
+        // console.log("Stock Amount: " + stock);
         //chart in bread stock div soll angepasst werden
         let meterB = document.querySelector('#stockMeterB');
         meterB.setAttribute("value", stock / 100);
@@ -76,13 +82,14 @@ var Doener;
         let meterM = document.querySelector('#stockMeterM');
         meterM.setAttribute("value", stock / 100);
         storageLeft.meat = 10 * stock;
-        console.log("Onion bread: " + storageLeft.bread);
+        // console.log("Onion bread: " + storageLeft.bread);
         const stressLevel = data.get('stressLevel'); //form Data stressLevel of worker als string holen
-        console.log("Stresslevel Worker: " + stressLevel);
+        // console.log("Stresslevel Worker: " + stressLevel);
         const amountWorker = data.get('amountWorker'); //form Data anzahl worker als string holen
-        console.log("Anzahl Worker: " + amountWorker);
+        // console.log("Anzahl Worker: " + amountWorker);
         let amount = parseInt(amountWorker); //string in number parsen
         // let worker: Human = new Worker(300, 300);
+        // console.log("Aufruf");
         for (let index = 0; index < amount; index++) { //solange index kleiner als anzahl worker ist soll ein neuer worker erstellt werden
             let randomX = Math.random() * 300 + Math.random() * 300 + 50;
             let worker = new Doener.Worker(1, randomX, 200);
@@ -90,16 +97,21 @@ var Doener;
             worker.feel("tired");
             workers.push(worker);
             //window.setInterval(update, 20);
-            console.log(1 + index + " workers erstellt");
-            console.log(worker.position);
+            // console.log(1 + index + " workers erstellt");
+            // console.log(worker.position);
         }
         const amountCostumer = data.get('amountCostumer'); //form Data anzahl worker als string holen
-        console.log("Anzahl Costumer per min: " + amountCostumer);
+        // console.log("Anzahl Costumer per min: " + amountCostumer);
         let amountC = parseInt(amountCostumer);
-        drawCostumer(amountC);
+        for (let index = 0; index < amountC; index++) { //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
+            // window.setInterval(function() {}, 5000);
+            setTimeout(() => {
+                drawCostumer();
+            }, 5000);
+            // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000           
+        }
         //return false; // prevent reload // Quelle: https://dev.to/deciduously/formdata-in-typescript-24cl
     }
-    ;
     function drawBackground() {
         console.log("Background is drawing");
         Doener.crc2.fillStyle = "grey";
@@ -487,18 +499,17 @@ var Doener;
         let m = document.querySelector('#stockMeterM');
         m.setAttribute("value", 1);
     }
-    function drawCostumer(_amountC) {
-        for (let index = 0; index < _amountC; index++) { //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
-            setTimeout(function () {
-                console.log('new customer created');
-                let customer = new Doener.Costumer(1, 830, 380);
-                customer.draw();
-                customers.push(customer);
-                customer.move(1 / 50);
-                console.log(1 + index + " customers erstellt");
-                console.log("c position = " + customer.position.x + " and " + customer.position.y);
-            }, 2000);
-        }
+    function drawCostumer() {
+        // console.log('new customer created'); 
+        let customer = new Doener.Costumer(1, 830, 380);
+        orders.push(customer.myOrder);
+        customer.draw();
+        customers.push(customer);
+        customer.move(1 / 50);
+        console.log(" Order: ");
+        console.log(customer.myOrder);
+        //console.log(1 + index + " customers erstellt");
+        // console.log("c position = " + customer.position.x + " and " + customer.position.y);
     }
     function update() {
         // console.log("Update");

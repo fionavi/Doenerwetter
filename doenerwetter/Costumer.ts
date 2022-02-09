@@ -2,12 +2,15 @@ namespace Doener {
 
     export class Costumer extends Human {
 
+        myOrder: Storage;
+
         constructor(_position: number, _x?: number, _y?: number) {
             super(_position);
             console.log("Costumer CONSTRUCTOR");
             this.position = new Vector(_x, _y);
             this.velocity = new Vector(0, 0);
             this.velocity.set(100, 0);
+            this.myOrder = order();
             //this.velocity.scale(5);
         }
 
@@ -88,6 +91,7 @@ namespace Doener {
             crc2.translate(this.position.x, this.position.y);
 
             crc2.fillStyle = "red";
+            crc2.strokeStyle = "black";
 
 
             //Arm rechts
@@ -164,6 +168,27 @@ namespace Doener {
             crc2.stroke();
 
         }
+        
+        showOrder(): void {
+            
+        }
+    }
+    
+    function order(): Storage {
+        let guestOrder: Storage = {
+            bread: 1,
+            tomato: randomOrder(),
+            lettuce: randomOrder(),
+            onion: randomOrder(),
+            meat: randomOrder(),
+        }
+        return guestOrder;
+    }
+    
+    function randomOrder(): number{
+
+        let random = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+        return random;
     }
 }
 

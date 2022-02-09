@@ -4,7 +4,7 @@ namespace Doener {
 
         constructor(_position: number, _x?: number, _y?: number) {
             super(_position);
-            console.log("Worker CONSTRUCTOR");
+            // console.log("Worker CONSTRUCTOR");
             this.position = new Vector(_x, _y);
             this.velocity = new Vector(0, 0);
             this.velocity.set(50, 0);

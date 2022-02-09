@@ -4,7 +4,7 @@ var Doener;
     class Worker extends Doener.Human {
         constructor(_position, _x, _y) {
             super(_position);
-            console.log("Worker CONSTRUCTOR");
+            // console.log("Worker CONSTRUCTOR");
             this.position = new Doener.Vector(_x, _y);
             this.velocity = new Doener.Vector(0, 0);
             this.velocity.set(50, 0);

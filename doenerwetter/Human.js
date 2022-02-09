@@ -9,13 +9,16 @@ var Doener;
                this.velocity.random(100, 150); */
         }
         move(_timeslice) {
-            console.log("Human move");
+            // console.log("Human move");
         }
         feel(_mood) {
-            console.log("Human feel");
+            // console.log("Human feel");
         }
         draw() {
-            console.log("Human draw");
+            // console.log("Human draw");
+        }
+        order() {
+            // do something
         }
     }
     Doener.Human = Human;

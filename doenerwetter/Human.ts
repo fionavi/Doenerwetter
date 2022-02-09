@@ -13,15 +13,18 @@ namespace Doener {
         }
 
         move(_timeslice: number): void {
-            console.log("Human move");
+            // console.log("Human move");
         }
 
         feel(_mood: string): void {
-            console.log("Human feel");
+            // console.log("Human feel");
         }
 
         draw(): void {
-            console.log("Human draw");
+            // console.log("Human draw");
+        }
+        order(): void {
+            // do something
         }
     }
 

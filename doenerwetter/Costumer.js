@@ -8,6 +8,7 @@ var Doener;
             this.position = new Doener.Vector(_x, _y);
             this.velocity = new Doener.Vector(0, 0);
             this.velocity.set(100, 0);
+            this.myOrder = order();
             //this.velocity.scale(5);
         }
         move(_timeslice) {
@@ -73,6 +74,7 @@ var Doener;
             Doener.crc2.save();
             Doener.crc2.translate(this.position.x, this.position.y);
             Doener.crc2.fillStyle = "red";
+            Doener.crc2.strokeStyle = "black";
             //Arm rechts
             Doener.crc2.beginPath();
             Doener.crc2.ellipse(35, -30, 5, 12, 2, 20, 40);
@@ -132,7 +134,23 @@ var Doener;
             Doener.crc2.fill();
             Doener.crc2.stroke();
         }
+        showOrder() {
+        }
     }
     Doener.Costumer = Costumer;
+    function order() {
+        let guestOrder = {
+            bread: 1,
+            tomato: randomOrder(),
+            lettuce: randomOrder(),
+            onion: randomOrder(),
+            meat: randomOrder(),
+        };
+        return guestOrder;
+    }
+    function randomOrder() {
+        let random = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+        return random;
+    }
 })(Doener || (Doener = {}));
 //# sourceMappingURL=Costumer.js.map
