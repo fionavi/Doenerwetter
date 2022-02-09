@@ -7,60 +7,82 @@ namespace Doener {
             console.log("Costumer CONSTRUCTOR");
             this.position = new Vector(_x, _y);
             this.velocity = new Vector(0, 0);
-            this.velocity.random(100, 150);
+            this.velocity.set(100, 0);
             //this.velocity.scale(5);
         }
 
         move(_timeslice: number): void {
-            console.log("Costumer move");
+            //console.log("Costumer move");
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
-
-            if (this.position.x < 50) {
+            crc2.resetTransform;
+            if (this.position.x < 100) {
                 this.position.x += 10;
-                this.velocity.set(2, 0);
-                //this.velocity.scale(5);
+                this.velocity.set(10, 0);
+                this.velocity.scale(5);
 
             }
-           
-            if (this.position.x > 700) {
+
+            if (this.position.x > 830) {
                 this.position.x -= 10;
-                this.velocity.set(-2, 0);
-                //this.velocity.scale(5);
+                this.velocity.set(-10, 0);
+                this.velocity.scale(5);
             }
-            if (this.position.y < 300) {
-                this.position.y += 10;
-                this.velocity.set(2, 0);
-                //this.velocity.scale(5);
 
-            }
-           
-            if (this.position.y > 300) {
-                this.position.y -= 10;
-                this.velocity.set(-2, 0);
-                //this.velocity.scale(5);
-            }
-            
+
         }
 
         feel(_mood: string) {
-            console.log("Costumer feel");
+           // console.log("Costumer feel");
 
             if (_mood == "sad") {
-                // display sad face
-                console.log("costumer turned sad");
-            }
 
+                //console.log("costumer is sad");
+
+                crc2.resetTransform();
+                crc2.save();
+                crc2.translate(this.position.x, this.position.y);
+
+                crc2.strokeStyle = "black";
+                crc2.beginPath();
+                crc2.ellipse(5, -60, 1, 1, 2, 20, 40);
+                crc2.moveTo(15, -60);
+                crc2.ellipse(15, -60, 1, 1, 2, 20, 40);
+                crc2.moveTo(8, -65);
+                crc2.lineTo(3, -67);
+                crc2.moveTo(12, -65);
+                crc2.lineTo(18, -67);
+                crc2.moveTo(17, -50);
+                crc2.arcTo(7, -55, 5, -50, 5);
+                crc2.closePath();
+                crc2.fill();
+                crc2.stroke();
+            }
 
             if (_mood == "happy") {
                 // display happy face
-                console.log("costumer is happy");
+               // console.log("costumer is happy");
+
+                crc2.resetTransform();
+                crc2.save();
+                crc2.translate(this.position.x, this.position.y);
+
+                crc2.strokeStyle = "black";
+                crc2.beginPath();
+                crc2.ellipse(5, -65, 2, 2, 2, 20, 40);
+                crc2.moveTo(15, -65);
+                crc2.ellipse(15, -65, 2, 2, 2, 20, 40);
+                crc2.moveTo(17, -55);
+                crc2.arcTo(7, -50, 5, -55, 5);
+                crc2.closePath();
+                crc2.fill();
+                crc2.stroke();
             }
         }
 
         draw(): void {
-            console.log("Customer drawing");
+            // console.log("Customer drawing");
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);

@@ -7,40 +7,106 @@ var Doener;
             console.log("Worker CONSTRUCTOR");
             this.position = new Doener.Vector(_x, _y);
             this.velocity = new Doener.Vector(0, 0);
-            this.velocity.random(100, 150);
+            this.velocity.set(50, 0);
             //this.velocity.scale(5);
         }
         move(_timeslice) {
-            console.log("Worker move");
+            //  console.log("Worker move");
             let offset = new Doener.Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
-            if (this.position.x < 50) {
+            if (this.position.x < 80) {
                 this.position.x += 10;
-                this.velocity.set(2, 0);
-                //this.velocity.scale(5);
+                this.velocity.set(15, 0);
+                this.velocity.scale(5);
             }
-            if (this.position.x > 700) {
+            if (this.position.x > 600) {
                 this.position.x -= 10;
-                this.velocity.set(-2, 0);
-                //this.velocity.scale(5);
-            }
-            if (this.position.y < 300) {
-                this.position.y += 10;
-                this.velocity.set(2, 0);
-                //this.velocity.scale(5);
-            }
-            if (this.position.y > 500) {
-                this.position.y -= 10;
-                this.velocity.set(-2, 0);
-                //this.velocity.scale(5);
+                this.velocity.set(-15, 0);
+                this.velocity.scale(5);
             }
         }
         feel(_mood) {
-            console.log("Worker feel");
+            // console.log("Worker feel");
+            if (_mood == "neutral") {
+                // display neutral face
+                //console.log("workers mood is neutral");
+                Doener.crc2.resetTransform();
+                Doener.crc2.save();
+                Doener.crc2.translate(this.position.x, this.position.y);
+                Doener.crc2.strokeStyle = "black";
+                Doener.crc2.beginPath();
+                Doener.crc2.ellipse(5, -65, 2, 2, 2, 20, 40);
+                Doener.crc2.moveTo(15, -65);
+                Doener.crc2.ellipse(15, -65, 2, 2, 2, 20, 40);
+                Doener.crc2.moveTo(17, -55);
+                Doener.crc2.lineTo(3, -55);
+                Doener.crc2.closePath();
+                Doener.crc2.fill();
+                Doener.crc2.stroke();
+            }
+            if (_mood == "stressed") {
+                // display neutral face
+                // console.log("workers mood is stressed");
+                Doener.crc2.resetTransform();
+                Doener.crc2.save();
+                Doener.crc2.translate(this.position.x, this.position.y);
+                Doener.crc2.strokeStyle = "black";
+                Doener.crc2.beginPath();
+                Doener.crc2.ellipse(5, -60, 1, 1, 2, 20, 40);
+                Doener.crc2.moveTo(15, -60);
+                Doener.crc2.ellipse(15, -60, 1, 1, 2, 20, 40);
+                Doener.crc2.moveTo(8, -65);
+                Doener.crc2.lineTo(3, -67);
+                Doener.crc2.moveTo(12, -65);
+                Doener.crc2.lineTo(18, -67);
+                Doener.crc2.moveTo(10, -52);
+                Doener.crc2.ellipse(10, -52, 4, 3, 0, 20, 40);
+                Doener.crc2.closePath();
+                Doener.crc2.stroke();
+                Doener.crc2.fill();
+            }
+            if (_mood == "tired") {
+                // display neutral face
+                // console.log("workers mood is tired");
+                Doener.crc2.resetTransform();
+                Doener.crc2.save();
+                Doener.crc2.translate(this.position.x, this.position.y);
+                Doener.crc2.strokeStyle = "black";
+                Doener.crc2.beginPath();
+                Doener.crc2.moveTo(12, -60);
+                Doener.crc2.lineTo(15, -60);
+                Doener.crc2.moveTo(8, -60);
+                Doener.crc2.lineTo(5, -60);
+                Doener.crc2.moveTo(3, -65);
+                Doener.crc2.lineTo(8, -67);
+                Doener.crc2.moveTo(18, -65);
+                Doener.crc2.lineTo(12, -67);
+                Doener.crc2.moveTo(10, -52);
+                Doener.crc2.ellipse(10, -52, 1, 2, 0, 20, 40);
+                Doener.crc2.closePath();
+                Doener.crc2.stroke();
+                Doener.crc2.fill();
+                Doener.crc2.strokeStyle = "blue";
+                Doener.crc2.beginPath();
+                Doener.crc2.moveTo(20, -75);
+                Doener.crc2.lineTo(25, -75);
+                Doener.crc2.lineTo(20, -70);
+                Doener.crc2.lineTo(25, -70);
+                Doener.crc2.stroke();
+                Doener.crc2.resetTransform();
+                Doener.crc2.save();
+                Doener.crc2.translate(this.position.x, this.position.y);
+                Doener.crc2.beginPath();
+                Doener.crc2.moveTo(28, -85);
+                Doener.crc2.lineTo(33, -85);
+                Doener.crc2.lineTo(28, -80);
+                Doener.crc2.lineTo(33, -80);
+                Doener.crc2.stroke();
+            }
         }
         draw() {
-            console.log("Worker drawing");
+            // console.log("Worker drawing");
             Doener.crc2.resetTransform();
             Doener.crc2.save();
             Doener.crc2.translate(this.position.x, this.position.y);

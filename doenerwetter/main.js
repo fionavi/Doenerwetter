@@ -6,16 +6,6 @@ var Doener;
     let customers = [];
     window.addEventListener("load", handleload);
     document.querySelector("#start").addEventListener("click", startGame);
-    document.querySelector("#buyBread").addEventListener("click", buyBread);
-    document.querySelector("#buyTomato").addEventListener("click", buyTomato);
-    document.querySelector("#buyLettuce").addEventListener("click", buyLettuce);
-    document.querySelector("#buyOnion").addEventListener("click", buyOnion);
-    document.querySelector("#buyMeat").addEventListener("click", buyMeat);
-    document.querySelector("#refillBread").addEventListener("click", refillBread);
-    document.querySelector("#refillTomato").addEventListener("click", refillTomato);
-    document.querySelector("#refillLettuce").addEventListener("click", refillLettuce);
-    document.querySelector("#refillOnion").addEventListener("click", refillOnion);
-    document.querySelector("#refillMeat").addEventListener("click", refillMeat);
     let currentCostumerAmount = 0;
     console.log(currentCostumerAmount);
     let storageLeft = {
@@ -47,6 +37,16 @@ var Doener;
     }
     function startGame() {
         console.log("START");
+        document.querySelector("#buyBread").addEventListener("click", buyBread);
+        document.querySelector("#buyTomato").addEventListener("click", buyTomato);
+        document.querySelector("#buyLettuce").addEventListener("click", buyLettuce);
+        document.querySelector("#buyOnion").addEventListener("click", buyOnion);
+        document.querySelector("#buyMeat").addEventListener("click", buyMeat);
+        document.querySelector("#refillBread").addEventListener("click", refillBread);
+        document.querySelector("#refillTomato").addEventListener("click", refillTomato);
+        document.querySelector("#refillLettuce").addEventListener("click", refillLettuce);
+        document.querySelector("#refillOnion").addEventListener("click", refillOnion);
+        document.querySelector("#refillMeat").addEventListener("click", refillMeat);
         workers = [];
         customers = [];
         counterLeft.bread = 80;
@@ -87,6 +87,7 @@ var Doener;
             let randomX = Math.random() * 300 + Math.random() * 300 + 50;
             let worker = new Doener.Worker(1, randomX, 200);
             worker.draw();
+            worker.feel("tired");
             workers.push(worker);
             //window.setInterval(update, 20);
             console.log(1 + index + " workers erstellt");
@@ -424,35 +425,94 @@ var Doener;
         counterLeft.meat = 100;
         let meterM = document.querySelector('#meterM');
         meterM.setAttribute("value", 1);
+        console.log(storageLeft.meat);
     }
     function buyBread() {
         let stockMeterB = document.querySelector('#stockMeterB').getAttribute("value");
         let amountMissing = 1000 - stockMeterB * 1000;
         storageLeft.bread += amountMissing;
-        earnings -= amountMissing * 0.3;
-        let displayEarnings = document.getElementById("#earnings");
-        displayEarnings.innerHTML = earnings;
+        earnings -= amountMissing / 100 * 0.5;
+        earnings * Math.floor(1);
+        let displayEarnings = document.getElementById("earnings");
+        console.log("STRING: " + earnings.toString());
+        displayEarnings.innerText = earnings.toString() + " €";
+        let b = document.querySelector('#stockMeterB');
+        b.setAttribute("value", 1);
+    }
+    function buyTomato() {
+        let stockMeterT = document.querySelector('#stockMeterT').getAttribute("value");
+        let amountMissing = 1000 - stockMeterT * 1000;
+        storageLeft.tomato += amountMissing;
+        earnings -= amountMissing / 50 * 0.5;
+        earnings * Math.floor(2);
+        let displayEarnings = document.getElementById("earnings");
+        console.log("STRING: " + earnings.toString());
+        displayEarnings.innerText = earnings.toString() + " €";
+        let t = document.querySelector('#stockMeterT');
+        t.setAttribute("value", 1);
+    }
+    function buyLettuce() {
+        let stockMeterL = document.querySelector('#stockMeterL').getAttribute("value");
+        let amountMissing = 1000 - stockMeterL * 1000;
+        storageLeft.lettuce += amountMissing;
+        earnings -= amountMissing / 100 * 0.5;
+        earnings * Math.floor(2);
+        let displayEarnings = document.getElementById("earnings");
+        console.log("STRING: " + earnings.toString());
+        displayEarnings.innerText = earnings.toString() + " €";
+        let l = document.querySelector('#stockMeterL');
+        l.setAttribute("value", 1);
+    }
+    function buyOnion() {
+        let stockMeterO = document.querySelector('#stockMeterO').getAttribute("value");
+        let amountMissing = 1000 - stockMeterO * 1000;
+        storageLeft.onion += amountMissing;
+        earnings -= amountMissing / 100 * 0.5;
+        earnings * Math.floor(2);
+        let displayEarnings = document.getElementById("earnings");
+        console.log("STRING: " + earnings.toString());
+        displayEarnings.innerText = earnings.toString() + " €";
+        let o = document.querySelector('#stockMeterO');
+        o.setAttribute("value", 1);
+    }
+    function buyMeat() {
+        let stockMeterL = document.querySelector('#stockMeterM').getAttribute("value");
+        let amountMissing = 1000 - stockMeterL * 1000;
+        storageLeft.meat += amountMissing;
+        earnings -= amountMissing / 25 * 0.5;
+        earnings * Math.floor(2);
+        let displayEarnings = document.getElementById("earnings");
+        console.log("STRING: " + earnings.toString());
+        displayEarnings.innerText = earnings.toString() + " €";
+        let m = document.querySelector('#stockMeterM');
+        m.setAttribute("value", 1);
     }
     function drawCostumer(_amountC) {
         for (let index = 0; index < _amountC; index++) { //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
-            let customer = new Doener.Costumer(1, 810, 380);
-            customer.draw();
-            customers.push(customer);
-            console.log(1 + index + " customers erstellt");
-            console.log("c position = " + customer.position.x + " and " + customer.position.y);
+            setTimeout(function () {
+                console.log('new customer created');
+                let customer = new Doener.Costumer(1, 830, 380);
+                customer.draw();
+                customers.push(customer);
+                customer.move(1 / 50);
+                console.log(1 + index + " customers erstellt");
+                console.log("c position = " + customer.position.x + " and " + customer.position.y);
+            }, 2000);
         }
     }
     function update() {
-        console.log("Update");
+        // console.log("Update");
         Doener.crc2.putImageData(imgData, 1, 1);
         for (let worker of workers) {
             worker.move(1 / 50);
             worker.draw();
+            worker.feel("neutral");
         }
         for (let customer of customers) {
             customer.move(1 / 50);
             customer.draw();
-            console.log("update c");
+            customer.feel("sad");
+            // console.log("update c");
         }
     }
 })(Doener || (Doener = {}));

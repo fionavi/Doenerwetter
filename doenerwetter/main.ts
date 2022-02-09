@@ -15,19 +15,6 @@ namespace Doener {
     document.querySelector("#start").addEventListener("click", startGame);
 
 
-    document.querySelector("#buyBread").addEventListener("click", buyBread);
-    document.querySelector("#buyTomato").addEventListener("click", buyTomato);
-    document.querySelector("#buyLettuce").addEventListener("click", buyLettuce);
-    document.querySelector("#buyOnion").addEventListener("click", buyOnion);
-    document.querySelector("#buyMeat").addEventListener("click", buyMeat);
-
-    document.querySelector("#refillBread").addEventListener("click", refillBread);
-    document.querySelector("#refillTomato").addEventListener("click", refillTomato);
-    document.querySelector("#refillLettuce").addEventListener("click", refillLettuce);
-    document.querySelector("#refillOnion").addEventListener("click", refillOnion);
-    document.querySelector("#refillMeat").addEventListener("click", refillMeat);
-
-
     let currentCostumerAmount: number = 0;
     console.log(currentCostumerAmount);
 
@@ -77,8 +64,8 @@ namespace Doener {
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
         console.log(crc2);
 
-        
-        
+
+
         drawBackground();
         imgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
         window.setInterval(update, 20);
@@ -86,8 +73,27 @@ namespace Doener {
 
     }
 
+
+
+
+
     function startGame(): void {
+
         console.log("START");
+
+        document.querySelector("#buyBread").addEventListener("click", buyBread);
+        document.querySelector("#buyTomato").addEventListener("click", buyTomato);
+        document.querySelector("#buyLettuce").addEventListener("click", buyLettuce);
+        document.querySelector("#buyOnion").addEventListener("click", buyOnion);
+        document.querySelector("#buyMeat").addEventListener("click", buyMeat);
+
+        document.querySelector("#refillBread").addEventListener("click", refillBread);
+        document.querySelector("#refillTomato").addEventListener("click", refillTomato);
+        document.querySelector("#refillLettuce").addEventListener("click", refillLettuce);
+        document.querySelector("#refillOnion").addEventListener("click", refillOnion);
+        document.querySelector("#refillMeat").addEventListener("click", refillMeat);
+
+        
         workers = [];
         customers = [];
 
@@ -96,7 +102,6 @@ namespace Doener {
         counterLeft.lettuce = 80;
         counterLeft.onion = 80;
         counterLeft.meat = 80;
-
 
         const form = document.querySelector('form')!;
         const data = new FormData(form);
@@ -139,6 +144,7 @@ namespace Doener {
             let randomX: number = Math.random() * 300 + Math.random() * 300 + 50;
             let worker: Human = new Worker(1, randomX, 200);
             worker.draw();
+            worker.feel("tired");
             workers.push(worker);
             //window.setInterval(update, 20);
 
@@ -448,20 +454,20 @@ namespace Doener {
 
     function refillBread(): void {
         console.log("worker is going to refill bread");
-    
+
         //workers[0].move(3)      // walk to bread stock
         let meterB: any = document.querySelector('#meterB').getAttribute("value");
         let amountMissing: number = 100 - meterB * 100;
         //console.log("missing: " + amountMissing) 
-       // console.log("before Storage " + storageLeft.bread)
-        storageLeft.bread -= amountMissing;  
-       // console.log("after Storage " + storageLeft.bread) 
+        // console.log("before Storage " + storageLeft.bread)
+        storageLeft.bread -= amountMissing;
+        // console.log("after Storage " + storageLeft.bread) 
         let meterStockB: any = document.querySelector('#stockMeterB');
-        meterStockB.setAttribute("value", storageLeft.bread / 1000);  
-       // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
-     
-       
-                 // if workers position is in front of container:
+        meterStockB.setAttribute("value", storageLeft.bread / 1000);
+        // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
+
+
+        // if workers position is in front of container:
         setTimeout(bringBread, 5000);
     }
     function bringBread(): void {
@@ -471,25 +477,25 @@ namespace Doener {
         counterLeft.bread = 100;
         let meterB: any = document.querySelector('#meterB')
         meterB.setAttribute("value", 1);
-        
+
     }
 
     function refillTomato(): void {
         console.log("worker is going to refill tomato");
-    
+
         //workers[0].move(3)      // walk to bread stock
         let meterT: any = document.querySelector('#meterT').getAttribute("value");
         let amountMissing: number = 100 - meterT * 100;
         //console.log("missing: " + amountMissing) 
-       // console.log("before Storage " + storageLeft.bread)
-        storageLeft.tomato -= amountMissing;  
-       // console.log("after Storage " + storageLeft.bread) 
+        // console.log("before Storage " + storageLeft.bread)
+        storageLeft.tomato -= amountMissing;
+        // console.log("after Storage " + storageLeft.bread) 
         let meterStockT: any = document.querySelector('#stockMeterT');
-        meterStockT.setAttribute("value", storageLeft.tomato / 1000);  
-       // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
-     
-       
-                 // if workers position is in front of container:
+        meterStockT.setAttribute("value", storageLeft.tomato / 1000);
+        // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
+
+
+        // if workers position is in front of container:
         setTimeout(bringTomato, 5000);
     }
     function bringTomato(): void {
@@ -499,25 +505,25 @@ namespace Doener {
         counterLeft.tomato = 100;
         let meterT: any = document.querySelector('#meterT')
         meterT.setAttribute("value", 1);
-        
+
     }
 
     function refillLettuce(): void {
         console.log("worker is going to refill lettuce");
-    
+
         //workers[0].move(3)      // walk to bread stock
         let meterL: any = document.querySelector('#meterL').getAttribute("value");
         let amountMissing: number = 100 - meterL * 100;
-        console.log("missing: " + amountMissing) 
-       console.log("before Storage " + storageLeft.lettuce)
-        storageLeft.lettuce -= amountMissing;  
-       console.log("after Storage " + storageLeft.lettuce) 
+        console.log("missing: " + amountMissing)
+        console.log("before Storage " + storageLeft.lettuce)
+        storageLeft.lettuce -= amountMissing;
+        console.log("after Storage " + storageLeft.lettuce)
         let meterStockL: any = document.querySelector('#stockMeterL');
-        meterStockL.setAttribute("value", storageLeft.lettuce / 1000);  
-       console.log("rechnung Storage /1000 " + storageLeft.lettuce /1000) 
-     
-       
-                 // if workers position is in front of container:
+        meterStockL.setAttribute("value", storageLeft.lettuce / 1000);
+        console.log("rechnung Storage /1000 " + storageLeft.lettuce / 1000)
+
+
+        // if workers position is in front of container:
         setTimeout(bringLettuce, 5000);
     }
     function bringLettuce(): void {
@@ -527,25 +533,25 @@ namespace Doener {
         counterLeft.lettuce = 100;
         let meterL: any = document.querySelector('#meterL')
         meterL.setAttribute("value", 1);
-        
+
     }
 
     function refillOnion(): void {
         console.log("worker is going to refill bread");
-    
+
         //workers[0].move(3)      // walk to bread stock
         let meterO: any = document.querySelector('#meterO').getAttribute("value");
         let amountMissing: number = 100 - meterO * 100;
         //console.log("missing: " + amountMissing) 
-       // console.log("before Storage " + storageLeft.bread)
-        storageLeft.onion -= amountMissing;  
-       // console.log("after Storage " + storageLeft.bread) 
+        // console.log("before Storage " + storageLeft.bread)
+        storageLeft.onion -= amountMissing;
+        // console.log("after Storage " + storageLeft.bread) 
         let meterStockO: any = document.querySelector('#stockMeterO');
-        meterStockO.setAttribute("value", storageLeft.onion / 1000);  
-       // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
-     
-       
-                 // if workers position is in front of container:
+        meterStockO.setAttribute("value", storageLeft.onion / 1000);
+        // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
+
+
+        // if workers position is in front of container:
         setTimeout(bringOnion, 5000);
     }
     function bringOnion(): void {
@@ -559,20 +565,20 @@ namespace Doener {
 
     function refillMeat(): void {
         console.log("worker is going to refill meat");
-    
+
         //workers[0].move(3)      // walk to bread stock
         let meterM: any = document.querySelector('#meterM').getAttribute("value");
         let amountMissing: number = 100 - meterM * 100;
         //console.log("missing: " + amountMissing) 
-       // console.log("before Storage " + storageLeft.bread)
-        storageLeft.meat -= amountMissing;  
-       // console.log("after Storage " + storageLeft.bread) 
+        // console.log("before Storage " + storageLeft.bread)
+        storageLeft.meat -= amountMissing;
+        // console.log("after Storage " + storageLeft.bread) 
         let meterStockM: any = document.querySelector('#stockMeterM');
-        meterStockM.setAttribute("value", storageLeft.meat / 1000);  
-       // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
-     
-       
-                 // if workers position is in front of container:
+        meterStockM.setAttribute("value", storageLeft.meat / 1000);
+        // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
+
+
+        // if workers position is in front of container:
         setTimeout(bringMeat, 5000);
     }
     function bringMeat(): void {
@@ -582,48 +588,109 @@ namespace Doener {
         counterLeft.meat = 100;
         let meterM: any = document.querySelector('#meterM')
         meterM.setAttribute("value", 1);
-        
+        console.log(storageLeft.meat);
+
     }
 
     function buyBread(): void {
         let stockMeterB: any = document.querySelector('#stockMeterB').getAttribute("value");
-        let amountMissing: number = 1000 - stockMeterB *1000;
-        storageLeft.bread += amountMissing;  
-        earnings -= amountMissing * 0.3;
-        let displayEarnings = document.getElementById("#earnings");
-        displayEarnings.innerHTML = earnings;
+        let amountMissing: number = 1000 - stockMeterB * 1000;
+        storageLeft.bread += amountMissing;
+        earnings -= amountMissing / 100 * 0.5;
+        earnings * Math.floor(1);
+        let displayEarnings: any = document.getElementById("earnings");
+        console.log("STRING: " + earnings.toString());
+        displayEarnings.innerText = earnings.toString() + " €";
+        let b: any = document.querySelector('#stockMeterB');
+        b.setAttribute("value", 1);
     }
 
+    function buyTomato(): void {
+        let stockMeterT: any = document.querySelector('#stockMeterT').getAttribute("value");
+        let amountMissing: number = 1000 - stockMeterT * 1000;
+        storageLeft.tomato += amountMissing;
+        earnings -= amountMissing / 50 * 0.5;
+        earnings * Math.floor(2);
+        let displayEarnings: any = document.getElementById("earnings");
+        console.log("STRING: " + earnings.toString());
+        displayEarnings.innerText = earnings.toString() + " €";
+        let t: any = document.querySelector('#stockMeterT');
+        t.setAttribute("value", 1);
+    }
 
+    function buyLettuce(): void {
+        let stockMeterL: any = document.querySelector('#stockMeterL').getAttribute("value");
+        let amountMissing: number = 1000 - stockMeterL * 1000;
+        storageLeft.lettuce += amountMissing;
+        earnings -= amountMissing / 100 * 0.5;
+        earnings * Math.floor(2);
+        let displayEarnings: any = document.getElementById("earnings");
+        console.log("STRING: " + earnings.toString());
+        displayEarnings.innerText = earnings.toString() + " €";
+        let l: any = document.querySelector('#stockMeterL');
+        l.setAttribute("value", 1);
+    }
 
+    function buyOnion(): void {
+        let stockMeterO: any = document.querySelector('#stockMeterO').getAttribute("value");
+        let amountMissing: number = 1000 - stockMeterO * 1000;
+        storageLeft.onion += amountMissing;
+        earnings -= amountMissing / 100 * 0.5;
+        earnings * Math.floor(2);
+        let displayEarnings: any = document.getElementById("earnings");
+        console.log("STRING: " + earnings.toString());
+        displayEarnings.innerText = earnings.toString() + " €";
+        let o: any = document.querySelector('#stockMeterO');
+        o.setAttribute("value", 1);
+    }
+
+    function buyMeat(): void {
+        let stockMeterL: any = document.querySelector('#stockMeterM').getAttribute("value");
+        let amountMissing: number = 1000 - stockMeterL * 1000;
+        storageLeft.meat += amountMissing;
+        earnings -= amountMissing / 25 * 0.5;
+        earnings * Math.floor(2);
+        let displayEarnings: any = document.getElementById("earnings");
+        console.log("STRING: " + earnings.toString());
+        displayEarnings.innerText = earnings.toString() + " €";
+        let m: any = document.querySelector('#stockMeterM');
+        m.setAttribute("value", 1);
+    }
 
     function drawCostumer(_amountC: number): void {
 
 
         for (let index = 0; index < _amountC; index++) {      //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
 
-            let customer: Human = new Costumer(1, 810, 380);
+            setTimeout(function () {
+                console.log('new customer created');  let customer: Human = new Costumer(1, 830, 380);
             customer.draw();
             customers.push(customer);
+            customer.move(1 / 50);
             console.log(1 + index + " customers erstellt");
             console.log("c position = " + customer.position.x + " and " + customer.position.y);
+            }, 2000);
+
         }
+
     }
 
     function update(): void {
-        console.log("Update");
+        // console.log("Update");
         crc2.putImageData(imgData, 1, 1);
 
         for (let worker of workers) {
             worker.move(1 / 50);
             worker.draw();
+            worker.feel("neutral");
         }
 
-        
+
         for (let customer of customers) {
             customer.move(1 / 50);
             customer.draw();
-            console.log("update c");
+            customer.feel("sad");
+            // console.log("update c");
         }
 
 

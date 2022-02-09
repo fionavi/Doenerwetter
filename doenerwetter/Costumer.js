@@ -7,48 +7,68 @@ var Doener;
             console.log("Costumer CONSTRUCTOR");
             this.position = new Doener.Vector(_x, _y);
             this.velocity = new Doener.Vector(0, 0);
-            this.velocity.random(100, 150);
+            this.velocity.set(100, 0);
             //this.velocity.scale(5);
         }
         move(_timeslice) {
-            console.log("Costumer move");
+            //console.log("Costumer move");
             let offset = new Doener.Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
-            if (this.position.x < 50) {
+            Doener.crc2.resetTransform;
+            if (this.position.x < 100) {
                 this.position.x += 10;
-                this.velocity.set(2, 0);
-                //this.velocity.scale(5);
+                this.velocity.set(10, 0);
+                this.velocity.scale(5);
             }
-            if (this.position.x > 700) {
+            if (this.position.x > 830) {
                 this.position.x -= 10;
-                this.velocity.set(-2, 0);
-                //this.velocity.scale(5);
-            }
-            if (this.position.y < 300) {
-                this.position.y += 10;
-                this.velocity.set(2, 0);
-                //this.velocity.scale(5);
-            }
-            if (this.position.y > 300) {
-                this.position.y -= 10;
-                this.velocity.set(-2, 0);
-                //this.velocity.scale(5);
+                this.velocity.set(-10, 0);
+                this.velocity.scale(5);
             }
         }
         feel(_mood) {
-            console.log("Costumer feel");
+            // console.log("Costumer feel");
             if (_mood == "sad") {
-                // display sad face
-                console.log("costumer turned sad");
+                //console.log("costumer is sad");
+                Doener.crc2.resetTransform();
+                Doener.crc2.save();
+                Doener.crc2.translate(this.position.x, this.position.y);
+                Doener.crc2.strokeStyle = "black";
+                Doener.crc2.beginPath();
+                Doener.crc2.ellipse(5, -60, 1, 1, 2, 20, 40);
+                Doener.crc2.moveTo(15, -60);
+                Doener.crc2.ellipse(15, -60, 1, 1, 2, 20, 40);
+                Doener.crc2.moveTo(8, -65);
+                Doener.crc2.lineTo(3, -67);
+                Doener.crc2.moveTo(12, -65);
+                Doener.crc2.lineTo(18, -67);
+                Doener.crc2.moveTo(17, -50);
+                Doener.crc2.arcTo(7, -55, 5, -50, 5);
+                Doener.crc2.closePath();
+                Doener.crc2.fill();
+                Doener.crc2.stroke();
             }
             if (_mood == "happy") {
                 // display happy face
-                console.log("costumer is happy");
+                // console.log("costumer is happy");
+                Doener.crc2.resetTransform();
+                Doener.crc2.save();
+                Doener.crc2.translate(this.position.x, this.position.y);
+                Doener.crc2.strokeStyle = "black";
+                Doener.crc2.beginPath();
+                Doener.crc2.ellipse(5, -65, 2, 2, 2, 20, 40);
+                Doener.crc2.moveTo(15, -65);
+                Doener.crc2.ellipse(15, -65, 2, 2, 2, 20, 40);
+                Doener.crc2.moveTo(17, -55);
+                Doener.crc2.arcTo(7, -50, 5, -55, 5);
+                Doener.crc2.closePath();
+                Doener.crc2.fill();
+                Doener.crc2.stroke();
             }
         }
         draw() {
-            console.log("Customer drawing");
+            // console.log("Customer drawing");
             Doener.crc2.resetTransform();
             Doener.crc2.save();
             Doener.crc2.translate(this.position.x, this.position.y);
