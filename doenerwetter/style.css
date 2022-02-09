@@ -62,7 +62,22 @@
  color: rgb(44, 44, 44);   
 }
 
+#money {
+    position: static;
+    margin-top: -10px;
+    height: 100px;
+    width: 170px;
+     background: gold;
+     border-color: black;
+    border-style: groove;
+}
 
+#earnings {
+    align-self: center;
+    margin-left: 50px;
+    margin-top: 25px;
+    font-size: xx-large;
+}
 
 #bread{
     

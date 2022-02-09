@@ -6,8 +6,8 @@ var Doener;
             super(_position);
             console.log("Costumer CONSTRUCTOR");
             this.position = new Doener.Vector(_x, _y);
-            //this.velocity = new Vector(0, 0);
-            // this.velocity.random(100, 150);
+            this.velocity = new Doener.Vector(0, 0);
+            this.velocity.random(100, 150);
             //this.velocity.scale(5);
         }
         move(_timeslice) {
@@ -15,23 +15,25 @@ var Doener;
             let offset = new Doener.Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
-            if (this.position.x < -50) {
-                this.velocity.set(40, -20);
-                this.velocity.scale(5);
+            if (this.position.x < 50) {
+                this.position.x += 10;
+                this.velocity.set(2, 0);
+                //this.velocity.scale(5);
             }
-            if (this.position.y < 500) {
-                // this.position.y += 40;
-                this.velocity.set(50, 10);
-                this.velocity.scale(5);
+            if (this.position.x > 700) {
+                this.position.x -= 10;
+                this.velocity.set(-2, 0);
+                //this.velocity.scale(5);
             }
-            if (this.position.x > 1000) {
-                this.position.x = -100;
-                this.velocity.scale(5);
+            if (this.position.y < 300) {
+                this.position.y += 10;
+                this.velocity.set(2, 0);
+                //this.velocity.scale(5);
             }
-            if (this.position.y > 600) {
-                //this.position.y -= 50;
-                this.velocity.set(50, -10);
-                this.velocity.scale(5);
+            if (this.position.y > 300) {
+                this.position.y -= 10;
+                this.velocity.set(-2, 0);
+                //this.velocity.scale(5);
             }
         }
         feel(_mood) {

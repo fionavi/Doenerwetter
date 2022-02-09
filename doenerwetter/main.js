@@ -1,10 +1,16 @@
 "use strict";
 var Doener;
 (function (Doener) {
+    let imgData;
     let workers = [];
     let customers = [];
     window.addEventListener("load", handleload);
     document.querySelector("#start").addEventListener("click", startGame);
+    document.querySelector("#buyBread").addEventListener("click", buyBread);
+    document.querySelector("#buyTomato").addEventListener("click", buyTomato);
+    document.querySelector("#buyLettuce").addEventListener("click", buyLettuce);
+    document.querySelector("#buyOnion").addEventListener("click", buyOnion);
+    document.querySelector("#buyMeat").addEventListener("click", buyMeat);
     document.querySelector("#refillBread").addEventListener("click", refillBread);
     document.querySelector("#refillTomato").addEventListener("click", refillTomato);
     document.querySelector("#refillLettuce").addEventListener("click", refillLettuce);
@@ -26,6 +32,7 @@ var Doener;
         onion: 80,
         meat: 80,
     };
+    let earnings = 0;
     function handleload(_event) {
         let canvas = document.querySelector("canvas");
         if (!canvas) {
@@ -35,6 +42,8 @@ var Doener;
         Doener.crc2 = canvas.getContext("2d");
         console.log(Doener.crc2);
         drawBackground();
+        imgData = Doener.crc2.getImageData(0, 0, Doener.crc2.canvas.width, Doener.crc2.canvas.height);
+        window.setInterval(update, 20);
     }
     function startGame() {
         console.log("START");
@@ -79,6 +88,7 @@ var Doener;
             let worker = new Doener.Worker(1, randomX, 200);
             worker.draw();
             workers.push(worker);
+            //window.setInterval(update, 20);
             console.log(1 + index + " workers erstellt");
             console.log(worker.position);
         }
@@ -415,6 +425,14 @@ var Doener;
         let meterM = document.querySelector('#meterM');
         meterM.setAttribute("value", 1);
     }
+    function buyBread() {
+        let stockMeterB = document.querySelector('#stockMeterB').getAttribute("value");
+        let amountMissing = 1000 - stockMeterB * 1000;
+        storageLeft.bread += amountMissing;
+        earnings -= amountMissing * 0.3;
+        let displayEarnings = document.getElementById("#earnings");
+        displayEarnings.innerHTML = earnings;
+    }
     function drawCostumer(_amountC) {
         for (let index = 0; index < _amountC; index++) { //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
             let customer = new Doener.Costumer(1, 810, 380);
@@ -422,6 +440,19 @@ var Doener;
             customers.push(customer);
             console.log(1 + index + " customers erstellt");
             console.log("c position = " + customer.position.x + " and " + customer.position.y);
+        }
+    }
+    function update() {
+        console.log("Update");
+        Doener.crc2.putImageData(imgData, 1, 1);
+        for (let worker of workers) {
+            worker.move(1 / 50);
+            worker.draw();
+        }
+        for (let customer of customers) {
+            customer.move(1 / 50);
+            customer.draw();
+            console.log("update c");
         }
     }
 })(Doener || (Doener = {}));

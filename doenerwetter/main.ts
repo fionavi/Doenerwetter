@@ -1,5 +1,7 @@
 namespace Doener {
     export let crc2: CanvasRenderingContext2D;
+    let imgData: ImageData;
+
 
     let workers: Worker[] = [];
     let customers: Costumer[] = [];
@@ -12,6 +14,12 @@ namespace Doener {
     window.addEventListener("load", handleload);
     document.querySelector("#start").addEventListener("click", startGame);
 
+
+    document.querySelector("#buyBread").addEventListener("click", buyBread);
+    document.querySelector("#buyTomato").addEventListener("click", buyTomato);
+    document.querySelector("#buyLettuce").addEventListener("click", buyLettuce);
+    document.querySelector("#buyOnion").addEventListener("click", buyOnion);
+    document.querySelector("#buyMeat").addEventListener("click", buyMeat);
 
     document.querySelector("#refillBread").addEventListener("click", refillBread);
     document.querySelector("#refillTomato").addEventListener("click", refillTomato);
@@ -56,6 +64,8 @@ namespace Doener {
         meat: 80,
     };
 
+    let earnings: number = 0;
+
 
 
     function handleload(_event: Event): void {
@@ -67,9 +77,11 @@ namespace Doener {
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
         console.log(crc2);
 
-
+        
+        
         drawBackground();
-
+        imgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
+        window.setInterval(update, 20);
 
 
     }
@@ -128,6 +140,8 @@ namespace Doener {
             let worker: Human = new Worker(1, randomX, 200);
             worker.draw();
             workers.push(worker);
+            //window.setInterval(update, 20);
+
             console.log(1 + index + " workers erstellt");
             console.log(worker.position);
 
@@ -571,6 +585,18 @@ namespace Doener {
         
     }
 
+    function buyBread(): void {
+        let stockMeterB: any = document.querySelector('#stockMeterB').getAttribute("value");
+        let amountMissing: number = 1000 - stockMeterB *1000;
+        storageLeft.bread += amountMissing;  
+        earnings -= amountMissing * 0.3;
+        let displayEarnings = document.getElementById("#earnings");
+        displayEarnings.innerHTML = earnings;
+    }
+
+
+
+
     function drawCostumer(_amountC: number): void {
 
 
@@ -582,6 +608,24 @@ namespace Doener {
             console.log(1 + index + " customers erstellt");
             console.log("c position = " + customer.position.x + " and " + customer.position.y);
         }
+    }
+
+    function update(): void {
+        console.log("Update");
+        crc2.putImageData(imgData, 1, 1);
+
+        for (let worker of workers) {
+            worker.move(1 / 50);
+            worker.draw();
+        }
+
+        
+        for (let customer of customers) {
+            customer.move(1 / 50);
+            customer.draw();
+            console.log("update c");
+        }
+
 
 
 
