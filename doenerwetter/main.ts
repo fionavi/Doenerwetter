@@ -6,6 +6,16 @@ namespace Doener {
     let workers: Worker[] = [];
     let customers: Costumer[] = [];
     let orders: Storage[] = [];
+    let ordersMade: Storage[] = [];
+
+
+    let currentOrder: Storage = {
+        bread: 0,
+        tomato: 0,
+        lettuce: 0,
+        onion: 0,
+        meat: 0,
+    };
 
 
     export interface Vector {
@@ -60,7 +70,7 @@ namespace Doener {
 
     let earnings: number = 0;
 
-
+   
 
     function handleload(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -77,6 +87,8 @@ namespace Doener {
         imgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
         window.setInterval(update, 20);
 
+
+       
 
     }
 
@@ -100,6 +112,12 @@ namespace Doener {
         document.querySelector("#refillOnion").addEventListener("click", refillOnion);
         document.querySelector("#refillMeat").addEventListener("click", refillMeat);
 
+
+        document.querySelector("#addB").addEventListener("click", addBread());
+        document.querySelector("#addT").addEventListener("click", addTomato());
+        document.querySelector("#addL").addEventListener("click", addLettuce());
+        document.querySelector("#addO").addEventListener("click", addOnion());
+        document.querySelector("#addM").addEventListener("click", addMeat());
 
         workers = [];
         customers = [];
@@ -164,22 +182,21 @@ namespace Doener {
         const amountCostumer = data.get('amountCostumer') as string;    //form Data anzahl worker als string holen
         // console.log("Anzahl Costumer per min: " + amountCostumer);
         let amountC: number = parseInt(amountCostumer);
-        
+
         for (let index = 0; index < amountC; index++) {      //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
             // window.setInterval(function() {}, 5000);
             setTimeout(() => {
-                
-                drawCostumer();
+
+                createCostumer();
             }, 5000);
             // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000           
         }
 
+        /* orderInTheMaking();
+        console.log("oder in the making aufruf");
+ */
 
-
-
-
-
-//return false; // prevent reload // Quelle: https://dev.to/deciduously/formdata-in-typescript-24cl
+        //return false; // prevent reload // Quelle: https://dev.to/deciduously/formdata-in-typescript-24cl
     }
 
     function drawBackground(): void {
@@ -674,7 +691,7 @@ namespace Doener {
         m.setAttribute("value", 1);
     }
 
-    function drawCostumer(): any {
+    function createCostumer(): any {
 
         // console.log('new customer created'); 
         let customer: Costumer = new Costumer(1, 830, 380);
@@ -682,13 +699,44 @@ namespace Doener {
         customer.draw();
         customers.push(customer);
         customer.move(1 / 50);
-        
+
         console.log(" Order: ")
         console.log(customer.myOrder);
         //console.log(1 + index + " customers erstellt");
         // console.log("c position = " + customer.position.x + " and " + customer.position.y);
 
     }
+
+    
+            
+       /*  ordersMade.push(currentOrder);
+        console.log(currentOrder); */
+
+
+    function addBread(): any {
+        console.log("bread was clicked");
+        currentOrder.bread ++;
+        console.log("bread was added");
+        console.log(currentOrder);
+    }
+
+    function addTomato(): any {
+        currentOrder.tomato++;
+
+    }
+    function addLettuce(): any {
+        currentOrder.lettuce++;
+        console.log("tomato was added");
+    }
+
+    function addOnion(): any {
+        currentOrder.onion++;
+    }
+
+    function addMeat(): any {
+        currentOrder.meat++;
+    }
+
 
     function update(): void {
         // console.log("Update");

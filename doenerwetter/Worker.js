@@ -8,6 +8,7 @@ var Doener;
             this.position = new Doener.Vector(_x, _y);
             this.velocity = new Doener.Vector(0, 0);
             this.velocity.set(50, 0);
+            this.currentOrder = this.showOrder();
             //this.velocity.scale(5);
         }
         move(_timeslice) {
@@ -169,6 +170,16 @@ var Doener;
             Doener.crc2.closePath();
             Doener.crc2.fill();
             Doener.crc2.stroke();
+        }
+        showOrder() {
+            let currentOrder = {
+                bread: 0,
+                tomato: 0,
+                lettuce: 0,
+                onion: 0,
+                meat: 0,
+            };
+            return currentOrder;
         }
     }
     Doener.Worker = Worker;

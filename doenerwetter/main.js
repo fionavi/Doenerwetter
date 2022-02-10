@@ -5,6 +5,14 @@ var Doener;
     let workers = [];
     let customers = [];
     let orders = [];
+    let ordersMade = [];
+    let currentOrder = {
+        bread: 0,
+        tomato: 0,
+        lettuce: 0,
+        onion: 0,
+        meat: 0,
+    };
     // export interface Orders {
     //     order: Storage;
     //     nextOrder: Storage
@@ -52,6 +60,11 @@ var Doener;
         document.querySelector("#refillLettuce").addEventListener("click", refillLettuce);
         document.querySelector("#refillOnion").addEventListener("click", refillOnion);
         document.querySelector("#refillMeat").addEventListener("click", refillMeat);
+        document.querySelector("#addB").addEventListener("click", addBread());
+        document.querySelector("#addT").addEventListener("click", addTomato());
+        document.querySelector("#addL").addEventListener("click", addLettuce());
+        document.querySelector("#addO").addEventListener("click", addOnion());
+        document.querySelector("#addM").addEventListener("click", addMeat());
         workers = [];
         customers = [];
         orders = [];
@@ -106,10 +119,13 @@ var Doener;
         for (let index = 0; index < amountC; index++) { //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
             // window.setInterval(function() {}, 5000);
             setTimeout(() => {
-                drawCostumer();
+                createCostumer();
             }, 5000);
             // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000           
         }
+        /* orderInTheMaking();
+        console.log("oder in the making aufruf");
+ */
         //return false; // prevent reload // Quelle: https://dev.to/deciduously/formdata-in-typescript-24cl
     }
     function drawBackground() {
@@ -499,7 +515,7 @@ var Doener;
         let m = document.querySelector('#stockMeterM');
         m.setAttribute("value", 1);
     }
-    function drawCostumer() {
+    function createCostumer() {
         // console.log('new customer created'); 
         let customer = new Doener.Costumer(1, 830, 380);
         orders.push(customer.myOrder);
@@ -510,6 +526,27 @@ var Doener;
         console.log(customer.myOrder);
         //console.log(1 + index + " customers erstellt");
         // console.log("c position = " + customer.position.x + " and " + customer.position.y);
+    }
+    /*  ordersMade.push(currentOrder);
+     console.log(currentOrder); */
+    function addBread() {
+        console.log("bread was clicked");
+        currentOrder.bread++;
+        console.log("bread was added");
+        console.log(currentOrder);
+    }
+    function addTomato() {
+        currentOrder.tomato++;
+    }
+    function addLettuce() {
+        currentOrder.lettuce++;
+        console.log("tomato was added");
+    }
+    function addOnion() {
+        currentOrder.onion++;
+    }
+    function addMeat() {
+        currentOrder.meat++;
     }
     function update() {
         // console.log("Update");

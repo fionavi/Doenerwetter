@@ -2,12 +2,16 @@ namespace Doener {
 
     export class Worker extends Human {
 
+        currentOrder: Storage
+
         constructor(_position: number, _x?: number, _y?: number) {
             super(_position);
             // console.log("Worker CONSTRUCTOR");
             this.position = new Vector(_x, _y);
             this.velocity = new Vector(0, 0);
             this.velocity.set(50, 0);
+            this.currentOrder = this.showOrder();
+
             //this.velocity.scale(5);
         }
 
@@ -34,7 +38,7 @@ namespace Doener {
         }
 
         feel(_mood: string) {
-           // console.log("Worker feel");
+            // console.log("Worker feel");
             if (_mood == "neutral") {
                 // display neutral face
                 //console.log("workers mood is neutral");
@@ -56,7 +60,7 @@ namespace Doener {
 
             if (_mood == "stressed") {
                 // display neutral face
-               // console.log("workers mood is stressed");
+                // console.log("workers mood is stressed");
                 crc2.resetTransform();
                 crc2.save();
                 crc2.translate(this.position.x, this.position.y);
@@ -79,7 +83,7 @@ namespace Doener {
             }
             if (_mood == "tired") {
                 // display neutral face
-               // console.log("workers mood is tired");
+                // console.log("workers mood is tired");
                 crc2.resetTransform();
                 crc2.save();
                 crc2.translate(this.position.x, this.position.y);
@@ -106,7 +110,7 @@ namespace Doener {
                 crc2.lineTo(25, -75);
                 crc2.lineTo(20, -70);
                 crc2.lineTo(25, -70);
-                
+
                 crc2.stroke();
                 crc2.resetTransform();
                 crc2.save();
@@ -117,9 +121,9 @@ namespace Doener {
                 crc2.lineTo(33, -85);
                 crc2.lineTo(28, -80);
                 crc2.lineTo(33, -80);
-                
+
                 crc2.stroke();
-                
+
             }
 
         }
@@ -207,6 +211,20 @@ namespace Doener {
             crc2.stroke();
 
         }
+
+        showOrder(): Storage {
+            let currentOrder: Storage = {
+                bread: 0,
+                tomato: 0,
+                lettuce: 0,
+                onion: 0,
+                meat: 0,
+            }
+            return currentOrder;
+        }
+
+
+
     }
 }
 
