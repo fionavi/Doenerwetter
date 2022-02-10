@@ -8,7 +8,7 @@ var Doener;
             this.position = new Doener.Vector(_x, _y);
             this.velocity = new Doener.Vector(0, 0);
             this.velocity.set(50, 0);
-            this.currentOrder = this.showOrder();
+            this.currentOrder = this.order();
             //this.velocity.scale(5);
         }
         move(_timeslice) {
@@ -171,7 +171,7 @@ var Doener;
             Doener.crc2.fill();
             Doener.crc2.stroke();
         }
-        showOrder() {
+        order() {
             let currentOrder = {
                 bread: 0,
                 tomato: 0,

@@ -44,12 +44,19 @@ var Doener;
         // console.log(canvas);
         Doener.crc2 = canvas.getContext("2d");
         // console.log(crc2);
+        document.querySelector("#start").addEventListener("click", startGame);
         drawBackground();
         imgData = Doener.crc2.getImageData(0, 0, Doener.crc2.canvas.width, Doener.crc2.canvas.height);
         window.setInterval(update, 20);
     }
     function startGame() {
         console.log("START");
+        document.querySelector("#addB").addEventListener("click", addBread);
+        document.querySelector("#addT").addEventListener("click", addTomato);
+        document.querySelector("#addL").addEventListener("click", addLettuce);
+        document.querySelector("#addO").addEventListener("click", addOnion);
+        document.querySelector("#addM").addEventListener("click", addMeat);
+        document.querySelector("#pay").addEventListener("click", cashUpOrder);
         document.querySelector("#buyBread").addEventListener("click", buyBread);
         document.querySelector("#buyTomato").addEventListener("click", buyTomato);
         document.querySelector("#buyLettuce").addEventListener("click", buyLettuce);
@@ -60,14 +67,10 @@ var Doener;
         document.querySelector("#refillLettuce").addEventListener("click", refillLettuce);
         document.querySelector("#refillOnion").addEventListener("click", refillOnion);
         document.querySelector("#refillMeat").addEventListener("click", refillMeat);
-        document.querySelector("#addB").addEventListener("click", addBread());
-        document.querySelector("#addT").addEventListener("click", addTomato());
-        document.querySelector("#addL").addEventListener("click", addLettuce());
-        document.querySelector("#addO").addEventListener("click", addOnion());
-        document.querySelector("#addM").addEventListener("click", addMeat());
         workers = [];
         customers = [];
         orders = [];
+        ordersMade = [];
         counterLeft.bread = 80;
         counterLeft.tomato = 80;
         counterLeft.lettuce = 80;
@@ -120,7 +123,7 @@ var Doener;
             // window.setInterval(function() {}, 5000);
             setTimeout(() => {
                 createCostumer();
-            }, 5000);
+            }, 2000);
             // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000           
         }
         /* orderInTheMaking();
@@ -522,31 +525,85 @@ var Doener;
         customer.draw();
         customers.push(customer);
         customer.move(1 / 50);
-        console.log(" Order: ");
+        console.log(" Order of Customer: ");
         console.log(customer.myOrder);
         //console.log(1 + index + " customers erstellt");
         // console.log("c position = " + customer.position.x + " and " + customer.position.y);
     }
-    /*  ordersMade.push(currentOrder);
-     console.log(currentOrder); */
     function addBread() {
         console.log("bread was clicked");
         currentOrder.bread++;
-        console.log("bread was added");
-        console.log(currentOrder);
+        counterLeft.bread -= 10;
+        let meter = document.querySelector('#meterB');
+        meter.setAttribute("value", counterLeft.bread / 100);
+        /*  console.log("bread was added");
+         console.log("current order is: ");
+         console.log(currentOrder) */ ;
+        if (counterLeft.bread <= 0) {
+            alert("refill bread!");
+        }
     }
     function addTomato() {
         currentOrder.tomato++;
+        counterLeft.tomato -= 10;
+        let meter = document.querySelector('#meterT');
+        meter.setAttribute("value", counterLeft.tomato / 100);
+        /*   console.log("tomato was added");
+          console.log("current order is: ");
+          console.log(currentOrder); */
+        if (counterLeft.tomato <= 0) {
+            alert("refill tomatos!");
+        }
     }
     function addLettuce() {
         currentOrder.lettuce++;
-        console.log("tomato was added");
+        counterLeft.lettuce -= 10;
+        let meter = document.querySelector('#meterL');
+        meter.setAttribute("value", counterLeft.lettuce / 100);
+        /*  console.log("lettuce was added");
+         console.log("current order is: ");
+         console.log(currentOrder); */
+        if (counterLeft.lettuce <= 0) {
+            alert("refill lettuce!");
+        }
     }
     function addOnion() {
         currentOrder.onion++;
+        counterLeft.onion -= 10;
+        let meter = document.querySelector('#meterO');
+        meter.setAttribute("value", counterLeft.onion / 100);
+        /*  console.log("onion was added");
+         console.log("current order is: ");
+         console.log(currentOrder); */
+        if (counterLeft.onion <= 0) {
+            alert("refill onion!");
+        }
     }
     function addMeat() {
         currentOrder.meat++;
+        counterLeft.meat -= 10;
+        let meter = document.querySelector('#meterM');
+        meter.setAttribute("value", counterLeft.meat / 100);
+        /*   console.log("meat was added");
+          console.log("current order is: ");
+          console.log(currentOrder); */
+        if (counterLeft.meat <= 0) {
+            alert("refill meat!");
+        }
+    }
+    function cashUpOrder() {
+        ordersMade.push(currentOrder);
+        console.log(currentOrder);
+        if (ordersMade[0] == orders[0]) {
+            customers[0].feel("happy");
+            console.log(ordersMade[0]);
+            console.log("order was right");
+        }
+        else {
+            customers[0].feel("sad");
+            console.log("order was wrong");
+            console.log(ordersMade[0]);
+        }
     }
     function update() {
         // console.log("Update");

@@ -10,7 +10,7 @@ namespace Doener {
             this.position = new Vector(_x, _y);
             this.velocity = new Vector(0, 0);
             this.velocity.set(50, 0);
-            this.currentOrder = this.showOrder();
+            this.currentOrder = this.order();
 
             //this.velocity.scale(5);
         }
@@ -212,7 +212,7 @@ namespace Doener {
 
         }
 
-        showOrder(): Storage {
+        order(): Storage {
             let currentOrder: Storage = {
                 bread: 0,
                 tomato: 0,

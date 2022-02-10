@@ -5,6 +5,8 @@ namespace Doener {
         velocity: Vector;
         mood: string;
 
+
+        
         constructor(_position: number, _x?: number, _y?: number) {
          /*    console.log("Human CONSTRUCTOR");
             this.position = new Vector(_x, _y);

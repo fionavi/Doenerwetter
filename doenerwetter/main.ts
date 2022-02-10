@@ -70,7 +70,7 @@ namespace Doener {
 
     let earnings: number = 0;
 
-   
+
 
     function handleload(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -80,7 +80,7 @@ namespace Doener {
         // console.log(canvas);
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
         // console.log(crc2);
-
+        document.querySelector("#start").addEventListener("click", startGame);
 
 
         drawBackground();
@@ -88,7 +88,8 @@ namespace Doener {
         window.setInterval(update, 20);
 
 
-       
+
+
 
     }
 
@@ -99,6 +100,13 @@ namespace Doener {
     function startGame(): void {
 
         console.log("START");
+        document.querySelector("#addB").addEventListener("click", addBread);
+        document.querySelector("#addT").addEventListener("click", addTomato);
+        document.querySelector("#addL").addEventListener("click", addLettuce);
+        document.querySelector("#addO").addEventListener("click", addOnion);
+        document.querySelector("#addM").addEventListener("click", addMeat);
+        document.querySelector("#pay").addEventListener("click", cashUpOrder);
+
 
         document.querySelector("#buyBread").addEventListener("click", buyBread);
         document.querySelector("#buyTomato").addEventListener("click", buyTomato);
@@ -113,15 +121,12 @@ namespace Doener {
         document.querySelector("#refillMeat").addEventListener("click", refillMeat);
 
 
-        document.querySelector("#addB").addEventListener("click", addBread());
-        document.querySelector("#addT").addEventListener("click", addTomato());
-        document.querySelector("#addL").addEventListener("click", addLettuce());
-        document.querySelector("#addO").addEventListener("click", addOnion());
-        document.querySelector("#addM").addEventListener("click", addMeat());
+
 
         workers = [];
         customers = [];
         orders = [];
+        ordersMade = [];
 
         counterLeft.bread = 80;
         counterLeft.tomato = 80;
@@ -188,7 +193,7 @@ namespace Doener {
             setTimeout(() => {
 
                 createCostumer();
-            }, 5000);
+            }, 2000);
             // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000           
         }
 
@@ -700,43 +705,108 @@ namespace Doener {
         customers.push(customer);
         customer.move(1 / 50);
 
-        console.log(" Order: ")
+        console.log(" Order of Customer: ")
         console.log(customer.myOrder);
         //console.log(1 + index + " customers erstellt");
         // console.log("c position = " + customer.position.x + " and " + customer.position.y);
 
     }
 
-    
-            
-       /*  ordersMade.push(currentOrder);
-        console.log(currentOrder); */
+
+
 
 
     function addBread(): any {
         console.log("bread was clicked");
-        currentOrder.bread ++;
-        console.log("bread was added");
-        console.log(currentOrder);
+        currentOrder.bread++;
+        counterLeft.bread -= 10;
+        let meter: any = document.querySelector('#meterB')
+        meter.setAttribute("value", counterLeft.bread /100);
+       /*  console.log("bread was added");
+        console.log("current order is: ");
+        console.log(currentOrder) */;
+
+        if (counterLeft.bread <= 0) {
+
+            alert("refill bread!")
+        }
     }
 
     function addTomato(): any {
         currentOrder.tomato++;
+        counterLeft.tomato -= 10;
+        let meter: any = document.querySelector('#meterT')
+        meter.setAttribute("value", counterLeft.tomato /100);
+      /*   console.log("tomato was added");
+        console.log("current order is: ");
+        console.log(currentOrder); */
 
+        if (counterLeft.tomato <= 0) {
+
+            alert("refill tomatos!")
+        }
     }
     function addLettuce(): any {
         currentOrder.lettuce++;
-        console.log("tomato was added");
+        counterLeft.lettuce -= 10;
+        let meter: any = document.querySelector('#meterL')
+        meter.setAttribute("value", counterLeft.lettuce /100);
+       /*  console.log("lettuce was added");
+        console.log("current order is: ");
+        console.log(currentOrder); */
+        
+        if (counterLeft.lettuce <= 0) {
+
+            alert("refill lettuce!")
+        }
     }
 
     function addOnion(): any {
         currentOrder.onion++;
+        counterLeft.onion -= 10;
+        let meter: any = document.querySelector('#meterO')
+        meter.setAttribute("value", counterLeft.onion /100);
+       /*  console.log("onion was added");
+        console.log("current order is: ");
+        console.log(currentOrder); */
+
+        if (counterLeft.onion <= 0) {
+
+            alert("refill onion!")
+        }
     }
 
     function addMeat(): any {
         currentOrder.meat++;
+        counterLeft.meat -= 10;
+        let meter: any = document.querySelector('#meterM')
+        meter.setAttribute("value", counterLeft.meat /100);
+      /*   console.log("meat was added");
+        console.log("current order is: ");
+        console.log(currentOrder); */
+
+        if (counterLeft.meat <= 0) {
+
+            alert("refill meat!")
+        }
     }
 
+    function cashUpOrder(): any {
+
+        ordersMade.push(currentOrder);
+        console.log(currentOrder);
+
+        if (ordersMade[0] == orders[0]) {
+            customers[0].feel("happy");
+            console.log(ordersMade[0]);
+            console.log("order was right");
+
+        } else {
+            customers[0].feel("sad");
+            console.log("order was wrong");
+            console.log(ordersMade[0]);
+        }
+    }
 
     function update(): void {
         // console.log("Update");
