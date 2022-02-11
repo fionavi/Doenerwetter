@@ -8,7 +8,7 @@ var Doener;
             this.position = new Doener.Vector(_x, _y);
             this.velocity = new Doener.Vector(0, 0);
             this.velocity.set(100, 0);
-            this.myOrder = order();
+            this.myOrder = this.showOrder();
             //this.velocity.scale(5);
         }
         move(_timeslice, _x, _y) {
@@ -135,18 +135,26 @@ var Doener;
             Doener.crc2.stroke();
         }
         showOrder() {
+            let guestOrder = {
+                bread: 1,
+                tomato: randomOrder(),
+                lettuce: randomOrder(),
+                onion: randomOrder(),
+                meat: randomOrder(),
+            };
+            return guestOrder;
         }
     }
     Doener.Costumer = Costumer;
     function order() {
-        let guestOrder = {
-            bread: 1,
-            tomato: randomOrder(),
-            lettuce: randomOrder(),
-            onion: randomOrder(),
-            meat: randomOrder(),
-        };
-        return guestOrder;
+        /*  let guestOrder: Storage = {
+             bread: 1,
+             tomato: randomOrder(),
+             lettuce: randomOrder(),
+             onion: randomOrder(),
+             meat: randomOrder(),
+         }
+         return guestOrder; */
     }
     function randomOrder() {
         let random = Math.floor(Math.random() * (2 - 0 + 1)) + 0;

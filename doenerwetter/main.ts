@@ -7,6 +7,7 @@ namespace Doener {
     let customers: Costumer[] = [];
     let orders: Storage[] = [];
     let ordersMade: Storage[] = [];
+    let displayOrders: string[] = [];
 
 
     let currentOrder: Storage = {
@@ -31,8 +32,12 @@ namespace Doener {
     window.addEventListener("load", handleload);
     document.querySelector("#start").addEventListener("click", startGame);
 
+    let info: any = document.querySelector("#info");
 
     let currentCostumerAmount: number = 0;
+    let moodCustomer : string[] = ["happy", "sad"];
+
+
     console.log(currentCostumerAmount);
 
 
@@ -186,7 +191,10 @@ namespace Doener {
 
         buildCustomers(data);
 
+        setTimeout(function () {
+            alert("Game Over!" + " Reload page to start a new game.");
 
+        }, 90000);//wait 90 seconds
         // console.log("Anzahl Costumer per min: " + amountCostumer);
 
         // asdf();
@@ -203,7 +211,7 @@ namespace Doener {
         let amountC: number = parseInt(amountCostumer);
 
         for (let index = 0; index < amountC; index++) {      //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
-            await new Promise(f => setTimeout(f, 1000));     // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000  
+            await new Promise(f => setTimeout(f, 6000 /* / amountC */));     // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000  
             createCostumer();
 
         }
@@ -709,13 +717,19 @@ namespace Doener {
         // console.log('new customer created'); 
         let customer: Costumer = new Costumer(1, 830, 380);
         orders.push(customer.myOrder)
-        customer.feel("happy");
+        customer.feel(moodCustomer[0]);
         customer.draw();
         customers.push(customer);
         customer.move(1 / 50);
 
         console.log(" Order of Customer: ")
         console.log(customer.myOrder);
+
+
+        // info.innerHTML = " ";
+        let firstOrder: string = "Ich hätte gerne einen Döner mit " + customer.myOrder.tomato + " Tomaten, " + customer.myOrder.lettuce + " mal Kraut, " + customer.myOrder.onion + " Zwiebeln und " + customer.myOrder.meat + " Fleisch." + "<br> ";
+        displayOrders.push(firstOrder);
+        info.innerHTML = displayOrders;
         //console.log(1 + index + " customers erstellt");
         // console.log("c position = " + customer.position.x + " and " + customer.position.y);
 
@@ -734,6 +748,12 @@ namespace Doener {
        /*  console.log("bread was added");
         console.log("current order is: ");
         console.log(currentOrder) */;
+
+
+        let displayBread: Prepared = new Prepared(1, 830, 380);
+
+
+        displayBread.drawBread()
 
         if (counterLeft.bread <= 0) {
 
@@ -815,9 +835,19 @@ namespace Doener {
 
             console.log("order was right");
             console.log("länge davor: " + customers.length + " " + ordersMade.length + " " + orders.length);
-            customers.shift();
+            
+
             ordersMade.shift();
             orders.shift();
+            displayOrders.shift();
+            setTimeout(function(){
+                customers.shift();
+                console.log("Thank you! Bye."); 
+    
+           },3000)
+
+            info.innerHTML = "";
+            info.innerHTML += displayOrders;
             console.log("länge danach: " + customers.length + " " + ordersMade.length + " " + orders.length);
             currentOrder.bread = 0;
             currentOrder.tomato = 0;
@@ -828,13 +858,25 @@ namespace Doener {
 
         } else {
             // debugger;
-            customers[0].feel("sad");
+            customers[0].draw();
+            customers[0].feel(moodCustomer[1]);
+            
             console.log("order was wrong");
             console.log(ordersMade[0]);
             console.log("länge davor: " + customers.length + " " + ordersMade.length + " " + orders.length);
-            customers.shift();
+            
             ordersMade.shift();
             orders.shift();
+            displayOrders.shift();
+
+            setTimeout(function(){
+                customers.shift();
+                console.log("That was not what I've ordered! I'm leaving."); 
+    
+           },3000)
+            // let info: any = document.querySelector("#info");
+            info.innerHTML = "";
+            info.innerHTML += displayOrders;
             console.log("länge danach: " + customers.length + " " + ordersMade.length + " " + orders.length);
             currentOrder.bread = 0;
             currentOrder.tomato = 0;
@@ -860,7 +902,7 @@ namespace Doener {
         for (let customer of customers) {
             customer.move(1 / 50, _x, _y);
             customer.draw();
-            customer.feel("sad");
+            customer.feel(moodCustomer[0] || moodCustomer[1]);
             // console.log("update c");
         }
 

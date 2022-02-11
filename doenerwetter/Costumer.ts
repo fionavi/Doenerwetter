@@ -10,7 +10,7 @@ namespace Doener {
             this.position = new Vector(_x, _y);
             this.velocity = new Vector(0, 0);
             this.velocity.set(100, 0);
-            this.myOrder = order();
+            this.myOrder = this.showOrder();
             //this.velocity.scale(5);
         }
 
@@ -169,20 +169,27 @@ namespace Doener {
 
         }
         
-        showOrder(): void {
-            
+        showOrder(): Storage {
+            let guestOrder: Storage = {
+                bread: 1,
+                tomato: randomOrder(),
+                lettuce: randomOrder(),
+                onion: randomOrder(),
+                meat: randomOrder(),
+            }
+            return guestOrder;
         }
     }
     
     function order(): Storage {
-        let guestOrder: Storage = {
+       /*  let guestOrder: Storage = {
             bread: 1,
             tomato: randomOrder(),
             lettuce: randomOrder(),
             onion: randomOrder(),
             meat: randomOrder(),
         }
-        return guestOrder;
+        return guestOrder; */
     }
     
     function randomOrder(): number{
@@ -190,5 +197,6 @@ namespace Doener {
         let random = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
         return random;
     }
+    
 }
 
