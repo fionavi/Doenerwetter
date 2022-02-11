@@ -8,7 +8,7 @@ var Doener;
                this.velocity = new Vector(0, 0);
                this.velocity.random(100, 150); */
         }
-        move(_timeslice) {
+        move(_timeslice, _x, _y) {
             // console.log("Human move");
         }
         feel(_mood) {

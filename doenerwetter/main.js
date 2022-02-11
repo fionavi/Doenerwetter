@@ -343,7 +343,7 @@ var Doener;
         Doener.crc2.stroke();
         Doener.crc2.restore();
     }
-    function refillBread() {
+    function refillBread(_x, _y) {
         console.log("worker is going to refill bread");
         //workers[0].move(3)      // walk to bread stock
         let meterB = document.querySelector('#meterB').getAttribute("value");
@@ -355,6 +355,10 @@ var Doener;
         let meterStockB = document.querySelector('#stockMeterB');
         meterStockB.setAttribute("value", storageLeft.bread / 1000);
         // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
+        _x = 200;
+        _y = 100;
+        workers[0].move(1 / 50, _x, _y);
+        update(_x, _y);
         // if workers position is in front of container:
         setTimeout(bringBread, 5000);
     }
@@ -523,6 +527,7 @@ var Doener;
         // console.log('new customer created'); 
         let customer = new Doener.Costumer(1, 830, 380);
         orders.push(customer.myOrder);
+        customer.feel("happy");
         customer.draw();
         customers.push(customer);
         customer.move(1 / 50);
@@ -603,24 +608,46 @@ var Doener;
             // debugger;
             customers[0].feel("happy");
             console.log("order was right");
+            console.log("länge davor: " + customers.length + " " + ordersMade.length + " " + orders.length);
+            customers.shift();
+            ordersMade.shift();
+            orders.shift();
+            console.log("länge danach: " + customers.length + " " + ordersMade.length + " " + orders.length);
+            currentOrder.bread = 0;
+            currentOrder.tomato = 0;
+            currentOrder.lettuce = 0;
+            currentOrder.onion = 0;
+            currentOrder.meat = 0;
         }
         else {
             // debugger;
             customers[0].feel("sad");
             console.log("order was wrong");
             console.log(ordersMade[0]);
+            console.log("länge davor: " + customers.length + " " + ordersMade.length + " " + orders.length);
+            customers.shift();
+            ordersMade.shift();
+            orders.shift();
+            console.log("länge danach: " + customers.length + " " + ordersMade.length + " " + orders.length);
+            currentOrder.bread = 0;
+            currentOrder.tomato = 0;
+            currentOrder.lettuce = 0;
+            currentOrder.onion = 0;
+            currentOrder.meat = 0;
         }
     }
-    function update() {
+    function update(_x, _y) {
         // console.log("Update");
         Doener.crc2.putImageData(imgData, 1, 1);
+        /* _x = 300;
+        _y = 200; */
         for (let worker of workers) {
-            worker.move(1 / 50);
+            worker.move(1 / 50, _x, _y);
             worker.draw();
             worker.feel("neutral");
         }
         for (let customer of customers) {
-            customer.move(1 / 50);
+            customer.move(1 / 50, _x, _y);
             customer.draw();
             customer.feel("sad");
             // console.log("update c");

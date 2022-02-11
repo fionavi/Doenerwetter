@@ -7,26 +7,42 @@ var Doener;
             super(_position);
             // console.log("Worker CONSTRUCTOR");
             this.position = new Doener.Vector(_x, _y);
+            this.x = 100;
+            this.y = 500;
             this.velocity = new Doener.Vector(0, 0);
-            this.velocity.set(50, 0);
+            this.velocity.set(500, 0);
             //  this.currentOrder = this.order();
             //this.velocity.scale(5);
         }
-        move(_timeslice) {
+        move(_timeslice, x, y) {
             //  console.log("Worker move");
             let offset = new Doener.Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
-            this.position.add(offset);
-            if (this.position.x < 80) {
-                this.position.x += 10;
-                this.velocity.set(15, 0);
-                this.velocity.scale(5);
+            // this.position.add(offset);
+            if (this.position.x < x) {
+                this.position.x++;
             }
-            if (this.position.x > 600) {
-                this.position.x -= 10;
-                this.velocity.set(-15, 0);
-                this.velocity.scale(5);
+            if (this.position.x > x) {
+                this.position.x--;
             }
+            if (this.position.y < y) {
+                this.position.y++;
+            }
+            if (this.position.y > y) {
+                this.position.y--;
+            }
+            /*    if (this.position.x < 80) {
+                   this.position.x += 10;
+                   this.velocity.set(15, 0);
+                   this.velocity.scale(5);
+   
+               }
+   
+               if (this.position.x > 600) {
+                   this.position.x -= 10;
+                   this.velocity.set(-15, 0);
+                   this.velocity.scale(5);
+               } */
         }
         feel(_mood) {
             // console.log("Worker feel");

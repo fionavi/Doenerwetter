@@ -4,6 +4,8 @@ namespace Doener {
         position: Vector;
         velocity: Vector;
         mood: string;
+        x: number;
+        y: number;
 
 
         
@@ -14,7 +16,7 @@ namespace Doener {
             this.velocity.random(100, 150); */
         }
 
-        move(_timeslice: number): void {
+        move(_timeslice: number, _x: number, _y: number): void {
             // console.log("Human move");
         }
 

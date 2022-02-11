@@ -14,7 +14,7 @@ namespace Doener {
             //this.velocity.scale(5);
         }
 
-        move(_timeslice: number): void {
+        move(_timeslice: number, _x: number, _y: number): void {
             //console.log("Costumer move");
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);

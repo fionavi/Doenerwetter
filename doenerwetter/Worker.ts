@@ -8,20 +8,40 @@ namespace Doener {
             super(_position);
             // console.log("Worker CONSTRUCTOR");
             this.position = new Vector(_x, _y);
+            this.x = 100;
+            this.y = 500;
             this.velocity = new Vector(0, 0);
-            this.velocity.set(50, 0);
+            this.velocity.set(500, 0);
           //  this.currentOrder = this.order();
 
             //this.velocity.scale(5);
         }
 
-        move(_timeslice: number): void {
+        move(_timeslice: number, x: number, y: number): void {
             //  console.log("Worker move");
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
-            this.position.add(offset);
+           // this.position.add(offset);
 
-            if (this.position.x < 80) {
+           if (this.position.x < x) {
+            this.position.x ++;
+
+           }
+
+           if (this.position.x > x) {
+            this.position.x --
+
+           }
+           if (this.position.y < y) {
+            this.position.y ++;
+
+           }
+
+           if (this.position.y > y) {
+            this.position.y --
+
+           }            
+         /*    if (this.position.x < 80) {
                 this.position.x += 10;
                 this.velocity.set(15, 0);
                 this.velocity.scale(5);
@@ -32,7 +52,7 @@ namespace Doener {
                 this.position.x -= 10;
                 this.velocity.set(-15, 0);
                 this.velocity.scale(5);
-            }
+            } */
 
 
         }

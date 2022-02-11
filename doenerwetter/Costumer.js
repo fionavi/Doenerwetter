@@ -11,7 +11,7 @@ var Doener;
             this.myOrder = order();
             //this.velocity.scale(5);
         }
-        move(_timeslice) {
+        move(_timeslice, _x, _y) {
             //console.log("Costumer move");
             let offset = new Doener.Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);

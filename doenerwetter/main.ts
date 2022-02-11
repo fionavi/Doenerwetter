@@ -186,9 +186,9 @@ namespace Doener {
 
         buildCustomers(data);
 
-        
+
         // console.log("Anzahl Costumer per min: " + amountCostumer);
-        
+
         // asdf();
 
         /* orderInTheMaking();
@@ -198,14 +198,14 @@ namespace Doener {
         //return false; // prevent reload // Quelle: https://dev.to/deciduously/formdata-in-typescript-24cl
     }
 
-    async function buildCustomers(data:FormData){
+    async function buildCustomers(data: FormData) {
         const amountCostumer = data.get('amountCostumer') as string;    //form Data anzahl worker als string holen
         let amountC: number = parseInt(amountCostumer);
 
         for (let index = 0; index < amountC; index++) {      //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
             await new Promise(f => setTimeout(f, 1000));     // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000  
             createCostumer();
-            
+
         }
     }
 
@@ -497,7 +497,7 @@ namespace Doener {
     }
 
 
-    function refillBread(): void {
+    function refillBread(_x: number, _y: number): void {
         console.log("worker is going to refill bread");
 
         //workers[0].move(3)      // walk to bread stock
@@ -510,8 +510,10 @@ namespace Doener {
         let meterStockB: any = document.querySelector('#stockMeterB');
         meterStockB.setAttribute("value", storageLeft.bread / 1000);
         // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
-
-
+        _x = 200;
+        _y = 100;
+        workers[0].move(1 / 50, _x, _y);
+        update(_x, _y)
         // if workers position is in front of container:
         setTimeout(bringBread, 5000);
     }
@@ -707,6 +709,7 @@ namespace Doener {
         // console.log('new customer created'); 
         let customer: Costumer = new Costumer(1, 830, 380);
         orders.push(customer.myOrder)
+        customer.feel("happy");
         customer.draw();
         customers.push(customer);
         customer.move(1 / 50);
@@ -727,7 +730,7 @@ namespace Doener {
         currentOrder.bread++;
         counterLeft.bread -= 10;
         let meter: any = document.querySelector('#meterB')
-        meter.setAttribute("value", counterLeft.bread /100);
+        meter.setAttribute("value", counterLeft.bread / 100);
        /*  console.log("bread was added");
         console.log("current order is: ");
         console.log(currentOrder) */;
@@ -742,10 +745,10 @@ namespace Doener {
         currentOrder.tomato++;
         counterLeft.tomato -= 10;
         let meter: any = document.querySelector('#meterT')
-        meter.setAttribute("value", counterLeft.tomato /100);
-      /*   console.log("tomato was added");
-        console.log("current order is: ");
-        console.log(currentOrder); */
+        meter.setAttribute("value", counterLeft.tomato / 100);
+        /*   console.log("tomato was added");
+          console.log("current order is: ");
+          console.log(currentOrder); */
 
         if (counterLeft.tomato <= 0) {
 
@@ -756,11 +759,11 @@ namespace Doener {
         currentOrder.lettuce++;
         counterLeft.lettuce -= 10;
         let meter: any = document.querySelector('#meterL')
-        meter.setAttribute("value", counterLeft.lettuce /100);
-       /*  console.log("lettuce was added");
-        console.log("current order is: ");
-        console.log(currentOrder); */
-        
+        meter.setAttribute("value", counterLeft.lettuce / 100);
+        /*  console.log("lettuce was added");
+         console.log("current order is: ");
+         console.log(currentOrder); */
+
         if (counterLeft.lettuce <= 0) {
 
             alert("refill lettuce!")
@@ -771,10 +774,10 @@ namespace Doener {
         currentOrder.onion++;
         counterLeft.onion -= 10;
         let meter: any = document.querySelector('#meterO')
-        meter.setAttribute("value", counterLeft.onion /100);
-       /*  console.log("onion was added");
-        console.log("current order is: ");
-        console.log(currentOrder); */
+        meter.setAttribute("value", counterLeft.onion / 100);
+        /*  console.log("onion was added");
+         console.log("current order is: ");
+         console.log(currentOrder); */
 
         if (counterLeft.onion <= 0) {
 
@@ -786,10 +789,10 @@ namespace Doener {
         currentOrder.meat++;
         counterLeft.meat -= 10;
         let meter: any = document.querySelector('#meterM')
-        meter.setAttribute("value", counterLeft.meat /100);
-      /*   console.log("meat was added");
-        console.log("current order is: ");
-        console.log(currentOrder); */
+        meter.setAttribute("value", counterLeft.meat / 100);
+        /*   console.log("meat was added");
+          console.log("current order is: ");
+          console.log(currentOrder); */
 
         if (counterLeft.meat <= 0) {
 
@@ -798,41 +801,64 @@ namespace Doener {
     }
 
     function cashUpOrder(): void {
-        
+
         ordersMade.push(currentOrder);
         // debugger;
         console.log(currentOrder);
         console.log(ordersMade[0]);
 
-if (ordersMade[0].bread == orders[0].bread && ordersMade[0].lettuce == orders[0].lettuce && ordersMade[0].meat == orders[0].meat 
+        if (ordersMade[0].bread == orders[0].bread && ordersMade[0].lettuce == orders[0].lettuce && ordersMade[0].meat == orders[0].meat
             && ordersMade[0].onion == orders[0].onion && ordersMade[0].tomato == orders[0].tomato) {
-        // if (currentOrder == orders[0]) {
+            // if (currentOrder == orders[0]) {
             // debugger;
             customers[0].feel("happy");
-            
+
             console.log("order was right");
+            console.log("länge davor: " + customers.length + " " + ordersMade.length + " " + orders.length);
+            customers.shift();
+            ordersMade.shift();
+            orders.shift();
+            console.log("länge danach: " + customers.length + " " + ordersMade.length + " " + orders.length);
+            currentOrder.bread = 0;
+            currentOrder.tomato = 0;
+            currentOrder.lettuce = 0;
+            currentOrder.onion = 0;
+            currentOrder.meat = 0;
+
 
         } else {
             // debugger;
             customers[0].feel("sad");
             console.log("order was wrong");
             console.log(ordersMade[0]);
+            console.log("länge davor: " + customers.length + " " + ordersMade.length + " " + orders.length);
+            customers.shift();
+            ordersMade.shift();
+            orders.shift();
+            console.log("länge danach: " + customers.length + " " + ordersMade.length + " " + orders.length);
+            currentOrder.bread = 0;
+            currentOrder.tomato = 0;
+            currentOrder.lettuce = 0;
+            currentOrder.onion = 0;
+            currentOrder.meat = 0;
+
         }
     }
 
-    function update(): void {
+    function update(_x: number, _y: number): void {
         // console.log("Update");
         crc2.putImageData(imgData, 1, 1);
-
+        /* _x = 300;
+        _y = 200; */
         for (let worker of workers) {
-            worker.move(1 / 50);
+            worker.move(1 / 50, _x, _y);
             worker.draw();
             worker.feel("neutral");
         }
 
 
         for (let customer of customers) {
-            customer.move(1 / 50);
+            customer.move(1 / 50, _x, _y);
             customer.draw();
             customer.feel("sad");
             // console.log("update c");
