@@ -184,18 +184,12 @@ namespace Doener {
 
         }
 
-        const amountCostumer = data.get('amountCostumer') as string;    //form Data anzahl worker als string holen
+        buildCustomers(data);
+
+        
         // console.log("Anzahl Costumer per min: " + amountCostumer);
-        let amountC: number = parseInt(amountCostumer);
-
-        for (let index = 0; index < amountC; index++) {      //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
-            // window.setInterval(function() {}, 5000);
-            setTimeout(() => {
-
-                createCostumer();
-            }, 2000);
-            // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000           
-        }
+        
+        // asdf();
 
         /* orderInTheMaking();
         console.log("oder in the making aufruf");
@@ -203,6 +197,18 @@ namespace Doener {
 
         //return false; // prevent reload // Quelle: https://dev.to/deciduously/formdata-in-typescript-24cl
     }
+
+    async function buildCustomers(data:FormData){
+        const amountCostumer = data.get('amountCostumer') as string;    //form Data anzahl worker als string holen
+        let amountC: number = parseInt(amountCostumer);
+
+        for (let index = 0; index < amountC; index++) {      //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
+            await new Promise(f => setTimeout(f, 1000));     // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000  
+            createCostumer();
+            
+        }
+    }
+
 
     function drawBackground(): void {
         console.log("Background is drawing");
@@ -791,17 +797,23 @@ namespace Doener {
         }
     }
 
-    function cashUpOrder(): any {
-
+    function cashUpOrder(): void {
+        
         ordersMade.push(currentOrder);
+        // debugger;
         console.log(currentOrder);
+        console.log(ordersMade[0]);
 
-        if (ordersMade[0] == orders[0]) {
+if (ordersMade[0].bread == orders[0].bread && ordersMade[0].lettuce == orders[0].lettuce && ordersMade[0].meat == orders[0].meat 
+            && ordersMade[0].onion == orders[0].onion && ordersMade[0].tomato == orders[0].tomato) {
+        // if (currentOrder == orders[0]) {
+            // debugger;
             customers[0].feel("happy");
-            console.log(ordersMade[0]);
+            
             console.log("order was right");
 
         } else {
+            // debugger;
             customers[0].feel("sad");
             console.log("order was wrong");
             console.log(ordersMade[0]);

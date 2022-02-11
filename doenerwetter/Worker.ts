@@ -2,7 +2,7 @@ namespace Doener {
 
     export class Worker extends Human {
 
-        currentOrder: Storage
+       // currentOrder: Storage
 
         constructor(_position: number, _x?: number, _y?: number) {
             super(_position);
@@ -10,7 +10,7 @@ namespace Doener {
             this.position = new Vector(_x, _y);
             this.velocity = new Vector(0, 0);
             this.velocity.set(50, 0);
-            this.currentOrder = this.order();
+          //  this.currentOrder = this.order();
 
             //this.velocity.scale(5);
         }
