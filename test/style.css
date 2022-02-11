@@ -1,6 +1,7 @@
 body{
-
-    background-repeat: 
+    
+    background-image: url("https://raw.githubusercontent.com/fionavi/Doenerwetter/main/test/media/kebab.png");
+    background-size: calc(smaller); 
 }
 
 #c {
