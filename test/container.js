@@ -40,6 +40,39 @@ var DoenerTest;
     DoenerTest.refillBread = refillBread;
     function walkThere(_x, _y) {
         DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
+        if (DoenerTest.workers[0].position.x < _x) {
+            for (DoenerTest.workers[0].position.x < _x; DoenerTest.workers[0].position.x++;) {
+                // debugger;
+                DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
+                console.log("worker moved x++ to " + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
+                DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
+                //workers[0].draw();
+            }
+        }
+        if (DoenerTest.workers[0].position.x > _x) {
+            for (DoenerTest.workers[0].position.x > _x; DoenerTest.workers[0].position.x--;) {
+                DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
+                console.log("worker moved x--" + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
+                DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
+                //workers[0].draw();
+            }
+        }
+        if (DoenerTest.workers[0].position.y < _y) {
+            for (DoenerTest.workers[0].position.y < _y; DoenerTest.workers[0].position.y++;) {
+                DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
+                console.log("worker moved y++" + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
+                DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
+                // workers[0].draw();
+            }
+        }
+        if (DoenerTest.workers[0].position.y > _y) {
+            for (DoenerTest.workers[0].position.y > _y; DoenerTest.workers[0].position.y--;) {
+                DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
+                console.log("worker moved y--" + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
+                DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
+                //workers[0].draw();
+            }
+        }
         // walk to bread stock
         // let i: number = 0;
         //    // debugger;
@@ -68,30 +101,6 @@ var DoenerTest;
               workers[0].move(1, workers[0].position.x, workers[0].position.y);
           } */
         //debugger;
-        for (DoenerTest.workers[0].position.x < _x; DoenerTest.workers[0].position.x++;) {
-            DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
-            console.log("worker moved x++ to " + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
-            DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
-            DoenerTest.workers[0].draw();
-        }
-        for (DoenerTest.workers[0].position.x > _x; DoenerTest.workers[0].position.x--;) {
-            DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
-            console.log("worker moved x--");
-            DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
-            DoenerTest.workers[0].draw();
-        }
-        for (DoenerTest.workers[0].position.y < _y; DoenerTest.workers[0].position.y++;) {
-            DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
-            console.log("worker moved y++");
-            DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
-            DoenerTest.workers[0].draw();
-        }
-        for (DoenerTest.workers[0].position.y > _y; DoenerTest.workers[0].position.y--;) {
-            DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
-            console.log("worker moved y--");
-            DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
-            DoenerTest.workers[0].draw();
-        }
     }
     DoenerTest.walkThere = walkThere;
     function refillTomato() {
