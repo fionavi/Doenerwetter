@@ -1,4 +1,5 @@
-namespace Doener {
+ namespace DoenerTest {
+    
 
     export class Human {
         position: Vector;

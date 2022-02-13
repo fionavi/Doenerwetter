@@ -1,11 +1,11 @@
 "use strict";
-var Doener;
-(function (Doener) {
+var DoenerTest;
+(function (DoenerTest) {
     class Prepared {
         constructor(_position, _x, _y) {
             console.log("Prepared CONSTRUCTOR");
-            this.position = new Doener.Vector(_x, _y);
-            this.velocity = new Doener.Vector(0, 0);
+            this.position = new DoenerTest.Vector(_x, _y);
+            this.velocity = new DoenerTest.Vector(0, 0);
             this.velocity.random(100, 150);
         }
         move(_timeslice, _x, _y) {
@@ -13,30 +13,70 @@ var Doener;
         }
         drawBread() {
             // console.log("Human feel");
-            Doener.crc2.resetTransform();
-            Doener.crc2.save();
-            Doener.crc2.translate(this.position.x, this.position.y);
-            Doener.crc2.fillStyle = "pink";
+            DoenerTest.crc2.resetTransform();
+            DoenerTest.crc2.save();
+            DoenerTest.crc2.translate(this.position.x, this.position.y);
+            DoenerTest.crc2.fillStyle = "orange";
             //Arm rechts
-            Doener.crc2.beginPath();
-            Doener.crc2.ellipse(50, -50, 5, 12, 2, 20, 40);
-            Doener.crc2.closePath();
-            Doener.crc2.fill();
-            Doener.crc2.stroke();
+            DoenerTest.crc2.beginPath();
+            DoenerTest.crc2.ellipse(50, -50, 5, 12, 2, 20, 40);
+            DoenerTest.crc2.closePath();
+            DoenerTest.crc2.fill();
+            DoenerTest.crc2.stroke();
         }
         drawTomato() {
             // console.log("Human draw");
+            DoenerTest.crc2.resetTransform();
+            DoenerTest.crc2.save();
+            DoenerTest.crc2.translate(this.position.x, this.position.y);
+            DoenerTest.crc2.fillStyle = "red";
+            //Arm rechts
+            DoenerTest.crc2.beginPath();
+            DoenerTest.crc2.ellipse(40, -50, 5, 12, 2, 20, 40);
+            DoenerTest.crc2.closePath();
+            DoenerTest.crc2.fill();
+            DoenerTest.crc2.stroke();
         }
         drawLettuce() {
             // do something
+            DoenerTest.crc2.resetTransform();
+            DoenerTest.crc2.save();
+            DoenerTest.crc2.translate(this.position.x, this.position.y);
+            DoenerTest.crc2.fillStyle = "yellowgreen";
+            //Arm rechts
+            DoenerTest.crc2.beginPath();
+            DoenerTest.crc2.ellipse(30, -50, 5, 12, 2, 20, 40);
+            DoenerTest.crc2.closePath();
+            DoenerTest.crc2.fill();
+            DoenerTest.crc2.stroke();
         }
         drawOnion() {
             // do something
+            DoenerTest.crc2.resetTransform();
+            DoenerTest.crc2.save();
+            DoenerTest.crc2.translate(this.position.x, this.position.y);
+            DoenerTest.crc2.fillStyle = "purple";
+            //Arm rechts
+            DoenerTest.crc2.beginPath();
+            DoenerTest.crc2.ellipse(20, -50, 5, 12, 2, 20, 40);
+            DoenerTest.crc2.closePath();
+            DoenerTest.crc2.fill();
+            DoenerTest.crc2.stroke();
         }
         drawMeat() {
             // do something
+            DoenerTest.crc2.resetTransform();
+            DoenerTest.crc2.save();
+            DoenerTest.crc2.translate(this.position.x, this.position.y);
+            DoenerTest.crc2.fillStyle = "brown";
+            //Arm rechts
+            DoenerTest.crc2.beginPath();
+            DoenerTest.crc2.ellipse(10, -50, 5, 12, 2, 20, 40);
+            DoenerTest.crc2.closePath();
+            DoenerTest.crc2.fill();
+            DoenerTest.crc2.stroke();
         }
     }
-    Doener.Prepared = Prepared;
-})(Doener || (Doener = {}));
+    DoenerTest.Prepared = Prepared;
+})(DoenerTest || (DoenerTest = {}));
 //# sourceMappingURL=Prepared.js.map

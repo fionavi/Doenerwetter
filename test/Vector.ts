@@ -1,4 +1,4 @@
-namespace Doener {
+namespace DoenerTest {
     
     export class Vector {
         x: number;

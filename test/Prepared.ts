@@ -1,4 +1,4 @@
-namespace Doener {
+namespace DoenerTest {
 
     export class Prepared {
         position: Vector;
@@ -20,13 +20,15 @@ namespace Doener {
             // console.log("Human move");
         }
 
+        
+
         drawBread(): void {
             // console.log("Human feel");
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
 
-            crc2.fillStyle = "pink";
+            crc2.fillStyle = "orange";
 
 
             //Arm rechts
@@ -39,15 +41,67 @@ namespace Doener {
 
         drawTomato(): void {
             // console.log("Human draw");
+            crc2.resetTransform();
+            crc2.save();
+            crc2.translate(this.position.x, this.position.y);
+
+            crc2.fillStyle = "red";
+
+
+            //Arm rechts
+            crc2.beginPath();
+            crc2.ellipse(40, -50, 5, 12, 2, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
         }
         drawLettuce(): void {
             // do something
+            crc2.resetTransform();
+            crc2.save();
+            crc2.translate(this.position.x, this.position.y);
+
+            crc2.fillStyle = "yellowgreen";
+
+
+            //Arm rechts
+            crc2.beginPath();
+            crc2.ellipse(30, -50, 5, 12, 2, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
         }
         drawOnion(): void {
             // do something
+            crc2.resetTransform();
+            crc2.save();
+            crc2.translate(this.position.x, this.position.y);
+
+            crc2.fillStyle = "purple";
+
+
+            //Arm rechts
+            crc2.beginPath();
+            crc2.ellipse(20, -50, 5, 12, 2, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
         }
         drawMeat(): void {
             // do something
+            crc2.resetTransform();
+            crc2.save();
+            crc2.translate(this.position.x, this.position.y);
+
+            crc2.fillStyle = "brown";
+
+
+            //Arm rechts
+            crc2.beginPath();
+            crc2.ellipse(10, -50, 5, 12, 2, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
         }
     }
 

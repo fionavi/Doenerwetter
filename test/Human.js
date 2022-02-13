@@ -1,6 +1,6 @@
 "use strict";
-var Doener;
-(function (Doener) {
+var DoenerTest;
+(function (DoenerTest) {
     class Human {
         constructor(_position, _x, _y) {
             /*    console.log("Human CONSTRUCTOR");
@@ -21,6 +21,6 @@ var Doener;
             // do something
         }
     }
-    Doener.Human = Human;
-})(Doener || (Doener = {}));
+    DoenerTest.Human = Human;
+})(DoenerTest || (DoenerTest = {}));
 //# sourceMappingURL=Human.js.map

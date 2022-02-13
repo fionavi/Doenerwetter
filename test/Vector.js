@@ -1,6 +1,6 @@
 "use strict";
-var Doener;
-(function (Doener) {
+var DoenerTest;
+(function (DoenerTest) {
     class Vector {
         constructor(_x, _y) {
             this.set(_x, _y);
@@ -24,6 +24,6 @@ var Doener;
             this.scale(length);
         }
     }
-    Doener.Vector = Vector;
-})(Doener || (Doener = {}));
+    DoenerTest.Vector = Vector;
+})(DoenerTest || (DoenerTest = {}));
 //# sourceMappingURL=Vector.js.map

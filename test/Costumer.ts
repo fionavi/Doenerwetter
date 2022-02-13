@@ -1,12 +1,12 @@
-namespace Doener {
+namespace DoenerTest {
 
-    export class Costumer extends Human {
+    export class Customer extends Human {
 
         myOrder: Storage;
 
         constructor(_position: number, _x?: number, _y?: number) {
             super(_position);
-            console.log("Costumer CONSTRUCTOR");
+            console.log("Customer CONSTRUCTOR");
             this.position = new Vector(_x, _y);
             this.velocity = new Vector(0, 0);
             this.velocity.set(100, 0);
@@ -19,7 +19,7 @@ namespace Doener {
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
-            crc2.resetTransform;
+           // crc2.resetTransform;
             if (this.position.x < 100) {
                 this.position.x += 10;
                 this.velocity.set(10, 0);
@@ -36,8 +36,8 @@ namespace Doener {
 
         }
 
-        feel(_mood: string) {
-           // console.log("Costumer feel");
+        feel(_mood: string): void {
+            // console.log("Costumer feel");
 
             if (_mood == "sad") {
 
@@ -65,7 +65,7 @@ namespace Doener {
 
             if (_mood == "happy") {
                 // display happy face
-               // console.log("costumer is happy");
+                // console.log("costumer is happy");
 
                 crc2.resetTransform();
                 crc2.save();
@@ -168,35 +168,35 @@ namespace Doener {
             crc2.stroke();
 
         }
-        
+
         showOrder(): Storage {
             let guestOrder: Storage = {
                 bread: 1,
                 tomato: randomOrder(),
                 lettuce: randomOrder(),
                 onion: randomOrder(),
-                meat: randomOrder(),
-            }
+                meat: randomOrder()
+            };
             return guestOrder;
         }
     }
-    
-    function order(): Storage {
-       /*  let guestOrder: Storage = {
-            bread: 1,
-            tomato: randomOrder(),
-            lettuce: randomOrder(),
-            onion: randomOrder(),
-            meat: randomOrder(),
-        }
-        return guestOrder; */
-    }
-    
-    function randomOrder(): number{
 
-        let random = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+    /*function order(): Storage {
+       let guestOrder: Storage = {
+           bread: 1,
+           tomato: randomOrder(),
+           lettuce: randomOrder(),
+           onion: randomOrder(),
+           meat: randomOrder(),
+       }
+       return guestOrder; 
+}*/
+
+    function randomOrder(): number {
+
+        let random: number = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
         return random;
     }
-    
+
 }
 

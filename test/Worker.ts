@@ -1,106 +1,64 @@
-namespace Doener {
+namespace DoenerTest {
 
     export class Worker extends Human {
 
-       // currentOrder: Storage
+        // currentOrder: Storage
 
         constructor(_position: number, _x?: number, _y?: number) {
             super(_position);
             // console.log("Worker CONSTRUCTOR");
             this.position = new Vector(_x, _y);
-            this.x = 100;
-            this.y = 500;
+            // this.x = 100;
+            // this.y = 500;
             this.velocity = new Vector(0, 0);
             this.velocity.set(500, 0);
-          //  this.currentOrder = this.order();
+            //  this.currentOrder = this.order();
 
             //this.velocity.scale(5);
         }
 
-        move(_timeslice: number, x: number, y: number): void {
+        move(_timeslice: number, _x: number, _y: number): void {
             //  console.log("Worker move");
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
-           // this.position.add(offset);
+            // this.position.add(offset);
 
-           if (this.position.x < x) {
-            this.position.x ++;
-
-           }
-
-           if (this.position.x > x) {
-            this.position.x --
-
-           }
-           if (this.position.y < y) {
-            this.position.y ++;
-
-           }
-
-           if (this.position.y > y) {
-            this.position.y --
-
-           }            
-         /*    if (this.position.x < 80) {
-                this.position.x += 10;
-                this.velocity.set(15, 0);
-                this.velocity.scale(5);
+            if (this.position.x < _x) {
+                this.position.x++;
 
             }
 
-            if (this.position.x > 600) {
-                this.position.x -= 10;
-                this.velocity.set(-15, 0);
-                this.velocity.scale(5);
-            } */
+            if (this.position.x > _x) {
+                this.position.x--;
+
+            }
+            if (this.position.y < _y) {
+                this.position.y++;
+
+            }
+
+            if (this.position.y > _y) {
+                this.position.y--;
+
+            }
+            /*    if (this.position.x < 80) {
+                   this.position.x += 10;
+                   this.velocity.set(15, 0);
+                   this.velocity.scale(5);
+   
+               }
+   
+               if (this.position.x > 600) {
+                   this.position.x -= 10;
+                   this.velocity.set(-15, 0);
+                   this.velocity.scale(5);
+               } */
 
 
         }
 
-        feel(_mood: string) {
+        feel(_mood: string): void {
             // console.log("Worker feel");
-            if (_mood == "neutral") {
-                // display neutral face
-                //console.log("workers mood is neutral");
-                crc2.resetTransform();
-                crc2.save();
-                crc2.translate(this.position.x, this.position.y);
-
-                crc2.strokeStyle = "black";
-                crc2.beginPath();
-                crc2.ellipse(5, -65, 2, 2, 2, 20, 40);
-                crc2.moveTo(15, -65);
-                crc2.ellipse(15, -65, 2, 2, 2, 20, 40);
-                crc2.moveTo(17, -55);
-                crc2.lineTo(3, -55);
-                crc2.closePath();
-                crc2.fill();
-                crc2.stroke();
-            }
-
-            if (_mood == "stressed") {
-                // display neutral face
-                // console.log("workers mood is stressed");
-                crc2.resetTransform();
-                crc2.save();
-                crc2.translate(this.position.x, this.position.y);
-
-                crc2.strokeStyle = "black";
-                crc2.beginPath();
-                crc2.ellipse(5, -60, 1, 1, 2, 20, 40);
-                crc2.moveTo(15, -60);
-                crc2.ellipse(15, -60, 1, 1, 2, 20, 40);
-                crc2.moveTo(8, -65);
-                crc2.lineTo(3, -67);
-                crc2.moveTo(12, -65);
-                crc2.lineTo(18, -67);
-                crc2.moveTo(10, -52);
-                crc2.ellipse(10, -52, 4, 3, 0, 20, 40);
-                crc2.closePath();
-                crc2.stroke();
-                crc2.fill();
-
-            }
             if (_mood == "tired") {
                 // display neutral face
                 // console.log("workers mood is tired");
@@ -146,6 +104,49 @@ namespace Doener {
 
             }
 
+            if (_mood == "neutral") {
+                // display neutral face
+                //console.log("workers mood is neutral");
+                crc2.resetTransform();
+                crc2.save();
+                crc2.translate(this.position.x, this.position.y);
+
+                crc2.strokeStyle = "black";
+                crc2.beginPath();
+                crc2.ellipse(5, -65, 2, 2, 2, 20, 40);
+                crc2.moveTo(15, -65);
+                crc2.ellipse(15, -65, 2, 2, 2, 20, 40);
+                crc2.moveTo(17, -55);
+                crc2.lineTo(3, -55);
+                crc2.closePath();
+                crc2.fill();
+                crc2.stroke();
+            }
+
+            if (_mood == "stressed") {
+                // display neutral face
+                // console.log("workers mood is stressed");
+                crc2.resetTransform();
+                crc2.save();
+                crc2.translate(this.position.x, this.position.y);
+
+                crc2.strokeStyle = "black";
+                crc2.beginPath();
+                crc2.ellipse(5, -60, 1, 1, 2, 20, 40);
+                crc2.moveTo(15, -60);
+                crc2.ellipse(15, -60, 1, 1, 2, 20, 40);
+                crc2.moveTo(8, -65);
+                crc2.lineTo(3, -67);
+                crc2.moveTo(12, -65);
+                crc2.lineTo(18, -67);
+                crc2.moveTo(10, -52);
+                crc2.ellipse(10, -52, 4, 3, 0, 20, 40);
+                crc2.closePath();
+                crc2.stroke();
+                crc2.fill();
+
+            }
+           
         }
 
         draw(): void {
@@ -155,6 +156,7 @@ namespace Doener {
             crc2.translate(this.position.x, this.position.y);
 
             crc2.fillStyle = "yellow";
+            crc2.strokeStyle = "black";
 
 
             //Arm rechts
@@ -238,8 +240,8 @@ namespace Doener {
                 tomato: 0,
                 lettuce: 0,
                 onion: 0,
-                meat: 0,
-            }
+                meat: 0
+            };
             return currentOrder;
         }
 
