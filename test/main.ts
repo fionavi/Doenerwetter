@@ -64,6 +64,8 @@ namespace DoenerTest {
     };
 
     window.addEventListener("load", handleload);
+    let audio: HTMLAudioElement = new Audio("/media/backgroundMusic.mp3");
+    audio.play();
 
 
     export function handleload(_event: Event): void {
@@ -73,6 +75,7 @@ namespace DoenerTest {
         }
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
         document.querySelector("#start").addEventListener("click", startGame);
+       // document.querySelector("#start").addEventListener("click", function () {("media/bell.wav"); });
         drawBackground();
         imgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
         window.setInterval(update, 20);
@@ -81,6 +84,13 @@ namespace DoenerTest {
     export function startGame(): void {
 
         console.log("START");
+
+
+        let sound: string = "media/backgroundMusic.mp3";
+        let audio: HTMLAudioElement = new Audio(sound);
+        audio.play();
+
+
 
         listenToButtons();
         listenToAddButtons();
@@ -162,7 +172,7 @@ namespace DoenerTest {
 
         console.log(" Order of Customer: ");
         console.log(customer.myOrder);
-        
+
 
 
         // info.innerHTML = " ";
@@ -172,17 +182,18 @@ namespace DoenerTest {
         info.innerHTML = displayOrders;
         currentCustomerAmount++;
 
-        ringBell();
+        ringBell("media/bell.wav");
 
         //console.log(1 + index + " customers erstellt");
         // console.log("c position = " + customer.position.x + " and " + customer.position.y);
 
     }
 
-    function ringBell(): void {               //Funktion spielt den Ton, dessen Pfad = soundName ist
-        let sound: string = "sounds/sound_boing.mp3";  
-        //let audio: HTMLAudioElement = new Audio(soundName);     //neues HTMLAUDIOELEMENT wird erstellt mit src = soundName
-        sound.play();
+    function ringBell(_sound: string): void {               //Funktion spielt den Ton, dessen Pfad = soundName ist
+        //let sound: string = "https://github.com/fionavi/Doenerwetter/blob/main/test/media/bell.wav";
+        //    
+        let audio: HTMLAudioElement = new Audio(_sound);
+        audio.play();
     }
 
     function drawBackground(): void {
