@@ -176,9 +176,6 @@ namespace DoenerTest {
             };
             return currentOrder;
         }
-
-
-
     }
 }
 

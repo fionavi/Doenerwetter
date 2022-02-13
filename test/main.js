@@ -33,8 +33,6 @@ var DoenerTest;
         meat: 80
     };
     window.addEventListener("load", handleload);
-    // let audio: HTMLAudioElement = new Audio("/media/backgroundMusic.mp3");
-    // audio.play();
     function handleload(_event) {
         let canvas = document.querySelector("canvas");
         if (!canvas) {
@@ -48,7 +46,6 @@ var DoenerTest;
     }
     DoenerTest.handleload = handleload;
     function startGame() {
-        console.log("START");
         let sound = "media/backgroundMusic.mp3";
         let audio = new Audio(sound);
         audio.play();
@@ -91,8 +88,9 @@ var DoenerTest;
         let amount = parseInt(amountWorker); //string in number parsen
         for (let index = 0; index < amount; index++) {
             let randomX = Math.random() * 300 + Math.random() * 300 + 50;
-            randomX = Math.floor(randomX);
-            let worker = new DoenerTest.Worker(1, randomX, 200);
+            DoenerTest.xOfWorker = Math.floor(randomX);
+            DoenerTest.yOfWorker = 200;
+            let worker = new DoenerTest.Worker(1, DoenerTest.xOfWorker, DoenerTest.yOfWorker);
             worker.draw();
             worker.feel("tired");
             DoenerTest.workers.push(worker);
@@ -114,27 +112,18 @@ var DoenerTest;
         customer.draw();
         DoenerTest.customers.push(customer);
         customer.move(1 / 50, DoenerTest.xOfCustomer, DoenerTest.yOfCustomer);
-        console.log(" Order of Customer: ");
-        console.log(customer.myOrder);
-        // info.innerHTML = " ";
         let firstOrder = "Ich hätte gerne einen Döner mit " + customer.myOrder.tomato + " mal Tomaten, " + customer.myOrder.lettuce + " mal Kraut, " + customer.myOrder.onion + " mal Zwiebeln und " + customer.myOrder.meat + " mal Fleisch." + "<br> " + "<br> ";
         DoenerTest.displayOrders.push(firstOrder);
-        // info.innerHTML.get(displayOrders) as string;
         DoenerTest.info.innerHTML = DoenerTest.displayOrders;
         DoenerTest.currentCustomerAmount++;
         ringBell("media/bell.wav");
-        //console.log(1 + index + " customers erstellt");
-        // console.log("c position = " + customer.position.x + " and " + customer.position.y);
     }
     DoenerTest.createCustomer = createCustomer;
     function ringBell(_sound) {
-        //let sound: string = "https://github.com/fionavi/Doenerwetter/blob/main/test/media/bell.wav";
-        //    
         let audio = new Audio(_sound);
         audio.play();
     }
     function drawBackground() {
-        console.log("Background is drawing");
         DoenerTest.crc2.fillStyle = "grey";
         DoenerTest.crc2.fillRect(0, 0, DoenerTest.crc2.canvas.width, DoenerTest.crc2.canvas.height);
         DoenerTest.crc2.resetTransform();
@@ -154,7 +143,6 @@ var DoenerTest;
         DoenerTest.crc2.resetTransform();
         DoenerTest.crc2.save();
         DoenerTest.crc2.translate(100, 250);
-        DoenerTest.crc2.fillStyle = "black";
         DoenerTest.crc2.save();
         DoenerTest.crc2.beginPath();
         DoenerTest.crc2.moveTo(550, 50);
@@ -181,7 +169,6 @@ var DoenerTest;
         DoenerTest.crc2.lineTo(-50, -180);
         DoenerTest.crc2.lineTo(-50, -30);
         DoenerTest.crc2.closePath();
-        //crc2.fill();
         DoenerTest.crc2.stroke();
         DoenerTest.crc2.restore();
         DoenerTest.crc2.resetTransform();
@@ -358,13 +345,10 @@ var DoenerTest;
             customer.draw();
             customer.feel("happy");
             DoenerTest.customers[0].feel(DoenerTest.moodCustomer);
-            // console.log("update c");
         }
         for (let ingredient of DoenerTest.drawOrders) {
             ingredient.checkOrder();
-            console.log("checkOrder Aufruf");
             ingredient.move(1 / 50, DoenerTest.xOfWorker, DoenerTest.yOfWorker);
-            // console.log("update c");
         }
     }
     DoenerTest.update = update;
@@ -405,8 +389,6 @@ var DoenerTest;
     }
     DoenerTest.moodCheck = moodCheck;
     function workerWalkCheck() {
-        if (DoenerTest.workers.length == 2) {
-        }
         // Walk between Containers and Counter
         if (DoenerTest.refillBreadIsClicked == true) {
             DoenerTest.bringBread();

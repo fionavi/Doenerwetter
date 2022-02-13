@@ -24,7 +24,6 @@ namespace DoenerTest {
     export function addBread(): void {
         addBreadIsClicked = true;
         breadIsDrawn = true;
-        console.log("bread was clicked");
         currentOrder.bread++;
         counterLeft.bread -= 10;
         let meter: any = document.querySelector("#meterB");
@@ -45,26 +44,22 @@ namespace DoenerTest {
         counterLeft.tomato -= 10;
         let meter: any = document.querySelector("#meterT");
         meter.setAttribute("value", counterLeft.tomato / 100);
-
         let displayIngredient: Prepared = new Prepared(1, xOfWorker, yOfWorker);
-
         drawOrders.push(displayIngredient);
 
         if (counterLeft.tomato <= 0) {
 
             alert("refill tomatos!");
         }
-
     }
+
     export function addLettuce(): void {
         addLettuceIsClicked = true;
         lettuceIsDrawn = true;
-
         currentOrder.lettuce++;
         counterLeft.lettuce -= 10;
         let meter: any = document.querySelector("#meterL");
         meter.setAttribute("value", counterLeft.lettuce / 100);
-
         let displayIngredient: Prepared = new Prepared(1, xOfWorker, yOfWorker);
         drawOrders.push(displayIngredient);
 
@@ -81,7 +76,6 @@ namespace DoenerTest {
         counterLeft.onion -= 10;
         let meter: any = document.querySelector("#meterO");
         meter.setAttribute("value", counterLeft.onion / 100);
-
         let displayIngredient: Prepared = new Prepared(1, xOfWorker, yOfWorker);
         drawOrders.push(displayIngredient);
 
@@ -98,7 +92,6 @@ namespace DoenerTest {
         counterLeft.meat -= 10;
         let meter: any = document.querySelector("#meterM");
         meter.setAttribute("value", counterLeft.meat / 100);
-
         let displayIngredient: Prepared = new Prepared(1, xOfWorker, yOfWorker);
         drawOrders.push(displayIngredient);
 
@@ -107,5 +100,4 @@ namespace DoenerTest {
             alert("refill meat!");
         }
     }
-
 }

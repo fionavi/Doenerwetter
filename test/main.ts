@@ -56,9 +56,6 @@ namespace DoenerTest {
     };
 
     window.addEventListener("load", handleload);
-    // let audio: HTMLAudioElement = new Audio("/media/backgroundMusic.mp3");
-    // audio.play();
-
 
     export function handleload(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -74,14 +71,9 @@ namespace DoenerTest {
 
     export function startGame(): void {
 
-        console.log("START");
-
-
         let sound: string = "media/backgroundMusic.mp3";
         let audio: HTMLAudioElement = new Audio(sound);
         audio.play();
-
-
 
         listenToButtons();
         listenToAddButtons();
@@ -132,8 +124,9 @@ namespace DoenerTest {
 
         for (let index: number = 0; index < amount; index++) {
             let randomX: number = Math.random() * 300 + Math.random() * 300 + 50;
-            randomX = Math.floor(randomX);
-            let worker: Human = new Worker(1, randomX, 200);
+            xOfWorker = Math.floor(randomX);
+            yOfWorker = 200;
+            let worker: Human = new Worker(1, xOfWorker, yOfWorker);
             worker.draw();
             worker.feel("tired");
             workers.push(worker);
@@ -158,47 +151,25 @@ namespace DoenerTest {
         customer.draw();
         customers.push(customer);
         customer.move(1 / 50, xOfCustomer, yOfCustomer);
-
-        console.log(" Order of Customer: ");
-        console.log(customer.myOrder);
-
-
-
-        // info.innerHTML = " ";
         let firstOrder: string = "Ich hätte gerne einen Döner mit " + customer.myOrder.tomato + " mal Tomaten, " + customer.myOrder.lettuce + " mal Kraut, " + customer.myOrder.onion + " mal Zwiebeln und " + customer.myOrder.meat + " mal Fleisch." + "<br> " + "<br> ";
         displayOrders.push(firstOrder);
-        // info.innerHTML.get(displayOrders) as string;
         info.innerHTML = displayOrders;
         currentCustomerAmount++;
 
         ringBell("media/bell.wav");
-
-        //console.log(1 + index + " customers erstellt");
-        // console.log("c position = " + customer.position.x + " and " + customer.position.y);
-
     }
 
-    function ringBell(_sound: string): void {               //Funktion spielt den Ton, dessen Pfad = soundName ist
-        //let sound: string = "https://github.com/fionavi/Doenerwetter/blob/main/test/media/bell.wav";
-        //    
+    function ringBell(_sound: string): void {
         let audio: HTMLAudioElement = new Audio(_sound);
         audio.play();
     }
 
     function drawBackground(): void {
-        console.log("Background is drawing");
-
-
-
         crc2.fillStyle = "grey";
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-
-
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(10, 10);
-
         crc2.fillStyle = "black";
         crc2.save();
         crc2.beginPath();
@@ -206,18 +177,13 @@ namespace DoenerTest {
         crc2.lineTo(0, 100);
         crc2.lineTo(700, 100);
         crc2.lineTo(700, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(100, 250);
-
-        crc2.fillStyle = "black";
         crc2.save();
         crc2.beginPath();
         crc2.moveTo(550, 50);
@@ -229,16 +195,10 @@ namespace DoenerTest {
         crc2.lineTo(550, -140);
         crc2.lineTo(610, -140);
         crc2.lineTo(610, 50);
-
-
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(895, 395);
@@ -249,19 +209,12 @@ namespace DoenerTest {
         crc2.lineTo(0, -150);
         crc2.lineTo(-50, -180);
         crc2.lineTo(-50, -30);
-
         crc2.closePath();
-        //crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
-
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(200, 255);
-
         crc2.fillStyle = "red";
         crc2.save();
         crc2.beginPath();
@@ -269,17 +222,13 @@ namespace DoenerTest {
         crc2.lineTo(0, 40);
         crc2.lineTo(40, 40);
         crc2.lineTo(40, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(120, 255);
-
         crc2.fillStyle = "orange";
         crc2.save();
         crc2.beginPath();
@@ -287,18 +236,13 @@ namespace DoenerTest {
         crc2.lineTo(0, 40);
         crc2.lineTo(40, 40);
         crc2.lineTo(40, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(280, 255);
-
         crc2.fillStyle = "greenyellow";
         crc2.save();
         crc2.beginPath();
@@ -306,18 +250,13 @@ namespace DoenerTest {
         crc2.lineTo(0, 40);
         crc2.lineTo(40, 40);
         crc2.lineTo(40, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(360, 255);
-
         crc2.fillStyle = "purple";
         crc2.save();
         crc2.beginPath();
@@ -325,18 +264,13 @@ namespace DoenerTest {
         crc2.lineTo(0, 40);
         crc2.lineTo(40, 40);
         crc2.lineTo(40, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(440, 255);
-
         crc2.fillStyle = "brown";
         crc2.save();
         crc2.beginPath();
@@ -344,18 +278,13 @@ namespace DoenerTest {
         crc2.lineTo(0, 40);
         crc2.lineTo(40, 40);
         crc2.lineTo(40, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(20, 20);
-
         crc2.fillStyle = "orange";
         crc2.save();
         crc2.beginPath();
@@ -363,18 +292,13 @@ namespace DoenerTest {
         crc2.lineTo(0, 80);
         crc2.lineTo(80, 80);
         crc2.lineTo(80, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(120, 20);
-
         crc2.fillStyle = "red";
         crc2.save();
         crc2.beginPath();
@@ -382,17 +306,13 @@ namespace DoenerTest {
         crc2.lineTo(0, 80);
         crc2.lineTo(80, 80);
         crc2.lineTo(80, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(220, 20);
-
         crc2.fillStyle = "greenyellow";
         crc2.save();
         crc2.beginPath();
@@ -400,17 +320,13 @@ namespace DoenerTest {
         crc2.lineTo(0, 80);
         crc2.lineTo(80, 80);
         crc2.lineTo(80, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(320, 20);
-
         crc2.fillStyle = "purple";
         crc2.save();
         crc2.beginPath();
@@ -418,17 +334,13 @@ namespace DoenerTest {
         crc2.lineTo(0, 80);
         crc2.lineTo(80, 80);
         crc2.lineTo(80, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(420, 20);
-
         crc2.fillStyle = "brown";
         crc2.save();
         crc2.beginPath();
@@ -436,21 +348,14 @@ namespace DoenerTest {
         crc2.lineTo(0, 80);
         crc2.lineTo(80, 80);
         crc2.lineTo(80, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
         crc2.restore();
-
-
-
         // Kasse:
-
         crc2.resetTransform();
         crc2.save();
         crc2.translate(550, 255);
-
         crc2.fillStyle = "gold";
         crc2.save();
         crc2.beginPath();
@@ -462,12 +367,9 @@ namespace DoenerTest {
         crc2.lineTo(0, -15);
         crc2.lineTo(30, -15);
         crc2.lineTo(30, 0);
-
         crc2.closePath();
         crc2.fill();
         crc2.stroke();
-
-
         crc2.restore();
     }
 
@@ -489,19 +391,12 @@ namespace DoenerTest {
             customer.draw();
             customer.feel("happy");
             customers[0].feel(moodCustomer);
-            // console.log("update c");
         }
+
         for (let ingredient of drawOrders) {
             ingredient.checkOrder();
-            console.log("checkOrder Aufruf");
             ingredient.move(1 / 50, xOfWorker, yOfWorker);
-
-            // console.log("update c");
         }
-
-
-
-
     }
 
 
@@ -549,8 +444,6 @@ namespace DoenerTest {
 
     export function workerWalkCheck(): void {
 
-        if (workers.length == 2) {
-        }
         // Walk between Containers and Counter
         if (refillBreadIsClicked == true) {
             bringBread();
@@ -561,7 +454,6 @@ namespace DoenerTest {
             xOfWorker = 120;
             yOfWorker = 245;
         }
-
         if (refillTomatoIsClicked == true) {
             bringTomato();
             xOfWorker = 160;
@@ -571,7 +463,6 @@ namespace DoenerTest {
             xOfWorker = 210;
             yOfWorker = 245;
         }
-
         if (refillLettuceIsClicked == true) {
             bringLettuce();
             xOfWorker = 260;
@@ -599,9 +490,7 @@ namespace DoenerTest {
             xOfWorker = 450;
             yOfWorker = 245;
         }
-
         // Walk To Cash Register
-
         if (workers.length == 1) {
             if (payIsClicked == true) {
                 xOfWorker = 570;
@@ -612,7 +501,6 @@ namespace DoenerTest {
             }
         }
         // Walk to add Ingredients at Counter
-
         if (addBreadIsClicked == true) {
             xOfWorker = 125;
             yOfWorker = 245;
@@ -620,7 +508,6 @@ namespace DoenerTest {
         if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
             addBreadIsClicked = false;
         }
-
         if (addTomatoIsClicked == true) {
             xOfWorker = 210;
             yOfWorker = 245;
@@ -628,7 +515,6 @@ namespace DoenerTest {
         if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
             addTomatoIsClicked = false;
         }
-
         if (addLettuceIsClicked == true) {
             xOfWorker = 290;
             yOfWorker = 245;
@@ -636,7 +522,6 @@ namespace DoenerTest {
         if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
             addLettuceIsClicked = false;
         }
-
         if (addOnionIsClicked == true) {
             xOfWorker = 370;
             yOfWorker = 245;

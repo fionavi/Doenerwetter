@@ -136,4 +136,4 @@ var DoenerTest;
         return random;
     }
 })(DoenerTest || (DoenerTest = {}));
-//# sourceMappingURL=Costumer.js.map
+//# sourceMappingURL=Customer.js.map

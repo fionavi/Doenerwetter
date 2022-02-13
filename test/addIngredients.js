@@ -23,7 +23,6 @@ var DoenerTest;
     function addBread() {
         DoenerTest.addBreadIsClicked = true;
         DoenerTest.breadIsDrawn = true;
-        console.log("bread was clicked");
         DoenerTest.currentOrder.bread++;
         DoenerTest.counterLeft.bread -= 10;
         let meter = document.querySelector("#meterB");

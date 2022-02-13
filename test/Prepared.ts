@@ -3,15 +3,12 @@ namespace DoenerTest {
     export class Prepared {
         position: Vector;
         velocity: Vector;
-
         x: number;
         y: number;
-
         randomX: number = 70 * Math.random();
 
 
         constructor(_position: number, _x?: number, _y?: number) {
-            console.log("Prepared CONSTRUCTOR");
             this.position = new Vector(_x, _y);
             this.velocity = new Vector(0, 0);
             this.velocity.random(100, 150);
@@ -23,7 +20,6 @@ namespace DoenerTest {
         }
 
         checkOrder(): void {
-            // debugger;
             if (refillBreadIsClicked == true || refillTomatoIsClicked == true || refillLettuceIsClicked == true || refillOnionIsClicked == true || refillMeatIsClicked == true) {
                 this.drawContainer();
             }
@@ -49,22 +45,20 @@ namespace DoenerTest {
             }
         }
 
-
         drawContainer(): void {
-
             crc2.resetTransform();
             crc2.save();
-            crc2.translate(this.position.x, this.position.y);
-            console.log("draw at position X= " + this.position.x + " Y= " + this.position.y);
+            crc2.translate(this.position.x + 30, this.position.y);
             crc2.fillStyle = "grey";
+            crc2.strokeStyle = "black";
             crc2.beginPath();
-            crc2.ellipse(50, -50, 5, 12, 2, 20, 40);
+            crc2.rect(0, 10, 40, 20);
             crc2.closePath();
             crc2.scale(0.5, 0.5);
             crc2.fill();
             crc2.stroke();
-
         }
+       
         drawBread(): void {
             crc2.resetTransform();
             crc2.save();
@@ -81,7 +75,6 @@ namespace DoenerTest {
 
         drawTomato(): void {
             this.randomX = Math.floor(this.randomX);
-            console.log(" X random " + this.randomX);
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x + 30, this.position.y);
@@ -98,6 +91,7 @@ namespace DoenerTest {
             crc2.fill();
             crc2.stroke();
         }
+        
         drawLettuce(): void {
             crc2.resetTransform();
             crc2.save();
@@ -110,11 +104,10 @@ namespace DoenerTest {
             crc2.ellipse(this.randomX - 20, -55, 5, 13, 50, 2, 30);
             crc2.closePath();
             crc2.fill();
-            //crc2.stroke();
         }
+        
         drawOnion(): void {
             this.randomX = Math.floor(this.randomX);
-            console.log(" X random " + this.randomX);
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x + 30, this.position.y);
@@ -127,8 +120,8 @@ namespace DoenerTest {
             crc2.closePath();
             crc2.fill();
             crc2.stroke();
-            
         }
+        
         drawMeat(): void {
             crc2.resetTransform();
             crc2.save();
@@ -142,5 +135,4 @@ namespace DoenerTest {
             crc2.stroke();
         }
     }
-
 }
