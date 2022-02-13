@@ -19,13 +19,41 @@ namespace DoenerTest {
         move(_timeslice: number, _x: number, _y: number): void {
             // console.log("Human move");
         }
+        checkOrder(): void {
+           // debugger;
+            if (refillBreadIsClicked == true || refillTomatoIsClicked == true || refillLettuceIsClicked == true || refillOnionIsClicked == true || refillMeatIsClicked == true) {
+                this.drawContainer();
+            }
+
+            if (breadIsDrawn == true) {
+                this.drawBread();
+            }
+
+            if (tomatoIsDrawn == true) {
+                this.drawTomato();
+            }
+
+            if (lettuceIsDrawn == true) {
+                this.drawLettuce();
+            }
+
+            if (onionIsDrawn == true) {
+                this.drawOnion();
+            }
+
+            if (meatIsDrawn == true) {
+                this.drawMeat();
+            }
+        }
+
 
         drawContainer(): void {
             // console.log("Human feel");
+           // debugger;
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
-
+            console.log("draw at position X= " + this.position.x + " Y= " + this.position.y);
             crc2.fillStyle = "grey";
 
 
@@ -35,6 +63,7 @@ namespace DoenerTest {
             crc2.closePath();
             crc2.fill();
             crc2.stroke();
+
         }
 
 
@@ -46,7 +75,7 @@ namespace DoenerTest {
             crc2.translate(this.position.x, this.position.y);
 
             crc2.fillStyle = "orange";
-
+            crc2.strokeStyle = "black";
 
             //Arm rechts
             crc2.beginPath();

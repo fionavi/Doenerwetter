@@ -111,7 +111,7 @@ var DoenerTest;
         const amountCustomer = data.get("amountCustomer"); //form Data anzahl worker als string holen
         let amountC = parseInt(amountCustomer);
         for (let index = 0; index < amountC; index++) { //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
-            await new Promise(f => setTimeout(f, 6000 /* / amountC */)); // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000  
+            await new Promise(f => setTimeout(f, 60000 / amountC)); // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000  
             createCustomer();
         }
     }
@@ -362,16 +362,13 @@ var DoenerTest;
             DoenerTest.customers[0].feel(DoenerTest.moodCustomer);
             // console.log("update c");
         }
-        /*  for (let displayBread of drawOrders) {
-             //displayBread.move(1 / 50, _x, _y);
-             displayBread.drawBread();
-             displayBread.drawTomato();
-             displayBread.drawLettuce();
-             displayBread.drawOnion();
-             displayBread.drawMeat();
-             
-             // console.log("update c");
-         } */
+        for (let ingredient of DoenerTest.drawOrders) {
+            //ingredient.move(1 / 50, _x, _y);
+            ingredient.checkOrder();
+            console.log("checkOrder Aufruf");
+            //ingredient.move(1 / 50, xOfWorker + 10, yOfWorker - 10);
+            // console.log("update c");
+        }
     }
     DoenerTest.update = update;
     function moodCheck() {

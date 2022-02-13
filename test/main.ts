@@ -18,6 +18,9 @@ namespace DoenerTest {
     export let moodWorker: string;
     export let moodCustomer: string;
 
+    export let xOfWorker: number;
+    export let yOfWorker: number;
+
 
 
     export interface Vector {
@@ -58,7 +61,7 @@ namespace DoenerTest {
     };
 
     window.addEventListener("load", handleload);
-
+    
 
     export function handleload(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -159,7 +162,7 @@ namespace DoenerTest {
         let amountC: number = parseInt(amountCustomer);
 
         for (let index: number = 0; index < amountC; index++) {      //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
-            await new Promise(f => setTimeout(f, 6000 /* / amountC */));     // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000  
+            await new Promise(f => setTimeout(f, 60000 / amountC));     // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000  
             createCustomer();
 
         }
@@ -478,8 +481,6 @@ namespace DoenerTest {
         crc2.restore();
     }
 
-    export let xOfWorker: number;
-    export let yOfWorker: number;
 
     export function update(_x: number, _y: number): any {
         crc2.putImageData(imgData, 1, 1);
@@ -500,16 +501,14 @@ namespace DoenerTest {
             customers[0].feel(moodCustomer);
             // console.log("update c");
         }
-        /*  for (let displayBread of drawOrders) {
-             //displayBread.move(1 / 50, _x, _y);
-             displayBread.drawBread();
-             displayBread.drawTomato();
-             displayBread.drawLettuce();
-             displayBread.drawOnion();
-             displayBread.drawMeat();
-             
-             // console.log("update c");
-         } */
+        for (let ingredient of drawOrders) {
+            //ingredient.move(1 / 50, _x, _y);
+            ingredient.checkOrder();
+            console.log("checkOrder Aufruf");
+            //ingredient.move(1 / 50, xOfWorker + 10, yOfWorker - 10);
+
+            // console.log("update c");
+        }
 
 
 
@@ -610,7 +609,7 @@ namespace DoenerTest {
         }
 
         // Walk To Cash Register
-        
+
         if (payIsClicked == true) {
             xOfWorker = 570;
             yOfWorker = 230;
@@ -618,7 +617,7 @@ namespace DoenerTest {
         if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
             payIsClicked = false;
         }
-        
+
         // Walk to add Ingredients at Counter
 
         if (addBreadIsClicked == true) {
@@ -635,8 +634,8 @@ namespace DoenerTest {
         }
         if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
             addTomatoIsClicked = false;
-        }  
-        
+        }
+
         if (addLettuceIsClicked == true) {
             xOfWorker = 290;
             yOfWorker = 245;

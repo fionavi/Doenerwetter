@@ -25,6 +25,7 @@ var DoenerTest;
             console.log("Kasse: " + DoenerTest.earnings.toString());
             displayEarnings.innerText = DoenerTest.earnings.toString() + " €";
             setTimeout(function () {
+                DoenerTest.breadIsDrawn = DoenerTest.tomatoIsDrawn = DoenerTest.lettuceIsDrawn = DoenerTest.onionIsDrawn = DoenerTest.meatIsDrawn = false;
                 DoenerTest.customers.shift();
                 DoenerTest.currentCustomerAmount--;
                 console.log("Thank you! Bye.");
@@ -54,6 +55,7 @@ var DoenerTest;
             console.log("Kasse: " + DoenerTest.earnings.toString());
             displayEarnings.innerText = DoenerTest.earnings.toString() + " €";
             setTimeout(function () {
+                DoenerTest.breadIsDrawn = DoenerTest.tomatoIsDrawn = DoenerTest.lettuceIsDrawn = DoenerTest.onionIsDrawn = DoenerTest.meatIsDrawn = false;
                 DoenerTest.customers.shift();
                 DoenerTest.currentCustomerAmount--;
                 console.log("That was not what I've ordered! I'm leaving.");

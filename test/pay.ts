@@ -21,12 +21,15 @@ namespace DoenerTest {
             ordersMade.shift();
             orders.shift();
             displayOrders.shift();
+
+
             happyScore++;
             earnings += 3.5;
             let displayEarnings: any = document.getElementById("earnings");
             console.log("Kasse: " + earnings.toString());
             displayEarnings.innerText = earnings.toString() + " €";
             setTimeout(function (): void {
+                breadIsDrawn = tomatoIsDrawn = lettuceIsDrawn = onionIsDrawn = meatIsDrawn = false;
                 customers.shift();
                 currentCustomerAmount--;
                 console.log("Thank you! Bye.");
@@ -56,11 +59,14 @@ namespace DoenerTest {
             ordersMade.shift();
             orders.shift();
             displayOrders.shift();
+            
+
             earnings += 3.5;
             let displayEarnings: any = document.getElementById("earnings");
             console.log("Kasse: " + earnings.toString());
             displayEarnings.innerText = earnings.toString() + " €";
             setTimeout(function (): void {
+                breadIsDrawn = tomatoIsDrawn = lettuceIsDrawn = onionIsDrawn = meatIsDrawn = false;
                 customers.shift();
                 currentCustomerAmount--;
                 console.log("That was not what I've ordered! I'm leaving.");
