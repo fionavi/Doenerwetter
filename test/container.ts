@@ -40,7 +40,7 @@ namespace DoenerTest {
         let meter: any = document.querySelector("#meterB");
         counterLeft.bread = 100;
         meter.setAttribute("value", 1);
-        walkThere(100, 100);
+      //  walkThere(100, 100);
     }
 
     export function walkThere(_x: number, _y: number): any {
@@ -49,16 +49,16 @@ namespace DoenerTest {
         if (workers[0].position.x < _x) {
 
 
-            console.log("Oooo Yeaaa!");
+            //console.log("Oooo Yeaaa!");
 
             for (; workers[0].position.x < _x; workers[0].position.x++) {
                 // debugger;
-                setInterval(function (): void {
+                
                     crc2.putImageData(imgData, 1, 1);
                     console.log("worker moved x++ to " + workers[0].position.x + workers[0].position.y);
                     workers[0].move(1, workers[0].position.x, workers[0].position.y);
                     workers[0].draw();
-                }, 20);
+     
             }
 
         }

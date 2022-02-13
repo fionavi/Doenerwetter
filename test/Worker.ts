@@ -24,6 +24,8 @@ namespace DoenerTest {
             // this.position.add(offset);
             this.position.x = _x;
             this.position.y = _y;
+
+            
             // if (this.position.x < _x) {
             //     this.position.x++;
 

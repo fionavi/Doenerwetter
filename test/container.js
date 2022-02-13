@@ -35,21 +35,19 @@ var DoenerTest;
         let meter = document.querySelector("#meterB");
         DoenerTest.counterLeft.bread = 100;
         meter.setAttribute("value", 1);
-        walkThere(100, 100);
+        //  walkThere(100, 100);
     }
     DoenerTest.refillBread = refillBread;
     function walkThere(_x, _y) {
         DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
         if (DoenerTest.workers[0].position.x < _x) {
-            console.log("Oooo Yeaaa!");
+            //console.log("Oooo Yeaaa!");
             for (; DoenerTest.workers[0].position.x < _x; DoenerTest.workers[0].position.x++) {
                 // debugger;
-                setInterval(function () {
-                    DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
-                    console.log("worker moved x++ to " + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
-                    DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
-                    DoenerTest.workers[0].draw();
-                }, 20);
+                DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
+                console.log("worker moved x++ to " + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
+                DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
+                DoenerTest.workers[0].draw();
             }
         }
         if (DoenerTest.workers[0].position.x > _x) {
