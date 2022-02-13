@@ -91,7 +91,7 @@ var DoenerTest;
         DoenerTest.counterLeft.meat -= 10;
         let meter = document.querySelector("#meterM");
         meter.setAttribute("value", DoenerTest.counterLeft.meat / 100);
-        let displayIngredient = new DoenerTest.Prepared(1, 750, 180);
+        let displayIngredient = new DoenerTest.Prepared(1, 750, 100);
         //displayIngredient.drawMeat();
         DoenerTest.drawOrders.push(displayIngredient);
         if (DoenerTest.counterLeft.meat <= 0) {

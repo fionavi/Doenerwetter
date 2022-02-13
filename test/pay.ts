@@ -29,6 +29,7 @@ namespace DoenerTest {
             console.log("Kasse: " + earnings.toString());
             displayEarnings.innerText = earnings.toString() + " €";
             setTimeout(function (): void {
+                drawOrders = [];
                 breadIsDrawn = tomatoIsDrawn = lettuceIsDrawn = onionIsDrawn = meatIsDrawn = false;
                 customers.shift();
                 currentCustomerAmount--;
@@ -66,6 +67,7 @@ namespace DoenerTest {
             console.log("Kasse: " + earnings.toString());
             displayEarnings.innerText = earnings.toString() + " €";
             setTimeout(function (): void {
+                drawOrders = [];
                 breadIsDrawn = tomatoIsDrawn = lettuceIsDrawn = onionIsDrawn = meatIsDrawn = false;
                 customers.shift();
                 currentCustomerAmount--;
