@@ -19,18 +19,20 @@ var DoenerTest;
             let offset = new DoenerTest.Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             // this.position.add(offset);
-            if (this.position.x < _x) {
-                this.position.x++;
-            }
-            if (this.position.x > _x) {
-                this.position.x--;
-            }
-            if (this.position.y < _y) {
-                this.position.y++;
-            }
-            if (this.position.y > _y) {
-                this.position.y--;
-            }
+            this.position.x = _x;
+            this.position.y = _y;
+            // if (this.position.x < _x) {
+            //     this.position.x++;
+            // }
+            // if (this.position.x > _x) {
+            //     this.position.x--;
+            // }
+            // if (this.position.y < _y) {
+            //     this.position.y++;
+            // }
+            // if (this.position.y > _y) {
+            //     this.position.y--;
+            // }
             /*    if (this.position.x < 80) {
                    this.position.x += 10;
                    this.velocity.set(15, 0);

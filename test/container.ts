@@ -19,10 +19,11 @@ namespace DoenerTest {
 
     export function refillBread(): void {
         console.log("worker is going to refill bread");
-       
-        let x: number = 100;
-        let y: number = 100;
-        window.setInterval(walkThere(100, 100), 20);
+
+        /* let x: number = 100;
+        let y: number = 100; */
+        //debugger;
+        //window.setInterval(walkThere(100, 100), 20);
 
         let meterB: any = document.querySelector("#meterB").getAttribute("value");
         let amountMissing: number = 100 - meterB * 100;
@@ -39,17 +40,70 @@ namespace DoenerTest {
         let meter: any = document.querySelector("#meterB");
         counterLeft.bread = 100;
         meter.setAttribute("value", 1);
+        walkThere(100, 100);
     }
 
     export function walkThere(_x: number, _y: number): any {
         crc2.putImageData(imgData, 1, 1);
         // walk to bread stock
-        for (let worker of workers) {
-            workers[0].move(1, _x, _y);            
-            worker.draw();
-            // worker.feel(moodWorker);
+        // let i: number = 0;
+        //    // debugger;
+        //     for (workers[0].position.x  != _x || workers[0].position.y  != _y;  ;) {
+        //     workers[0].move(1, _x, _y);
+        //     //workers[0].draw();
+        //     console.log("walkThere aufruf " + i);
+        //     console.log("current position of worker: " + workers[0].position.x + workers[0].position.y);
+        //     // worker.feel(moodWorker);
+        //     }
+        /*   for (workers[0].position.x != _x || workers[0].position.y != _y; i++;) {
+              debugger
+              if (workers[0].position.x < _x) {
+                  workers[0].position.x++;
+              }
+              if (workers[0].position.x > _x) {
+                  workers[0].position.x--;
+              }
+              if (workers[0].position.y < _y) {
+                  workers[0].position.y++;
+              }
+              if (workers[0].position.y > _y) {
+                  workers[0].position.y--;
+              }
+              console.log("walkThere aufruf " + i);
+              workers[0].move(1, workers[0].position.x, workers[0].position.y);
+          } */
+        //debugger;
+        for (workers[0].position.x < _x; workers[0].position.x++;) {
+            crc2.putImageData(imgData, 1, 1);
+            console.log("worker moved x++ to " + workers[0].position.x + workers[0].position.y );
+            workers[0].move(1, workers[0].position.x, workers[0].position.y);
+            workers[0].draw();
         }
+        for (workers[0].position.x > _x; workers[0].position.x--;) {
+            crc2.putImageData(imgData, 1, 1);
+            console.log("worker moved x--");
+            workers[0].move(1, workers[0].position.x, workers[0].position.y);
+            workers[0].draw();
+
+        }
+        for (workers[0].position.y < _y; workers[0].position.y++;) {
+            crc2.putImageData(imgData, 1, 1);
+            console.log("worker moved y++");
+            workers[0].move(1, workers[0].position.x, workers[0].position.y);
+            workers[0].draw();
+
+        }
+        for (workers[0].position.y > _y; workers[0].position.y--;) {
+            crc2.putImageData(imgData, 1, 1);
+            console.log("worker moved y--");
+            workers[0].move(1, workers[0].position.x, workers[0].position.y);
+            workers[0].draw();
+        }
+
     }
+
+
+
 
     export function refillTomato(): void {
         console.log("worker is going to refill tomato");
@@ -59,7 +113,7 @@ namespace DoenerTest {
         storageLeft.tomato -= amountMissing;
         let meterStockT: any = document.querySelector("#stockMeterT");
         meterStockT.setAttribute("value", storageLeft.tomato / 1000);
-       
+
         let meter: any = document.querySelector("#meterT");
         counterLeft.tomato = 100;
         meter.setAttribute("value", 1);
@@ -74,7 +128,7 @@ namespace DoenerTest {
         storageLeft.lettuce -= amountMissing;
         let meterStockL: any = document.querySelector("#stockMeterL");
         meterStockL.setAttribute("value", storageLeft.lettuce / 1000);
-      
+
         let meter: any = document.querySelector("#meterL");
         counterLeft.lettuce = 100;
         meter.setAttribute("value", 1);
@@ -88,7 +142,7 @@ namespace DoenerTest {
         storageLeft.onion -= amountMissing;
         let meterStockO: any = document.querySelector("#stockMeterO");
         meterStockO.setAttribute("value", storageLeft.onion / 1000);
-        
+
         let meter: any = document.querySelector("#meterO");
         counterLeft.onion = 100;
         meter.setAttribute("value", 1);
@@ -107,7 +161,7 @@ namespace DoenerTest {
         meter.setAttribute("value", 1);
         console.log(storageLeft.meat);
     }
- 
+
     export function buyBread(): void {
         let stockMeterB: any = document.querySelector("#stockMeterB").getAttribute("value");
         let amountMissing: number = 1000 - stockMeterB * 1000;

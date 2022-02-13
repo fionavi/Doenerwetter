@@ -16,9 +16,10 @@ var DoenerTest;
     DoenerTest.listenToButtons = listenToButtons;
     function refillBread() {
         console.log("worker is going to refill bread");
-        let x = 100;
-        let y = 100;
-        window.setInterval(walkThere(100, 100), 20);
+        /* let x: number = 100;
+        let y: number = 100; */
+        //debugger;
+        //window.setInterval(walkThere(100, 100), 20);
         let meterB = document.querySelector("#meterB").getAttribute("value");
         let amountMissing = 100 - meterB * 100;
         DoenerTest.storageLeft.bread -= amountMissing;
@@ -34,15 +35,62 @@ var DoenerTest;
         let meter = document.querySelector("#meterB");
         DoenerTest.counterLeft.bread = 100;
         meter.setAttribute("value", 1);
+        walkThere(100, 100);
     }
     DoenerTest.refillBread = refillBread;
     function walkThere(_x, _y) {
         DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
         // walk to bread stock
-        for (let worker of DoenerTest.workers) {
-            DoenerTest.workers[0].move(1, _x, _y);
-            worker.draw();
-            // worker.feel(moodWorker);
+        // let i: number = 0;
+        //    // debugger;
+        //     for (workers[0].position.x  != _x || workers[0].position.y  != _y;  ;) {
+        //     workers[0].move(1, _x, _y);
+        //     //workers[0].draw();
+        //     console.log("walkThere aufruf " + i);
+        //     console.log("current position of worker: " + workers[0].position.x + workers[0].position.y);
+        //     // worker.feel(moodWorker);
+        //     }
+        /*   for (workers[0].position.x != _x || workers[0].position.y != _y; i++;) {
+              debugger
+              if (workers[0].position.x < _x) {
+                  workers[0].position.x++;
+              }
+              if (workers[0].position.x > _x) {
+                  workers[0].position.x--;
+              }
+              if (workers[0].position.y < _y) {
+                  workers[0].position.y++;
+              }
+              if (workers[0].position.y > _y) {
+                  workers[0].position.y--;
+              }
+              console.log("walkThere aufruf " + i);
+              workers[0].move(1, workers[0].position.x, workers[0].position.y);
+          } */
+        //debugger;
+        for (DoenerTest.workers[0].position.x < _x; DoenerTest.workers[0].position.x++;) {
+            DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
+            console.log("worker moved x++ to " + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
+            DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
+            DoenerTest.workers[0].draw();
+        }
+        for (DoenerTest.workers[0].position.x > _x; DoenerTest.workers[0].position.x--;) {
+            DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
+            console.log("worker moved x--");
+            DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
+            DoenerTest.workers[0].draw();
+        }
+        for (DoenerTest.workers[0].position.y < _y; DoenerTest.workers[0].position.y++;) {
+            DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
+            console.log("worker moved y++");
+            DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
+            DoenerTest.workers[0].draw();
+        }
+        for (DoenerTest.workers[0].position.y > _y; DoenerTest.workers[0].position.y--;) {
+            DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
+            console.log("worker moved y--");
+            DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
+            DoenerTest.workers[0].draw();
         }
     }
     DoenerTest.walkThere = walkThere;

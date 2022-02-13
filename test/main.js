@@ -350,7 +350,7 @@ var DoenerTest;
         moodCheck();
         for (let worker of DoenerTest.workers) {
             worker.draw();
-            worker.move(1 / 50, _x, _y);
+            // worker.move(1 / 50, _x, _y);
             worker.feel(DoenerTest.moodWorker);
         }
         for (let customer of DoenerTest.customers) {

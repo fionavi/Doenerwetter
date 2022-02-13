@@ -22,25 +22,26 @@ namespace DoenerTest {
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             // this.position.add(offset);
+            this.position.x = _x;
+            this.position.y = _y;
+            // if (this.position.x < _x) {
+            //     this.position.x++;
 
-            if (this.position.x < _x) {
-                this.position.x++;
+            // }
 
-            }
+            // if (this.position.x > _x) {
+            //     this.position.x--;
 
-            if (this.position.x > _x) {
-                this.position.x--;
+            // }
+            // if (this.position.y < _y) {
+            //     this.position.y++;
 
-            }
-            if (this.position.y < _y) {
-                this.position.y++;
+            // }
 
-            }
+            // if (this.position.y > _y) {
+            //     this.position.y--;
 
-            if (this.position.y > _y) {
-                this.position.y--;
-
-            }
+            // }
             /*    if (this.position.x < 80) {
                    this.position.x += 10;
                    this.velocity.set(15, 0);

@@ -485,7 +485,7 @@ namespace DoenerTest {
 
         for (let worker of workers) {
             worker.draw();
-            worker.move(1 / 50, _x, _y);
+           // worker.move(1 / 50, _x, _y);
 
             worker.feel(moodWorker);
         }
