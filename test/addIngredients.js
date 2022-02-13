@@ -1,6 +1,11 @@
 "use strict";
 var DoenerTest;
 (function (DoenerTest) {
+    DoenerTest.addBreadIsClicked = false;
+    DoenerTest.addTomatoIsClicked = false;
+    DoenerTest.addLettuceIsClicked = false;
+    DoenerTest.addOnionIsClicked = false;
+    DoenerTest.addMeatIsClicked = false;
     function listenToAddButtons() {
         document.querySelector("#addB").addEventListener("click", addBread);
         document.querySelector("#addT").addEventListener("click", addTomato);
@@ -11,6 +16,7 @@ var DoenerTest;
     }
     DoenerTest.listenToAddButtons = listenToAddButtons;
     function addBread() {
+        DoenerTest.addBreadIsClicked = true;
         console.log("bread was clicked");
         DoenerTest.currentOrder.bread++;
         DoenerTest.counterLeft.bread -= 10;
@@ -28,6 +34,7 @@ var DoenerTest;
     }
     DoenerTest.addBread = addBread;
     function addTomato() {
+        DoenerTest.addTomatoIsClicked = true;
         DoenerTest.currentOrder.tomato++;
         DoenerTest.counterLeft.tomato -= 10;
         let meter = document.querySelector("#meterT");
@@ -41,6 +48,7 @@ var DoenerTest;
     }
     DoenerTest.addTomato = addTomato;
     function addLettuce() {
+        DoenerTest.addLettuceIsClicked = true;
         DoenerTest.currentOrder.lettuce++;
         DoenerTest.counterLeft.lettuce -= 10;
         let meter = document.querySelector("#meterL");
@@ -54,6 +62,7 @@ var DoenerTest;
     }
     DoenerTest.addLettuce = addLettuce;
     function addOnion() {
+        DoenerTest.addOnionIsClicked = true;
         DoenerTest.currentOrder.onion++;
         DoenerTest.counterLeft.onion -= 10;
         let meter = document.querySelector("#meterO");
@@ -67,6 +76,7 @@ var DoenerTest;
     }
     DoenerTest.addOnion = addOnion;
     function addMeat() {
+        DoenerTest.addMeatIsClicked = true;
         DoenerTest.currentOrder.meat++;
         DoenerTest.counterLeft.meat -= 10;
         let meter = document.querySelector("#meterM");

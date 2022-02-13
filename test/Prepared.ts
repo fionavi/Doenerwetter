@@ -20,7 +20,24 @@ namespace DoenerTest {
             // console.log("Human move");
         }
 
-        
+        drawContainer(): void {
+            // console.log("Human feel");
+            crc2.resetTransform();
+            crc2.save();
+            crc2.translate(this.position.x, this.position.y);
+
+            crc2.fillStyle = "grey";
+
+
+            //Arm rechts
+            crc2.beginPath();
+            crc2.ellipse(50, -50, 5, 12, 2, 20, 40);
+            crc2.closePath();
+            crc2.fill();
+            crc2.stroke();
+        }
+
+
 
         drawBread(): void {
             // console.log("Human feel");

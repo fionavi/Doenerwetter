@@ -1,6 +1,16 @@
 "use strict";
 var DoenerTest;
 (function (DoenerTest) {
+    DoenerTest.refillBreadIsClicked = false;
+    DoenerTest.backToBread = false;
+    DoenerTest.refillTomatoIsClicked = false;
+    DoenerTest.backToTomato = false;
+    DoenerTest.refillLettuceIsClicked = false;
+    DoenerTest.backToLettuce = false;
+    DoenerTest.refillOnionIsClicked = false;
+    DoenerTest.backToOnion = false;
+    DoenerTest.refillMeatIsClicked = false;
+    DoenerTest.backToMeat = false;
     function listenToButtons() {
         document.querySelector("#buyBread").addEventListener("click", buyBread);
         document.querySelector("#buyTomato").addEventListener("click", buyTomato);
@@ -16,94 +26,24 @@ var DoenerTest;
     DoenerTest.listenToButtons = listenToButtons;
     function refillBread() {
         console.log("worker is going to refill bread");
-        /* let x: number = 100;
-        let y: number = 100; */
-        //debugger;
-        //window.setInterval(walkThere(100, 100), 20);
         let meterB = document.querySelector("#meterB").getAttribute("value");
         let amountMissing = 100 - meterB * 100;
         DoenerTest.storageLeft.bread -= amountMissing;
         let meterStockB = document.querySelector("#stockMeterB");
         meterStockB.setAttribute("value", DoenerTest.storageLeft.bread / 1000);
-        // console.log("rechnung Storage /1000 " + storageLeft.bread /1000) 
-        /*  _x = 200;
-         _y = 100;
-         workers[0].move(1 / 50, _x, _y);
-         update(_x, _y); */
-        // if workers position is in front of container:
-        //setTimeout(bringBread, 5000);
-        let meter = document.querySelector("#meterB");
-        DoenerTest.counterLeft.bread = 100;
-        meter.setAttribute("value", 1);
-        //  walkThere(100, 100);
+        DoenerTest.refillBreadIsClicked = true;
     }
     DoenerTest.refillBread = refillBread;
-    function walkThere(_x, _y) {
-        DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
-        if (DoenerTest.workers[0].position.x < _x) {
-            //console.log("Oooo Yeaaa!");
-            for (; DoenerTest.workers[0].position.x < _x; DoenerTest.workers[0].position.x++) {
-                // debugger;
-                DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
-                console.log("worker moved x++ to " + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
-                DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
-                DoenerTest.workers[0].draw();
-            }
+    function bringBread() {
+        if (DoenerTest.workers[0].position.x == 60 && DoenerTest.workers[0].position.y == 120) {
+            DoenerTest.backToBread = true;
+            let meter = document.querySelector("#meterB");
+            DoenerTest.counterLeft.bread = 100;
+            meter.setAttribute("value", 1);
+            DoenerTest.refillBreadIsClicked = false;
         }
-        if (DoenerTest.workers[0].position.x > _x) {
-            for (; DoenerTest.workers[0].position.x > _x; DoenerTest.workers[0].position.x--) {
-                DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
-                console.log("worker moved x--" + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
-                DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
-                //workers[0].draw();
-            }
-        }
-        if (DoenerTest.workers[0].position.y < _y) {
-            for (; DoenerTest.workers[0].position.y < _y; DoenerTest.workers[0].position.y++) {
-                DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
-                console.log("worker moved y++" + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
-                DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
-                // workers[0].draw();
-            }
-        }
-        if (DoenerTest.workers[0].position.y > _y) {
-            for (; DoenerTest.workers[0].position.y > _y; DoenerTest.workers[0].position.y--) {
-                DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
-                console.log("worker moved y--" + DoenerTest.workers[0].position.x + DoenerTest.workers[0].position.y);
-                DoenerTest.workers[0].move(1, DoenerTest.workers[0].position.x, DoenerTest.workers[0].position.y);
-                //workers[0].draw();
-            }
-        }
-        // walk to bread stock
-        // let i: number = 0;
-        //    // debugger;
-        //     for (workers[0].position.x  != _x || workers[0].position.y  != _y;  ;) {
-        //     workers[0].move(1, _x, _y);
-        //     //workers[0].draw();
-        //     console.log("walkThere aufruf " + i);
-        //     console.log("current position of worker: " + workers[0].position.x + workers[0].position.y);
-        //     // worker.feel(moodWorker);
-        //     }
-        /*   for (workers[0].position.x != _x || workers[0].position.y != _y; i++;) {
-              debugger
-              if (workers[0].position.x < _x) {
-                  workers[0].position.x++;
-              }
-              if (workers[0].position.x > _x) {
-                  workers[0].position.x--;
-              }
-              if (workers[0].position.y < _y) {
-                  workers[0].position.y++;
-              }
-              if (workers[0].position.y > _y) {
-                  workers[0].position.y--;
-              }
-              console.log("walkThere aufruf " + i);
-              workers[0].move(1, workers[0].position.x, workers[0].position.y);
-          } */
-        //debugger;
     }
-    DoenerTest.walkThere = walkThere;
+    DoenerTest.bringBread = bringBread;
     function refillTomato() {
         console.log("worker is going to refill tomato");
         let meterT = document.querySelector("#meterT").getAttribute("value");
@@ -111,11 +51,19 @@ var DoenerTest;
         DoenerTest.storageLeft.tomato -= amountMissing;
         let meterStockT = document.querySelector("#stockMeterT");
         meterStockT.setAttribute("value", DoenerTest.storageLeft.tomato / 1000);
-        let meter = document.querySelector("#meterT");
-        DoenerTest.counterLeft.tomato = 100;
-        meter.setAttribute("value", 1);
+        DoenerTest.refillTomatoIsClicked = true;
     }
     DoenerTest.refillTomato = refillTomato;
+    function bringTomato() {
+        if (DoenerTest.workers[0].position.x == 160 && DoenerTest.workers[0].position.y == 120) {
+            DoenerTest.backToTomato = true;
+            let meter = document.querySelector("#meterT");
+            DoenerTest.counterLeft.tomato = 100;
+            meter.setAttribute("value", 1);
+            DoenerTest.refillTomatoIsClicked = false;
+        }
+    }
+    DoenerTest.bringTomato = bringTomato;
     function refillLettuce() {
         console.log("worker is going to refill lettuce");
         let meterL = document.querySelector("#meterL").getAttribute("value");
@@ -123,35 +71,59 @@ var DoenerTest;
         DoenerTest.storageLeft.lettuce -= amountMissing;
         let meterStockL = document.querySelector("#stockMeterL");
         meterStockL.setAttribute("value", DoenerTest.storageLeft.lettuce / 1000);
-        let meter = document.querySelector("#meterL");
-        DoenerTest.counterLeft.lettuce = 100;
-        meter.setAttribute("value", 1);
+        DoenerTest.refillLettuceIsClicked = true;
     }
     DoenerTest.refillLettuce = refillLettuce;
+    function bringLettuce() {
+        if (DoenerTest.workers[0].position.x == 260 && DoenerTest.workers[0].position.y == 120) {
+            DoenerTest.backToLettuce = true;
+            let meter = document.querySelector("#meterL");
+            DoenerTest.counterLeft.lettuce = 100;
+            meter.setAttribute("value", 1);
+            DoenerTest.refillLettuceIsClicked = false;
+        }
+    }
+    DoenerTest.bringLettuce = bringLettuce;
     function refillOnion() {
         console.log("worker is going to refill bread");
+        DoenerTest.refillOnionIsClicked = true;
         let meterO = document.querySelector("#meterO").getAttribute("value");
         let amountMissing = 100 - meterO * 100;
         DoenerTest.storageLeft.onion -= amountMissing;
         let meterStockO = document.querySelector("#stockMeterO");
         meterStockO.setAttribute("value", DoenerTest.storageLeft.onion / 1000);
-        let meter = document.querySelector("#meterO");
-        DoenerTest.counterLeft.onion = 100;
-        meter.setAttribute("value", 1);
     }
     DoenerTest.refillOnion = refillOnion;
+    function bringOnion() {
+        if (DoenerTest.workers[0].position.x == 360 && DoenerTest.workers[0].position.y == 120) {
+            DoenerTest.backToOnion = true;
+            let meter = document.querySelector("#meterO");
+            DoenerTest.counterLeft.onion = 100;
+            meter.setAttribute("value", 1);
+            DoenerTest.refillOnionIsClicked = false;
+        }
+    }
+    DoenerTest.bringOnion = bringOnion;
     function refillMeat() {
         console.log("worker is going to refill meat");
+        DoenerTest.refillMeatIsClicked = true;
         let meterM = document.querySelector("#meterM").getAttribute("value");
         let amountMissing = 100 - meterM * 100;
         DoenerTest.storageLeft.meat -= amountMissing;
         let meterStockM = document.querySelector("#stockMeterM");
         meterStockM.setAttribute("value", DoenerTest.storageLeft.meat / 1000);
-        let meter = document.querySelector("#meterM");
-        meter.setAttribute("value", 1);
-        console.log(DoenerTest.storageLeft.meat);
     }
     DoenerTest.refillMeat = refillMeat;
+    function bringMeat() {
+        if (DoenerTest.workers[0].position.x == 460 && DoenerTest.workers[0].position.y == 120) {
+            DoenerTest.backToMeat = true;
+            let meter = document.querySelector("#meterM");
+            meter.setAttribute("value", 1);
+            console.log(DoenerTest.storageLeft.meat);
+            DoenerTest.refillMeatIsClicked = false;
+        }
+    }
+    DoenerTest.bringMeat = bringMeat;
     function buyBread() {
         let stockMeterB = document.querySelector("#stockMeterB").getAttribute("value");
         let amountMissing = 1000 - stockMeterB * 1000;

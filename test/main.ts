@@ -145,6 +145,7 @@ namespace DoenerTest {
 
         for (let index: number = 0; index < amount; index++) {      //solange index kleiner als anzahl worker ist soll ein neuer worker erstellt werden
             let randomX: number = Math.random() * 300 + Math.random() * 300 + 50;
+            randomX = Math.floor(randomX);
             let worker: Human = new Worker(1, randomX, 200);
             worker.draw();
             worker.feel("tired");
@@ -477,16 +478,18 @@ namespace DoenerTest {
         crc2.restore();
     }
 
+    export let xOfWorker: number;
+    export let yOfWorker: number;
 
-    export function update(_x: number, _y: number): void {
+    export function update(_x: number, _y: number): any {
         crc2.putImageData(imgData, 1, 1);
 
         moodCheck();
+        workerWalkCheck();
 
         for (let worker of workers) {
             worker.draw();
-           // worker.move(1 / 50, _x, _y);
-
+            worker.move(1 / 50, xOfWorker, yOfWorker);
             worker.feel(moodWorker);
         }
 
@@ -554,4 +557,107 @@ namespace DoenerTest {
         }
     }
 
+
+
+    export function workerWalkCheck(): void {
+        // Walk between Containers and Counter
+        if (refillBreadIsClicked == true) {
+            bringBread();
+            xOfWorker = 60;
+            yOfWorker = 120;
+        }
+        if (backToBread == true) {
+            xOfWorker = 120;
+            yOfWorker = 245;
+        }
+
+        if (refillTomatoIsClicked == true) {
+            bringTomato();
+            xOfWorker = 160;
+            yOfWorker = 120;
+        }
+        if (backToTomato == true) {
+            xOfWorker = 210;
+            yOfWorker = 245;
+        }
+
+        if (refillLettuceIsClicked == true) {
+            bringLettuce();
+            xOfWorker = 260;
+            yOfWorker = 120;
+        }
+        if (backToLettuce == true) {
+            xOfWorker = 290;
+            yOfWorker = 245;
+        }
+        if (refillOnionIsClicked == true) {
+            bringOnion();
+            xOfWorker = 360;
+            yOfWorker = 120;
+        }
+        if (backToOnion == true) {
+            xOfWorker = 370;
+            yOfWorker = 245;
+        }
+        if (refillMeatIsClicked == true) {
+            bringMeat();
+            xOfWorker = 460;
+            yOfWorker = 120;
+        }
+        if (backToMeat == true) {
+            xOfWorker = 450;
+            yOfWorker = 245;
+        }
+
+        // Walk To Cash Register
+        
+        if (payIsClicked == true) {
+            xOfWorker = 570;
+            yOfWorker = 230;
+        }
+        if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
+            payIsClicked = false;
+        }
+        
+        // Walk to add Ingredients at Counter
+
+        if (addBreadIsClicked == true) {
+            xOfWorker = 125;
+            yOfWorker = 245;
+        }
+        if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
+            addBreadIsClicked = false;
+        }
+
+        if (addTomatoIsClicked == true) {
+            xOfWorker = 210;
+            yOfWorker = 245;
+        }
+        if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
+            addTomatoIsClicked = false;
+        }  
+        
+        if (addLettuceIsClicked == true) {
+            xOfWorker = 290;
+            yOfWorker = 245;
+        }
+        if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
+            addLettuceIsClicked = false;
+        }
+
+        if (addOnionIsClicked == true) {
+            xOfWorker = 370;
+            yOfWorker = 245;
+        }
+        if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
+            addOnionIsClicked = false;
+        }
+        if (addMeatIsClicked == true) {
+            xOfWorker = 450;
+            yOfWorker = 245;
+        }
+        if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
+            addMeatIsClicked = false;
+        }
+    }
 }

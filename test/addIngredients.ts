@@ -1,5 +1,11 @@
 namespace DoenerTest {
 
+    export let addBreadIsClicked: boolean = false;
+    export let addTomatoIsClicked: boolean = false;
+    export let addLettuceIsClicked: boolean = false;
+    export let addOnionIsClicked: boolean = false;
+    export let addMeatIsClicked: boolean = false;
+
     export function listenToAddButtons(): void {
         document.querySelector("#addB").addEventListener("click", addBread);
         document.querySelector("#addT").addEventListener("click", addTomato);
@@ -10,6 +16,7 @@ namespace DoenerTest {
     }
 
     export function addBread(): void {
+        addBreadIsClicked = true;
         console.log("bread was clicked");
         currentOrder.bread++;
         counterLeft.bread -= 10;
@@ -31,6 +38,7 @@ namespace DoenerTest {
     }
 
     export function addTomato(): void {
+        addTomatoIsClicked = true;
         currentOrder.tomato++;
         counterLeft.tomato -= 10;
         let meter: any = document.querySelector("#meterT");
@@ -47,6 +55,7 @@ namespace DoenerTest {
         
     }
     export function addLettuce(): void {
+        addLettuceIsClicked = true;
         currentOrder.lettuce++;
         counterLeft.lettuce -= 10;
         let meter: any = document.querySelector("#meterL");
@@ -63,6 +72,7 @@ namespace DoenerTest {
     }
 
     export function addOnion(): void {
+        addOnionIsClicked = true;
         currentOrder.onion++;
         counterLeft.onion -= 10;
         let meter: any = document.querySelector("#meterO");
@@ -79,6 +89,7 @@ namespace DoenerTest {
     }
 
     export function addMeat(): void {
+        addMeatIsClicked = true;
         currentOrder.meat++;
         counterLeft.meat -= 10;
         let meter: any = document.querySelector("#meterM");

@@ -1,7 +1,9 @@
 "use strict";
 var DoenerTest;
 (function (DoenerTest) {
+    DoenerTest.payIsClicked = false;
     function cashUpOrder() {
+        DoenerTest.payIsClicked = true;
         DoenerTest.ordersMade.push(DoenerTest.currentOrder);
         // debugger;
         console.log(DoenerTest.currentOrder);

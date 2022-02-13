@@ -1,5 +1,8 @@
 namespace DoenerTest {
+    export let payIsClicked: boolean = false;
+
     export function cashUpOrder(): void {
+        payIsClicked = true;
         ordersMade.push(currentOrder);
         // debugger;
         console.log(currentOrder);
@@ -48,7 +51,7 @@ namespace DoenerTest {
             console.log("order was wrong");
             console.log(ordersMade[0]);
             console.log("länge davor: " + customers.length + " " + ordersMade.length + " " + orders.length);
-           
+
             orderCorrect = false;
             ordersMade.shift();
             orders.shift();

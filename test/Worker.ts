@@ -22,10 +22,28 @@ namespace DoenerTest {
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             // this.position.add(offset);
-            this.position.x = _x;
-            this.position.y = _y;
-
+            // this.position.x = _x;
+            // this.position.y = _y;
             
+
+            if (workers[0].position.x < _x) {
+                workers[0].position.x++;
+            }
+            
+
+            if (workers[0].position.x > _x) {
+                workers[0].position.x--;
+            }
+
+            if (workers[0].position.y < _y) {
+                workers[0].position.y++;
+            }
+
+            if (workers[0].position.y > _y) {
+                workers[0].position.y--;
+           }
+
+           
             // if (this.position.x < _x) {
             //     this.position.x++;
 
@@ -149,7 +167,7 @@ namespace DoenerTest {
                 crc2.fill();
 
             }
-           
+
         }
 
         draw(): void {

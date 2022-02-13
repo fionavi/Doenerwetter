@@ -11,6 +11,19 @@ var DoenerTest;
         move(_timeslice, _x, _y) {
             // console.log("Human move");
         }
+        drawContainer() {
+            // console.log("Human feel");
+            DoenerTest.crc2.resetTransform();
+            DoenerTest.crc2.save();
+            DoenerTest.crc2.translate(this.position.x, this.position.y);
+            DoenerTest.crc2.fillStyle = "grey";
+            //Arm rechts
+            DoenerTest.crc2.beginPath();
+            DoenerTest.crc2.ellipse(50, -50, 5, 12, 2, 20, 40);
+            DoenerTest.crc2.closePath();
+            DoenerTest.crc2.fill();
+            DoenerTest.crc2.stroke();
+        }
         drawBread() {
             // console.log("Human feel");
             DoenerTest.crc2.resetTransform();

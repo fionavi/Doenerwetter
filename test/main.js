@@ -99,6 +99,7 @@ var DoenerTest;
         // let worker: Human = new Worker(300, 300);
         for (let index = 0; index < amount; index++) { //solange index kleiner als anzahl worker ist soll ein neuer worker erstellt werden
             let randomX = Math.random() * 300 + Math.random() * 300 + 50;
+            randomX = Math.floor(randomX);
             let worker = new DoenerTest.Worker(1, randomX, 200);
             worker.draw();
             worker.feel("tired");
@@ -348,9 +349,10 @@ var DoenerTest;
     function update(_x, _y) {
         DoenerTest.crc2.putImageData(DoenerTest.imgData, 1, 1);
         moodCheck();
+        workerWalkCheck();
         for (let worker of DoenerTest.workers) {
             worker.draw();
-            // worker.move(1 / 50, _x, _y);
+            worker.move(1 / 50, DoenerTest.xOfWorker, DoenerTest.yOfWorker);
             worker.feel(DoenerTest.moodWorker);
         }
         for (let customer of DoenerTest.customers) {
@@ -408,5 +410,98 @@ var DoenerTest;
         }
     }
     DoenerTest.moodCheck = moodCheck;
+    function workerWalkCheck() {
+        // Walk between Containers and Counter
+        if (DoenerTest.refillBreadIsClicked == true) {
+            DoenerTest.bringBread();
+            DoenerTest.xOfWorker = 60;
+            DoenerTest.yOfWorker = 120;
+        }
+        if (DoenerTest.backToBread == true) {
+            DoenerTest.xOfWorker = 120;
+            DoenerTest.yOfWorker = 245;
+        }
+        if (DoenerTest.refillTomatoIsClicked == true) {
+            DoenerTest.bringTomato();
+            DoenerTest.xOfWorker = 160;
+            DoenerTest.yOfWorker = 120;
+        }
+        if (DoenerTest.backToTomato == true) {
+            DoenerTest.xOfWorker = 210;
+            DoenerTest.yOfWorker = 245;
+        }
+        if (DoenerTest.refillLettuceIsClicked == true) {
+            DoenerTest.bringLettuce();
+            DoenerTest.xOfWorker = 260;
+            DoenerTest.yOfWorker = 120;
+        }
+        if (DoenerTest.backToLettuce == true) {
+            DoenerTest.xOfWorker = 290;
+            DoenerTest.yOfWorker = 245;
+        }
+        if (DoenerTest.refillOnionIsClicked == true) {
+            DoenerTest.bringOnion();
+            DoenerTest.xOfWorker = 360;
+            DoenerTest.yOfWorker = 120;
+        }
+        if (DoenerTest.backToOnion == true) {
+            DoenerTest.xOfWorker = 370;
+            DoenerTest.yOfWorker = 245;
+        }
+        if (DoenerTest.refillMeatIsClicked == true) {
+            DoenerTest.bringMeat();
+            DoenerTest.xOfWorker = 460;
+            DoenerTest.yOfWorker = 120;
+        }
+        if (DoenerTest.backToMeat == true) {
+            DoenerTest.xOfWorker = 450;
+            DoenerTest.yOfWorker = 245;
+        }
+        // Walk To Cash Register
+        if (DoenerTest.payIsClicked == true) {
+            DoenerTest.xOfWorker = 570;
+            DoenerTest.yOfWorker = 230;
+        }
+        if (DoenerTest.xOfWorker == DoenerTest.workers[0].position.x && DoenerTest.yOfWorker == DoenerTest.workers[0].position.y) {
+            DoenerTest.payIsClicked = false;
+        }
+        // Walk to add Ingredients at Counter
+        if (DoenerTest.addBreadIsClicked == true) {
+            DoenerTest.xOfWorker = 125;
+            DoenerTest.yOfWorker = 245;
+        }
+        if (DoenerTest.xOfWorker == DoenerTest.workers[0].position.x && DoenerTest.yOfWorker == DoenerTest.workers[0].position.y) {
+            DoenerTest.addBreadIsClicked = false;
+        }
+        if (DoenerTest.addTomatoIsClicked == true) {
+            DoenerTest.xOfWorker = 210;
+            DoenerTest.yOfWorker = 245;
+        }
+        if (DoenerTest.xOfWorker == DoenerTest.workers[0].position.x && DoenerTest.yOfWorker == DoenerTest.workers[0].position.y) {
+            DoenerTest.addTomatoIsClicked = false;
+        }
+        if (DoenerTest.addLettuceIsClicked == true) {
+            DoenerTest.xOfWorker = 290;
+            DoenerTest.yOfWorker = 245;
+        }
+        if (DoenerTest.xOfWorker == DoenerTest.workers[0].position.x && DoenerTest.yOfWorker == DoenerTest.workers[0].position.y) {
+            DoenerTest.addLettuceIsClicked = false;
+        }
+        if (DoenerTest.addOnionIsClicked == true) {
+            DoenerTest.xOfWorker = 370;
+            DoenerTest.yOfWorker = 245;
+        }
+        if (DoenerTest.xOfWorker == DoenerTest.workers[0].position.x && DoenerTest.yOfWorker == DoenerTest.workers[0].position.y) {
+            DoenerTest.addOnionIsClicked = false;
+        }
+        if (DoenerTest.addMeatIsClicked == true) {
+            DoenerTest.xOfWorker = 450;
+            DoenerTest.yOfWorker = 245;
+        }
+        if (DoenerTest.xOfWorker == DoenerTest.workers[0].position.x && DoenerTest.yOfWorker == DoenerTest.workers[0].position.y) {
+            DoenerTest.addMeatIsClicked = false;
+        }
+    }
+    DoenerTest.workerWalkCheck = workerWalkCheck;
 })(DoenerTest || (DoenerTest = {}));
 //# sourceMappingURL=main.js.map
