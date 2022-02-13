@@ -48,17 +48,23 @@ namespace DoenerTest {
 
         if (workers[0].position.x < _x) {
 
-            for (workers[0].position.x < _x; workers[0].position.x++;) {
+
+            console.log("Oooo Yeaaa!");
+
+            for (; workers[0].position.x < _x; workers[0].position.x++) {
                 // debugger;
-                crc2.putImageData(imgData, 1, 1);
-                console.log("worker moved x++ to " + workers[0].position.x + workers[0].position.y);
-                workers[0].move(1, workers[0].position.x, workers[0].position.y);
-                //workers[0].draw();
+                setInterval(function (): void {
+                    crc2.putImageData(imgData, 1, 1);
+                    console.log("worker moved x++ to " + workers[0].position.x + workers[0].position.y);
+                    workers[0].move(1, workers[0].position.x, workers[0].position.y);
+                    workers[0].draw();
+                }, 20);
             }
+
         }
 
         if (workers[0].position.x > _x) {
-            for (workers[0].position.x > _x; workers[0].position.x--;) {
+            for (; workers[0].position.x > _x; workers[0].position.x--) {
                 crc2.putImageData(imgData, 1, 1);
                 console.log("worker moved x--" + workers[0].position.x + workers[0].position.y);
                 workers[0].move(1, workers[0].position.x, workers[0].position.y);
@@ -67,20 +73,20 @@ namespace DoenerTest {
         }
 
         if (workers[0].position.y < _y) {
-             for (workers[0].position.y < _y; workers[0].position.y++;) {
-            crc2.putImageData(imgData, 1, 1);
-            console.log("worker moved y++" + workers[0].position.x + workers[0].position.y);
-            workers[0].move(1, workers[0].position.x, workers[0].position.y);
-           // workers[0].draw();
+            for (; workers[0].position.y < _y; workers[0].position.y++) {
+                crc2.putImageData(imgData, 1, 1);
+                console.log("worker moved y++" + workers[0].position.x + workers[0].position.y);
+                workers[0].move(1, workers[0].position.x, workers[0].position.y);
+                // workers[0].draw();
             }
         }
-       
+
         if (workers[0].position.y > _y) {
-            for (workers[0].position.y > _y; workers[0].position.y--;) {
-            crc2.putImageData(imgData, 1, 1);
-            console.log("worker moved y--" + workers[0].position.x + workers[0].position.y);
-            workers[0].move(1, workers[0].position.x, workers[0].position.y);
-            //workers[0].draw();
+            for (; workers[0].position.y > _y; workers[0].position.y--) {
+                crc2.putImageData(imgData, 1, 1);
+                console.log("worker moved y--" + workers[0].position.x + workers[0].position.y);
+                workers[0].move(1, workers[0].position.x, workers[0].position.y);
+                //workers[0].draw();
             }
         }
 
