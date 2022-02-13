@@ -4,6 +4,8 @@ body{
      */
 }
 
+ 
+}
 #c {
     display: inline-block;
     margin-left: -10px;
@@ -11,6 +13,10 @@ body{
 
 h2{
     font-family: monospace;
+    font-size: xx-large;
+    text-align: left;
+    margin-left: 25%;
+    margin-bottom: -5px;
 }
 .sec1 {
 
@@ -37,21 +43,23 @@ h2{
     margin: 20px;
     width: 1500px;
     height: 400px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 #info{
     float: right;
     background-color: rgb(212, 212, 212);
-    margin-right: 10;
-    width: 400px;
-    height: 400px;
+    margin-right: 10px;
+    margin-left: -100px;
+    width: 550px;
+    height: 345px;
+    margin-top: -350px;
 }
 
 #form1 {
-    width: 200px;
+    width: 550px;
     float: right;
     margin-right: 10px;
-    margin-top: -5px;
+    margin-top: -240px;
     
 }
 
@@ -84,10 +92,10 @@ h2{
 
 #money {
     position: relative;
-    margin-top: -60px;
+    margin-top: -50px;
     margin-left: auto;
     margin-right: auto;
-    height: 80px;
+    height: 60px;
     width: 170px;
      background: gold;
      border-color: black;

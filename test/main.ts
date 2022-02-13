@@ -2,7 +2,6 @@ namespace DoenerTest {
     export let crc2: CanvasRenderingContext2D;
     export let imgData: ImageData;
 
-
     export let workers: Worker[] = [];
     export let customers: Customer[] = [];
     export let orders: Storage[] = [];
@@ -23,13 +22,6 @@ namespace DoenerTest {
     export let yOfWorker2: number;
     export let xOfCustomer: number;
     export let yOfCustomer: number;
-
-
-
-    // export interface Vector {
-    //     x: number;
-    //     y: number;
-    // }
 
     export interface Storage {
         bread: number;
@@ -64,8 +56,8 @@ namespace DoenerTest {
     };
 
     window.addEventListener("load", handleload);
-    let audio: HTMLAudioElement = new Audio("/media/backgroundMusic.mp3");
-    audio.play();
+    // let audio: HTMLAudioElement = new Audio("/media/backgroundMusic.mp3");
+    // audio.play();
 
 
     export function handleload(_event: Event): void {
@@ -75,7 +67,6 @@ namespace DoenerTest {
         }
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
         document.querySelector("#start").addEventListener("click", startGame);
-       // document.querySelector("#start").addEventListener("click", function () {("media/bell.wav"); });
         drawBackground();
         imgData = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
         window.setInterval(update, 20);
@@ -147,7 +138,6 @@ namespace DoenerTest {
             worker.feel("tired");
             workers.push(worker);
         }
-
     }
 
     async function sendCustomers(data: FormData): Promise<void> {
@@ -157,7 +147,6 @@ namespace DoenerTest {
         for (let index: number = 0; index < amountC; index++) {
             await new Promise(f => setTimeout(f, 60000 / amountC));
             createCustomer();
-
         }
     }
 
@@ -168,7 +157,7 @@ namespace DoenerTest {
         customer.feel("happy");
         customer.draw();
         customers.push(customer);
-        customer.move(1 / 50);
+        customer.move(1 / 50, xOfCustomer, yOfCustomer);
 
         console.log(" Order of Customer: ");
         console.log(customer.myOrder);

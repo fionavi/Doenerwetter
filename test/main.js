@@ -33,8 +33,8 @@ var DoenerTest;
         meat: 80
     };
     window.addEventListener("load", handleload);
-    let audio = new Audio("/media/backgroundMusic.mp3");
-    audio.play();
+    // let audio: HTMLAudioElement = new Audio("/media/backgroundMusic.mp3");
+    // audio.play();
     function handleload(_event) {
         let canvas = document.querySelector("canvas");
         if (!canvas) {
@@ -42,7 +42,6 @@ var DoenerTest;
         }
         DoenerTest.crc2 = canvas.getContext("2d");
         document.querySelector("#start").addEventListener("click", startGame);
-        // document.querySelector("#start").addEventListener("click", function () {("media/bell.wav"); });
         drawBackground();
         DoenerTest.imgData = DoenerTest.crc2.getImageData(0, 0, DoenerTest.crc2.canvas.width, DoenerTest.crc2.canvas.height);
         window.setInterval(update, 20);
@@ -114,7 +113,7 @@ var DoenerTest;
         customer.feel("happy");
         customer.draw();
         DoenerTest.customers.push(customer);
-        customer.move(1 / 50);
+        customer.move(1 / 50, DoenerTest.xOfCustomer, DoenerTest.yOfCustomer);
         console.log(" Order of Customer: ");
         console.log(customer.myOrder);
         // info.innerHTML = " ";
