@@ -54,8 +54,8 @@ h2{
     margin-right: 10px;
     margin-left: -100px;
     padding: 10px;
-    width: 550px;
-    height: 345px;
+    width: 530px;
+    height: 325px;
     margin-top: -350px;
     background-blend-mode: saturation;
 
@@ -68,11 +68,17 @@ h2{
     margin-top: -240px;
     
 }
+input{
+    background-color: rgb(212, 212, 212);;
+
+}
 
 #start{
     float: center;
     width: 150px;
     height: 50px;
+    background-color: rgb(212, 212, 212);
+
 }
 
 #start:hover{
@@ -203,6 +209,8 @@ button.refill {
     height: 15px;
     width: 40px;
     font-size: xx-small;
+    background-color: rgb(212, 212, 212);
+
 }
 
 
@@ -297,6 +305,12 @@ button:hover{
     margin-top: 38px;
     margin-left: 15px;
     fill-opacity: 0;
+    background-color: rgb(212, 212, 212);
+
+}
+#buyBread:hover, #buyTomato:hover, #buyLettuce:hover, #buyOnion:hover, #buyMeat:hover, #addB:hover, #addT:hover, #addL:hover, #addO:hover, #addM:hover, #pay:hover{
+    background-color: black;
+    color: aliceblue;
 }
 
 #breadA{
@@ -357,9 +371,13 @@ button:hover{
 #addB, #addT, #addL, #addO, #addM{
     margin-top: 5px;
     margin-left: 5px;
+    background-color: rgb(212, 212, 212);
 }
+
 #pay{
     margin-bottom: 10px;
     margin-left: 35px;
     height: 20px;
+    background-color: rgb(212, 212, 212);
+
 }
