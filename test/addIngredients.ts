@@ -108,7 +108,7 @@ namespace DoenerTest {
         let meter: any = document.querySelector("#meterM");
         meter.setAttribute("value", counterLeft.meat / 100);
 
-        let displayIngredient: Prepared = new Prepared(1, 750, 100);
+        let displayIngredient: Prepared = new Prepared(1, 750, 180);
         //displayIngredient.drawMeat();
         drawOrders.push(displayIngredient);
 

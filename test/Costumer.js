@@ -4,19 +4,15 @@ var DoenerTest;
     class Customer extends DoenerTest.Human {
         constructor(_position, _x, _y) {
             super(_position);
-            console.log("Customer CONSTRUCTOR");
             this.position = new DoenerTest.Vector(_x, _y);
             this.velocity = new DoenerTest.Vector(0, 0);
             this.velocity.set(100, 0);
-            this.myOrder = this.showOrder();
-            //this.velocity.scale(5);
+            this.myOrder = this.order();
         }
         move(_timeslice, _x, _y) {
-            //console.log("Costumer move");
             let offset = new DoenerTest.Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
-            // crc2.resetTransform;
             if (this.position.x < 100) {
                 this.position.x += 10;
                 this.velocity.set(10, 0);
@@ -29,9 +25,7 @@ var DoenerTest;
             }
         }
         feel(_mood) {
-            // console.log("Costumer feel");
             if (_mood == "sad") {
-                //console.log("costumer is sad");
                 DoenerTest.crc2.resetTransform();
                 DoenerTest.crc2.save();
                 DoenerTest.crc2.translate(this.position.x, this.position.y);
@@ -51,8 +45,6 @@ var DoenerTest;
                 DoenerTest.crc2.stroke();
             }
             if (_mood == "happy") {
-                // display happy face
-                // console.log("costumer is happy");
                 DoenerTest.crc2.resetTransform();
                 DoenerTest.crc2.save();
                 DoenerTest.crc2.translate(this.position.x, this.position.y);
@@ -69,37 +61,31 @@ var DoenerTest;
             }
         }
         draw() {
-            // console.log("Customer drawing");
             DoenerTest.crc2.resetTransform();
             DoenerTest.crc2.save();
             DoenerTest.crc2.translate(this.position.x, this.position.y);
             DoenerTest.crc2.fillStyle = "red";
             DoenerTest.crc2.strokeStyle = "black";
-            //Arm rechts
             DoenerTest.crc2.beginPath();
             DoenerTest.crc2.ellipse(35, -30, 5, 12, 2, 20, 40);
             DoenerTest.crc2.closePath();
             DoenerTest.crc2.fill();
             DoenerTest.crc2.stroke();
-            //Arm links
             DoenerTest.crc2.beginPath();
             DoenerTest.crc2.ellipse(-15, -30, 5, 12, -2, 20, 40);
             DoenerTest.crc2.closePath();
             DoenerTest.crc2.fill();
             DoenerTest.crc2.stroke();
-            //Bauch
             DoenerTest.crc2.beginPath();
             DoenerTest.crc2.ellipse(10, -25, 20, 25, 0, 20, 40);
             DoenerTest.crc2.closePath();
             DoenerTest.crc2.fill();
             DoenerTest.crc2.stroke();
-            //Kopf
             DoenerTest.crc2.beginPath();
             DoenerTest.crc2.ellipse(10, -60, 15, 15, 0, 20, 40);
             DoenerTest.crc2.closePath();
             DoenerTest.crc2.fill();
             DoenerTest.crc2.stroke();
-            //Füße -> linker Fuß = Nullpunkt
             DoenerTest.crc2.beginPath();
             DoenerTest.crc2.ellipse(0, 0, 8, 7, 0, 20, 40);
             DoenerTest.crc2.closePath();
@@ -111,7 +97,6 @@ var DoenerTest;
             DoenerTest.crc2.fill();
             DoenerTest.crc2.stroke();
             DoenerTest.crc2.restore();
-            //Gesicht
             DoenerTest.crc2.fillStyle = "black";
             DoenerTest.crc2.beginPath();
             DoenerTest.crc2.ellipse(15, -50, 2, 2, 0, 20, 40);
@@ -134,7 +119,7 @@ var DoenerTest;
             DoenerTest.crc2.fill();
             DoenerTest.crc2.stroke();
         }
-        showOrder() {
+        order() {
             let guestOrder = {
                 bread: 1,
                 tomato: randomOrder(),
@@ -146,18 +131,8 @@ var DoenerTest;
         }
     }
     DoenerTest.Customer = Customer;
-    /*function order(): Storage {
-       let guestOrder: Storage = {
-           bread: 1,
-           tomato: randomOrder(),
-           lettuce: randomOrder(),
-           onion: randomOrder(),
-           meat: randomOrder(),
-       }
-       return guestOrder;
-}*/
     function randomOrder() {
-        let random = Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+        let random = Math.floor(Math.random() * (2 + 1));
         return random;
     }
 })(DoenerTest || (DoenerTest = {}));

@@ -10,7 +10,6 @@ var DoenerTest;
     DoenerTest.currentCustomerAmount = 0;
     DoenerTest.earnings = 0;
     DoenerTest.happyScore = 0;
-    console.log(DoenerTest.currentCustomerAmount);
     DoenerTest.info = document.querySelector("#info");
     DoenerTest.currentOrder = {
         bread: 0,
@@ -60,8 +59,6 @@ var DoenerTest;
         const amountStock = data.get("amountIngredients");
         let stock = parseInt(amountStock + Math.floor); //string in number parsen
         DoenerTest.storageLeft.bread = DoenerTest.storageLeft.tomato = DoenerTest.storageLeft.lettuce = DoenerTest.storageLeft.onion = DoenerTest.storageLeft.meat = stock;
-        // console.log("Stock Amount: " + stock);
-        //chart in bread stock div soll angepasst werden
         let meterB = document.querySelector("#stockMeterB");
         meterB.setAttribute("value", stock / 100);
         DoenerTest.storageLeft.bread = 10 * stock;
@@ -77,27 +74,17 @@ var DoenerTest;
         let meterM = document.querySelector("#stockMeterM");
         meterM.setAttribute("value", stock / 100);
         DoenerTest.storageLeft.meat = 10 * stock;
-        // console.log("Onion bread: " + storageLeft.bread);
-        // console.log("Stresslevel Worker: " + stressLevel);
         createWorker(data);
         sendCustomers(data);
         setTimeout(function () {
             alert("Time is up! You made " + DoenerTest.happyScore + " customers happy today! Reload page to start a new game.");
-        }, 60000); //wait 90 seconds
-        // console.log("Anzahl Costumer per min: " + amountCostumer);
-        // asdf();
-        /* orderInTheMaking();
-        console.log("oder in the making aufruf");
-    */
-        //return false; // prevent reload // Quelle: https://dev.to/deciduously/formdata-in-typescript-24cl
+        }, 60000);
     }
     DoenerTest.startGame = startGame;
     function createWorker(data) {
-        const amountWorker = data.get("amountWorker"); //form Data anzahl worker als string holen
-        // console.log("Anzahl Worker: " + amountWorker);
+        const amountWorker = data.get("amountWorker");
         let amount = parseInt(amountWorker); //string in number parsen
-        // let worker: Human = new Worker(300, 300);
-        for (let index = 0; index < amount; index++) { //solange index kleiner als anzahl worker ist soll ein neuer worker erstellt werden
+        for (let index = 0; index < amount; index++) {
             let randomX = Math.random() * 300 + Math.random() * 300 + 50;
             randomX = Math.floor(randomX);
             let worker = new DoenerTest.Worker(1, randomX, 200);
@@ -108,15 +95,14 @@ var DoenerTest;
     }
     DoenerTest.createWorker = createWorker;
     async function sendCustomers(data) {
-        const amountCustomer = data.get("amountCustomer"); //form Data anzahl worker als string holen
+        const amountCustomer = data.get("amountCustomer");
         let amountC = parseInt(amountCustomer);
-        for (let index = 0; index < amountC; index++) { //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
-            await new Promise(f => setTimeout(f, 60000 / amountC)); // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000  
+        for (let index = 0; index < amountC; index++) {
+            await new Promise(f => setTimeout(f, 60000 / amountC));
             createCustomer();
         }
     }
     function createCustomer() {
-        // console.log('new customer created'); 
         let customer = new DoenerTest.Customer(1, 830, 380);
         DoenerTest.orders.push(customer.myOrder);
         customer.feel("happy");
@@ -131,10 +117,16 @@ var DoenerTest;
         // info.innerHTML.get(displayOrders) as string;
         DoenerTest.info.innerHTML = DoenerTest.displayOrders;
         DoenerTest.currentCustomerAmount++;
+        ringBell();
         //console.log(1 + index + " customers erstellt");
         // console.log("c position = " + customer.position.x + " and " + customer.position.y);
     }
     DoenerTest.createCustomer = createCustomer;
+    function ringBell() {
+        let sound = "sounds/sound_boing.mp3";
+        //let audio: HTMLAudioElement = new Audio(soundName);     //neues HTMLAUDIOELEMENT wird erstellt mit src = soundName
+        sound.play();
+    }
     function drawBackground() {
         console.log("Background is drawing");
         DoenerTest.crc2.fillStyle = "grey";
@@ -363,10 +355,9 @@ var DoenerTest;
             // console.log("update c");
         }
         for (let ingredient of DoenerTest.drawOrders) {
-            //ingredient.move(1 / 50, _x, _y);
             ingredient.checkOrder();
             console.log("checkOrder Aufruf");
-            //ingredient.move(1 / 50, xOfWorker + 10, yOfWorker - 10);
+            ingredient.move(1 / 50, DoenerTest.xOfWorker, DoenerTest.yOfWorker);
             // console.log("update c");
         }
     }
@@ -408,6 +399,8 @@ var DoenerTest;
     }
     DoenerTest.moodCheck = moodCheck;
     function workerWalkCheck() {
+        if (DoenerTest.workers.length == 2) {
+        }
         // Walk between Containers and Counter
         if (DoenerTest.refillBreadIsClicked == true) {
             DoenerTest.bringBread();
@@ -455,12 +448,14 @@ var DoenerTest;
             DoenerTest.yOfWorker = 245;
         }
         // Walk To Cash Register
-        if (DoenerTest.payIsClicked == true) {
-            DoenerTest.xOfWorker = 570;
-            DoenerTest.yOfWorker = 230;
-        }
-        if (DoenerTest.xOfWorker == DoenerTest.workers[0].position.x && DoenerTest.yOfWorker == DoenerTest.workers[0].position.y) {
-            DoenerTest.payIsClicked = false;
+        if (DoenerTest.workers.length == 1) {
+            if (DoenerTest.payIsClicked == true) {
+                DoenerTest.xOfWorker = 570;
+                DoenerTest.yOfWorker = 230;
+            }
+            if (DoenerTest.xOfWorker == DoenerTest.workers[0].position.x && DoenerTest.yOfWorker == DoenerTest.workers[0].position.y) {
+                DoenerTest.payIsClicked = false;
+            }
         }
         // Walk to add Ingredients at Counter
         if (DoenerTest.addBreadIsClicked == true) {

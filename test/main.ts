@@ -12,7 +12,6 @@ namespace DoenerTest {
     export let currentCustomerAmount: number = 0;
     export let earnings: number = 0;
     export let happyScore: number = 0;
-    console.log(currentCustomerAmount);
     export let info: HTMLElement = document.querySelector("#info");
     export let orderCorrect: boolean;
     export let moodWorker: string;
@@ -20,13 +19,17 @@ namespace DoenerTest {
 
     export let xOfWorker: number;
     export let yOfWorker: number;
+    export let xOfWorker2: number;
+    export let yOfWorker2: number;
+    export let xOfCustomer: number;
+    export let yOfCustomer: number;
 
 
 
-    export interface Vector {
-        x: number;
-        y: number;
-    }
+    // export interface Vector {
+    //     x: number;
+    //     y: number;
+    // }
 
     export interface Storage {
         bread: number;
@@ -61,7 +64,7 @@ namespace DoenerTest {
     };
 
     window.addEventListener("load", handleload);
-    
+
 
     export function handleload(_event: Event): void {
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -94,9 +97,7 @@ namespace DoenerTest {
         const amountStock: string = data.get("amountIngredients") as string;
         let stock: number = parseInt(amountStock + Math.floor);    //string in number parsen
         storageLeft.bread = storageLeft.tomato = storageLeft.lettuce = storageLeft.onion = storageLeft.meat = stock;
-        // console.log("Stock Amount: " + stock);
 
-        //chart in bread stock div soll angepasst werden
         let meterB: any = document.querySelector("#stockMeterB");
         meterB.setAttribute("value", stock / 100);
         storageLeft.bread = 10 * stock;
@@ -113,56 +114,38 @@ namespace DoenerTest {
         meterM.setAttribute("value", stock / 100);
         storageLeft.meat = 10 * stock;
 
-        // console.log("Onion bread: " + storageLeft.bread);
-
-        // console.log("Stresslevel Worker: " + stressLevel);
-
-
-
-
         createWorker(data);
         sendCustomers(data);
-
 
         setTimeout(function (): void {
             alert("Time is up! You made " + happyScore + " customers happy today! Reload page to start a new game.");
 
-        }, 60000); //wait 90 seconds
-        // console.log("Anzahl Costumer per min: " + amountCostumer);
+        }, 60000);
 
-        // asdf();
-
-        /* orderInTheMaking();
-        console.log("oder in the making aufruf");
-    */
-
-        //return false; // prevent reload // Quelle: https://dev.to/deciduously/formdata-in-typescript-24cl
     }
 
     export function createWorker(data: FormData): void {
 
-        const amountWorker: string = data.get("amountWorker") as string;    //form Data anzahl worker als string holen
-        // console.log("Anzahl Worker: " + amountWorker);
+        const amountWorker: string = data.get("amountWorker") as string;
         let amount: number = parseInt(amountWorker);    //string in number parsen
-        // let worker: Human = new Worker(300, 300);
 
-        for (let index: number = 0; index < amount; index++) {      //solange index kleiner als anzahl worker ist soll ein neuer worker erstellt werden
+        for (let index: number = 0; index < amount; index++) {
             let randomX: number = Math.random() * 300 + Math.random() * 300 + 50;
             randomX = Math.floor(randomX);
             let worker: Human = new Worker(1, randomX, 200);
             worker.draw();
             worker.feel("tired");
             workers.push(worker);
-
         }
+
     }
 
     async function sendCustomers(data: FormData): Promise<void> {
-        const amountCustomer: string = data.get("amountCustomer") as string;    //form Data anzahl worker als string holen
+        const amountCustomer: string = data.get("amountCustomer") as string;
         let amountC: number = parseInt(amountCustomer);
 
-        for (let index: number = 0; index < amountC; index++) {      //solange index kleiner als anzahl costumer ist soll ein neuer costumer erstellt werden
-            await new Promise(f => setTimeout(f, 60000 / amountC));     // Math.floor(Math.random() * (60000 - 1000 + 1)) + 1000  
+        for (let index: number = 0; index < amountC; index++) {
+            await new Promise(f => setTimeout(f, 60000 / amountC));
             createCustomer();
 
         }
@@ -170,7 +153,6 @@ namespace DoenerTest {
 
     export function createCustomer(): void {
 
-        // console.log('new customer created'); 
         let customer: Customer = new Customer(1, 830, 380);
         orders.push(customer.myOrder);
         customer.feel("happy");
@@ -180,6 +162,7 @@ namespace DoenerTest {
 
         console.log(" Order of Customer: ");
         console.log(customer.myOrder);
+        
 
 
         // info.innerHTML = " ";
@@ -189,10 +172,17 @@ namespace DoenerTest {
         info.innerHTML = displayOrders;
         currentCustomerAmount++;
 
+        ringBell();
 
         //console.log(1 + index + " customers erstellt");
         // console.log("c position = " + customer.position.x + " and " + customer.position.y);
 
+    }
+
+    function ringBell(): void {               //Funktion spielt den Ton, dessen Pfad = soundName ist
+        let sound: string = "sounds/sound_boing.mp3";  
+        //let audio: HTMLAudioElement = new Audio(soundName);     //neues HTMLAUDIOELEMENT wird erstellt mit src = soundName
+        sound.play();
     }
 
     function drawBackground(): void {
@@ -502,10 +492,9 @@ namespace DoenerTest {
             // console.log("update c");
         }
         for (let ingredient of drawOrders) {
-            //ingredient.move(1 / 50, _x, _y);
             ingredient.checkOrder();
             console.log("checkOrder Aufruf");
-            //ingredient.move(1 / 50, xOfWorker + 10, yOfWorker - 10);
+            ingredient.move(1 / 50, xOfWorker, yOfWorker);
 
             // console.log("update c");
         }
@@ -559,6 +548,9 @@ namespace DoenerTest {
 
 
     export function workerWalkCheck(): void {
+
+        if (workers.length == 2) {
+        }
         // Walk between Containers and Counter
         if (refillBreadIsClicked == true) {
             bringBread();
@@ -610,14 +602,15 @@ namespace DoenerTest {
 
         // Walk To Cash Register
 
-        if (payIsClicked == true) {
-            xOfWorker = 570;
-            yOfWorker = 230;
+        if (workers.length == 1) {
+            if (payIsClicked == true) {
+                xOfWorker = 570;
+                yOfWorker = 230;
+            }
+            if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
+                payIsClicked = false;
+            }
         }
-        if (xOfWorker == workers[0].position.x && yOfWorker == workers[0].position.y) {
-            payIsClicked = false;
-        }
-
         // Walk to add Ingredients at Counter
 
         if (addBreadIsClicked == true) {

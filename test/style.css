@@ -67,7 +67,7 @@ h2{
 
 #stocking{
     width: 500px;
-    height: 100px;
+    height: 80px;
     float: left;
     align-items: center;
 }
@@ -193,7 +193,7 @@ button.refill {
 
 
 #breadStock{
-    height: 100px;
+    height: 80px;
     width: 100px;
     background: orange;
     border-color: black;
@@ -209,7 +209,7 @@ button.refill {
 }
 
 #tomatoStock{
-    height: 100px;
+    height: 80px;
     width: 100px;
     background: red;
     border-color: black;
@@ -225,7 +225,7 @@ button.refill {
 }
 
 #lettuceStock{
-    height: 100px;
+    height: 80px;
     width: 100px;
     border-color: black;
     border-style: groove;
@@ -241,7 +241,7 @@ button.refill {
 }
 
 #onionStock{
-    height: 100px;
+    height: 80px;
     width: 100px;
     border-color: black;
     border-style: groove;
@@ -257,7 +257,7 @@ button.refill {
 }
 
 #meatStock{
-    height: 100px;
+    height: 80px;
     width: 100px;
     border-color: black;
     border-style: groove;
@@ -280,7 +280,7 @@ button:hover{
 }
 
 #buyBread, #buyTomato, #buyLettuce, #buyOnion, #buyMeat {
-    margin-top: 50px;
+    margin-top: 38px;
     margin-left: 15px;
     fill-opacity: 0;
 }
