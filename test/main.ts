@@ -164,7 +164,7 @@ namespace DoenerTest {
         audio.play();
     }
 
-    function drawBackground(): void {
+    function drawBackground(): void {      
         crc2.fillStyle = "grey";
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
         crc2.resetTransform();

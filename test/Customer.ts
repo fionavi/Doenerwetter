@@ -61,72 +61,63 @@ namespace DoenerTest {
                 crc2.ellipse(5, -65, 2, 2, 2, 20, 40);
                 crc2.moveTo(15, -65);
                 crc2.ellipse(15, -65, 2, 2, 2, 20, 40);
+                crc2.fill();
                 crc2.moveTo(17, -55);
                 crc2.arcTo(7, -50, 5, -55, 5);
-                crc2.closePath();
-                crc2.fill();
                 crc2.stroke();
+                crc2.closePath();
+                
             }
         }
 
         draw(): void {
+            
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
-            crc2.fillStyle = "red";
+            //arm rechts
+            crc2.fillStyle = "#b38156";
             crc2.strokeStyle = "black";
             crc2.beginPath();
-            crc2.ellipse(35, -30, 5, 12, 2, 20, 40);
+            crc2.ellipse(35, -35, 5, 12, 2, 20, 40);
             crc2.closePath();
             crc2.fill();
             crc2.stroke();
+            //arm links
             crc2.beginPath();
-            crc2.ellipse(-15, -30, 5, 12, -2, 20, 40);
+            crc2.ellipse(-15, -35, 5, 12, -2, 20, 40);
             crc2.closePath();
             crc2.fill();
             crc2.stroke();
+            //bauch
+            crc2.fillStyle = "#7fb5b8";
             crc2.beginPath();
             crc2.ellipse(10, -25, 20, 25, 0, 20, 40);
             crc2.closePath();
             crc2.fill();
             crc2.stroke();
+            //Kopf
+            crc2.fillStyle = "#b38156";
             crc2.beginPath();
             crc2.ellipse(10, -60, 15, 15, 0, 20, 40);
             crc2.closePath();
             crc2.fill();
             crc2.stroke();
+            //T-shirt
+            crc2.fillStyle = "#264970";
             crc2.beginPath();
-            crc2.ellipse(0, 0, 8, 7, 0, 20, 40);
+            crc2.moveTo(-10, -25);
+            crc2.lineTo(30, -25);
+            crc2.lineTo(30, 0);
+            crc2.lineTo(-10, 0);
+            crc2.lineTo(-10, -20);
             crc2.closePath();
-            crc2.fill();
-            crc2.stroke();
-            crc2.beginPath();
-            crc2.ellipse(20, 0, 8, 7, 0, 20, 40);
-            crc2.closePath();
+            crc2.moveTo(10, -15);
+            crc2.lineTo(10, 0);
             crc2.fill();
             crc2.stroke();
             crc2.restore();
-            crc2.fillStyle = "black";
-            crc2.beginPath();
-            crc2.ellipse(15, -50, 2, 2, 0, 20, 40);
-            crc2.moveTo(15, -50);
-            crc2.lineTo(15, -45);
-            crc2.lineTo(10, -45);
-            crc2.lineTo(20, -45);
-            crc2.lineTo(15, -45);
-            crc2.closePath();
-            crc2.fill();
-            crc2.stroke();
-            crc2.beginPath();
-            crc2.ellipse(10, -55, 1, 1, 0, 20, 40);
-            crc2.closePath();
-            crc2.fill();
-            crc2.stroke();
-            crc2.beginPath();
-            crc2.ellipse(20, -55, 1, 1, 0, 20, 40);
-            crc2.closePath();
-            crc2.fill();
-            crc2.stroke();
+            crc2.resetTransform();
         }
 
         order(): Storage {
