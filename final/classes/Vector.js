@@ -1,4 +1,6 @@
 "use strict";
+// Quelle: https://github.com/JirkaDellOro/EIA2-Inverted/blob/master/X00_Code/L11_Advanced/Asteroids/Vector.ts
+//         von Autor Jirka Dell'Oro-Friedl
 var DoenerTest;
 (function (DoenerTest) {
     class Vector {

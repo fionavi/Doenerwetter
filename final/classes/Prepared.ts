@@ -1,25 +1,21 @@
 namespace DoenerTest {
 
     export class Prepared {
-        position: Vector;
-        velocity: Vector;
-        x: number;
-        y: number;
-        randomX: number = 70 * Math.random();
+        protected position: Vector;
+        protected x: number;
+        protected y: number;
+        protected randomX: number = 70 * Math.random();
 
-
-        constructor(_position: number, _x?: number, _y?: number) {
+        public constructor(_position: number, _x?: number, _y?: number) {
             this.position = new Vector(_x, _y);
-            this.velocity = new Vector(0, 0);
-            this.velocity.random(100, 150);
         }
 
-        move(_timeslice: number, _x: number, _y: number): void {
+        public move(_timeslice: number, _x: number, _y: number): void {
             this.position.x = workers[0].position.x + 10;                 
             this.position.y = workers[0].position.y - 10;
         }
 
-        checkOrder(): void {
+        public checkOrder(): void {
             if (refillBreadIsClicked == true || refillTomatoIsClicked == true || refillLettuceIsClicked == true || refillOnionIsClicked == true || refillMeatIsClicked == true) {
                 this.drawContainer();
             }
@@ -45,7 +41,7 @@ namespace DoenerTest {
             }
         }
 
-        drawContainer(): void {
+        public drawContainer(): void {
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x + 30, this.position.y);
@@ -59,7 +55,7 @@ namespace DoenerTest {
             crc2.stroke();
         }
        
-        drawBread(): void {
+        public drawBread(): void {
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x + 30, this.position.y);
@@ -73,7 +69,7 @@ namespace DoenerTest {
             crc2.stroke();
         }
 
-        drawTomato(): void {
+        public drawTomato(): void {
             this.randomX = Math.floor(this.randomX);
             crc2.resetTransform();
             crc2.save();
@@ -92,7 +88,7 @@ namespace DoenerTest {
             crc2.stroke();
         }
         
-        drawLettuce(): void {
+        public drawLettuce(): void {
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x + 30, this.position.y);
@@ -106,7 +102,7 @@ namespace DoenerTest {
             crc2.fill();
         }
         
-        drawOnion(): void {
+        public drawOnion(): void {
             this.randomX = Math.floor(this.randomX);
             crc2.resetTransform();
             crc2.save();
@@ -122,7 +118,7 @@ namespace DoenerTest {
             crc2.stroke();
         }
         
-        drawMeat(): void {
+        public drawMeat(): void {
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x + 30, this.position.y);

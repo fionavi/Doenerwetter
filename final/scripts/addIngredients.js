@@ -20,7 +20,7 @@ var DoenerTest;
         document.querySelector("#pay").addEventListener("click", DoenerTest.cashUpOrder);
     }
     DoenerTest.listenToAddButtons = listenToAddButtons;
-    function addBread() {
+    function addBread(_event) {
         DoenerTest.addBreadIsClicked = true;
         DoenerTest.breadIsDrawn = true;
         DoenerTest.currentOrder.bread++;

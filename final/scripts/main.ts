@@ -75,7 +75,7 @@ namespace DoenerTest {
         window.setInterval(update, 20);
     }
 
-    export function startGame(): void {
+    export function startGame(_event: Event): void {
 
         let sound: string = "media/backgroundMusic.mp3";
         let audio: HTMLAudioElement = new Audio(sound);
@@ -119,7 +119,7 @@ namespace DoenerTest {
         setTimeout(function (): void {
             alert("Time is up! You made " + happyScore + " customers happy today! Reload page to start a new game.");
 
-        }, 60000);
+        },         60000);
 
     }
 
@@ -162,11 +162,7 @@ namespace DoenerTest {
         info.innerHTML = displayOrders;
         currentCustomerAmount++;
 
-        ringBell("media/bell.wav");
-    }
-
-    function ringBell(_sound: string): void {
-        let audio: HTMLAudioElement = new Audio(_sound);
+        let audio: HTMLAudioElement = new Audio("media/bell.wav");
         audio.play();
     }
 
@@ -378,7 +374,6 @@ namespace DoenerTest {
         crc2.stroke();
         crc2.restore();
     }
-
 
     export function update(_x: number, _y: number): any {
         crc2.putImageData(imgData, 1, 1);

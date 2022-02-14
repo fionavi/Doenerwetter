@@ -1,14 +1,14 @@
 namespace DoenerTest {
     export let payIsClicked: boolean = false;
 
-    export function cashUpOrder(): void {
+    export function cashUpOrder(_event: Event): void {
         payIsClicked = true;
         ordersMade.push(currentOrder);
-    
+
         if (ordersMade[0].bread == orders[0].bread && ordersMade[0].lettuce == orders[0].lettuce && ordersMade[0].meat == orders[0].meat
             && ordersMade[0].onion == orders[0].onion && ordersMade[0].tomato == orders[0].tomato) {
+
             orderCorrect = true;
-           
             ordersMade.shift();
             orders.shift();
             displayOrders.shift();
@@ -16,7 +16,7 @@ namespace DoenerTest {
             earnings += 3.5;
             let displayEarnings: any = document.getElementById("earnings");
             displayEarnings.innerText = earnings.toString() + " €";
-            
+
             setTimeout(function (): void {
                 drawOrders = [];
                 breadIsDrawn = tomatoIsDrawn = lettuceIsDrawn = onionIsDrawn = meatIsDrawn = false;
@@ -25,7 +25,7 @@ namespace DoenerTest {
                 let sound: string = "media/bye.wav";
                 let audio: HTMLAudioElement = new Audio(sound);
                 audio.play();
-            },         1000);
+            },         2000);
 
             info.innerHTML = "";
             info.innerHTML += displayOrders;
@@ -43,7 +43,7 @@ namespace DoenerTest {
             earnings += 3.5;
             let displayEarnings: any = document.getElementById("earnings");
             displayEarnings.innerText = earnings.toString() + " €";
-            
+
             setTimeout(function (): void {
                 drawOrders = [];
                 breadIsDrawn = tomatoIsDrawn = lettuceIsDrawn = onionIsDrawn = meatIsDrawn = false;
@@ -53,7 +53,7 @@ namespace DoenerTest {
                 let sound: string = "media/angry.wav";
                 let audio: HTMLAudioElement = new Audio(sound);
                 audio.play();
-            },         1000);
+            },         2000);
 
             info.innerHTML = "";
             info.innerHTML += displayOrders;

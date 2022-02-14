@@ -50,7 +50,7 @@ var DoenerTest;
         window.setInterval(update, 20);
     }
     DoenerTest.handleload = handleload;
-    function startGame() {
+    function startGame(_event) {
         let sound = "media/backgroundMusic.mp3";
         let audio = new Audio(sound);
         audio.play();
@@ -121,13 +121,10 @@ var DoenerTest;
         DoenerTest.displayOrders.push(firstOrder);
         DoenerTest.info.innerHTML = DoenerTest.displayOrders;
         DoenerTest.currentCustomerAmount++;
-        ringBell("media/bell.wav");
-    }
-    DoenerTest.createCustomer = createCustomer;
-    function ringBell(_sound) {
-        let audio = new Audio(_sound);
+        let audio = new Audio("media/bell.wav");
         audio.play();
     }
+    DoenerTest.createCustomer = createCustomer;
     function drawBackground() {
         DoenerTest.crc2.fillStyle = "grey";
         DoenerTest.crc2.fillRect(0, 0, DoenerTest.crc2.canvas.width, DoenerTest.crc2.canvas.height);

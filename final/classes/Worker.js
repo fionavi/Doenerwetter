@@ -5,12 +5,8 @@ var DoenerTest;
         constructor(_position, _x, _y) {
             super(_position);
             this.position = new DoenerTest.Vector(_x, _y);
-            this.velocity = new DoenerTest.Vector(0, 0);
-            this.velocity.set(500, 0);
         }
         move(_timeslice, _x, _y) {
-            let offset = new DoenerTest.Vector(this.velocity.x, this.velocity.y);
-            offset.scale(_timeslice);
             if (DoenerTest.workers[0].position.x < _x) {
                 DoenerTest.workers[0].position.x++;
             }

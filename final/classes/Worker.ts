@@ -2,17 +2,13 @@ namespace DoenerTest {
 
     export class Worker extends Human {
 
-        constructor(_position: number, _x?: number, _y?: number) {
+        public constructor(_position: number, _x?: number, _y?: number) {
             super(_position);
             this.position = new Vector(_x, _y);
-            this.velocity = new Vector(0, 0);
-            this.velocity.set(500, 0);
         }
 
-        move(_timeslice: number, _x: number, _y: number): void {
-            let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
-            offset.scale(_timeslice);
-
+        public move(_timeslice: number, _x: number, _y: number): void {
+    
             if (workers[0].position.x < _x) {
                 workers[0].position.x++;
             }
@@ -30,7 +26,7 @@ namespace DoenerTest {
             }
         }
 
-        feel(_mood: string): void {
+        public feel(_mood: string): void {
             if (_mood == "tired") {
                 crc2.resetTransform();
                 crc2.save();
@@ -106,10 +102,9 @@ namespace DoenerTest {
                 crc2.stroke();
                 crc2.fill();
             }
-
         }
 
-        draw(): void {
+        public draw(): void {
             crc2.resetTransform();
             crc2.save();
             crc2.translate(this.position.x, this.position.y);
@@ -163,7 +158,7 @@ namespace DoenerTest {
             crc2.resetTransform();
         }
 
-        order(): Storage {
+        public order(): Storage {
             let currentOrder: Storage = {
                 bread: 0,
                 tomato: 0,

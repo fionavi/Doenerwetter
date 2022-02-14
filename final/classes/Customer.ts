@@ -2,9 +2,9 @@ namespace DoenerTest {
 
     export class Customer extends Human {
 
-        myOrder: Storage;
+        public myOrder: Storage;
 
-        constructor(_position: number, _x?: number, _y?: number) {
+        public constructor(_position: number, _x?: number, _y?: number) {
             super(_position);
             this.position = new Vector(_x, _y);
             this.velocity = new Vector(0, 0);
@@ -12,7 +12,7 @@ namespace DoenerTest {
             this.myOrder = this.order();
         }
 
-        move(_timeslice: number, _x: number, _y: number): void {
+        public move(_timeslice: number, _x: number, _y: number): void {
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);
             this.position.add(offset);
@@ -30,7 +30,7 @@ namespace DoenerTest {
             }
         }
 
-        feel(_mood: string): void {
+        public feel(_mood: string): void {
 
             if (_mood == "sad") {
                 crc2.resetTransform();
@@ -65,12 +65,11 @@ namespace DoenerTest {
                 crc2.moveTo(17, -55);
                 crc2.arcTo(7, -50, 5, -55, 5);
                 crc2.stroke();
-                crc2.closePath();
-                
+                crc2.closePath(); 
             }
         }
 
-        draw(): void {
+        public draw(): void {
             
             crc2.resetTransform();
             crc2.save();
@@ -120,7 +119,7 @@ namespace DoenerTest {
             crc2.resetTransform();
         }
 
-        order(): Storage {
+        public order(): Storage {
             let guestOrder: Storage = {
                 bread: 1,
                 tomato: randomOrder(),

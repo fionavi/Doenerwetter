@@ -32,7 +32,7 @@ namespace DoenerTest {
     }
 
 
-    export function refillBread(): void {
+    export function refillBread(_event: Event): void {
         refillBreadIsClicked = true;
         let meterB: any = document.querySelector("#meterB").getAttribute("value");
         let amountMissing: number = 100 - meterB * 100;
@@ -41,7 +41,7 @@ namespace DoenerTest {
         meterStockB.setAttribute("value", storageLeft.bread / 1000);
     }
 
-    export function bringBread(): void {
+    export function bringBread(_event: Event): void {
         if (workers[0].position.x == 60 && workers[0].position.y == 120) {
             backToBread = true;
             let meter: any = document.querySelector("#meterB");
@@ -51,7 +51,7 @@ namespace DoenerTest {
         }
     }
 
-    export function refillTomato(): void {
+    export function refillTomato(_event: Event): void {
         refillTomatoIsClicked = true;
         let meterT: any = document.querySelector("#meterT").getAttribute("value");
         let amountMissing: number = 100 - meterT * 100;
@@ -60,7 +60,7 @@ namespace DoenerTest {
         meterStockT.setAttribute("value", storageLeft.tomato / 1000);
     }
 
-    export function bringTomato(): void {
+    export function bringTomato(_event: Event): void {
         if (workers[0].position.x == 160 && workers[0].position.y == 120) {
             backToTomato = true;
             let meter: any = document.querySelector("#meterT");
@@ -70,7 +70,7 @@ namespace DoenerTest {
         }
     }
 
-    export function refillLettuce(): void {
+    export function refillLettuce(_event: Event): void {
         refillLettuceIsClicked = true;
         let meterL: any = document.querySelector("#meterL").getAttribute("value");
         let amountMissing: number = 100 - meterL * 100;
@@ -79,7 +79,7 @@ namespace DoenerTest {
         meterStockL.setAttribute("value", storageLeft.lettuce / 1000);
     }
 
-    export function bringLettuce(): void {
+    export function bringLettuce(_event: Event): void {
         if (workers[0].position.x == 260 && workers[0].position.y == 120) {
             backToLettuce = true;
             let meter: any = document.querySelector("#meterL");
@@ -89,7 +89,7 @@ namespace DoenerTest {
         }
     }
 
-    export function refillOnion(): void {
+    export function refillOnion(_event: Event): void {
         refillOnionIsClicked = true;
         let meterO: any = document.querySelector("#meterO").getAttribute("value");
         let amountMissing: number = 100 - meterO * 100;
@@ -98,7 +98,7 @@ namespace DoenerTest {
         meterStockO.setAttribute("value", storageLeft.onion / 1000);
     }
 
-    export function bringOnion(): void {
+    export function bringOnion(_event: Event): void {
         if (workers[0].position.x == 360 && workers[0].position.y == 120) {
             backToOnion = true;
             let meter: any = document.querySelector("#meterO");
@@ -108,7 +108,7 @@ namespace DoenerTest {
         }
     }
 
-    export function refillMeat(): void {
+    export function refillMeat(_event: Event): void {
         refillMeatIsClicked = true;
         let meterM: any = document.querySelector("#meterM").getAttribute("value");
         let amountMissing: number = 100 - meterM * 100;
@@ -117,7 +117,7 @@ namespace DoenerTest {
         meterStockM.setAttribute("value", storageLeft.meat / 1000);
     }
 
-    export function bringMeat(): void {
+    export function bringMeat(_event: Event): void {
         if (workers[0].position.x == 460 && workers[0].position.y == 120) {
             backToMeat = true;
             let meter: any = document.querySelector("#meterM");
@@ -126,7 +126,7 @@ namespace DoenerTest {
         }
     }
 
-    export function buyBread(): void {
+    export function buyBread(_event: Event): void {
         let stockMeterB: any = document.querySelector("#stockMeterB").getAttribute("value");
         let amountMissing: number = 1000 - stockMeterB * 1000;
         storageLeft.bread += amountMissing;
@@ -137,7 +137,7 @@ namespace DoenerTest {
         b.setAttribute("value", 1);
     }
 
-    export function buyTomato(): void {
+    export function buyTomato(_event: Event): void {
         let stockMeterT: any = document.querySelector("#stockMeterT").getAttribute("value");
         let amountMissing: number = 1000 - stockMeterT * 1000;
         storageLeft.tomato += amountMissing;
@@ -148,7 +148,7 @@ namespace DoenerTest {
         t.setAttribute("value", 1);
     }
 
-    export function buyLettuce(): void {
+    export function buyLettuce(_event: Event): void {
         let stockMeterL: any = document.querySelector("#stockMeterL").getAttribute("value");
         let amountMissing: number = 1000 - stockMeterL * 1000;
         storageLeft.lettuce += amountMissing;
@@ -159,7 +159,7 @@ namespace DoenerTest {
         l.setAttribute("value", 1);
     }
 
-    export function buyOnion(): void {
+    export function buyOnion(_event: Event): void {
         let stockMeterO: any = document.querySelector("#stockMeterO").getAttribute("value");
         let amountMissing: number = 1000 - stockMeterO * 1000;
         storageLeft.onion += amountMissing;
@@ -170,7 +170,7 @@ namespace DoenerTest {
         o.setAttribute("value", 1);
     }
 
-    export function buyMeat(): void {
+    export function buyMeat(_event: Event): void {
         let stockMeterL: any = document.querySelector("#stockMeterM").getAttribute("value");
         let amountMissing: number = 1000 - stockMeterL * 1000;
         storageLeft.meat += amountMissing;

@@ -21,7 +21,7 @@ namespace DoenerTest {
         document.querySelector("#pay").addEventListener("click", cashUpOrder);
     }
 
-    export function addBread(): void {
+    export function addBread(_event: Event): void {
         addBreadIsClicked = true;
         breadIsDrawn = true;
         currentOrder.bread++;

@@ -24,7 +24,7 @@ var DoenerTest;
         document.querySelector("#refillMeat").addEventListener("click", refillMeat);
     }
     DoenerTest.listenToButtons = listenToButtons;
-    function refillBread() {
+    function refillBread(_event) {
         DoenerTest.refillBreadIsClicked = true;
         let meterB = document.querySelector("#meterB").getAttribute("value");
         let amountMissing = 100 - meterB * 100;
@@ -33,7 +33,7 @@ var DoenerTest;
         meterStockB.setAttribute("value", DoenerTest.storageLeft.bread / 1000);
     }
     DoenerTest.refillBread = refillBread;
-    function bringBread() {
+    function bringBread(_event) {
         if (DoenerTest.workers[0].position.x == 60 && DoenerTest.workers[0].position.y == 120) {
             DoenerTest.backToBread = true;
             let meter = document.querySelector("#meterB");
@@ -43,7 +43,7 @@ var DoenerTest;
         }
     }
     DoenerTest.bringBread = bringBread;
-    function refillTomato() {
+    function refillTomato(_event) {
         DoenerTest.refillTomatoIsClicked = true;
         let meterT = document.querySelector("#meterT").getAttribute("value");
         let amountMissing = 100 - meterT * 100;
@@ -52,7 +52,7 @@ var DoenerTest;
         meterStockT.setAttribute("value", DoenerTest.storageLeft.tomato / 1000);
     }
     DoenerTest.refillTomato = refillTomato;
-    function bringTomato() {
+    function bringTomato(_event) {
         if (DoenerTest.workers[0].position.x == 160 && DoenerTest.workers[0].position.y == 120) {
             DoenerTest.backToTomato = true;
             let meter = document.querySelector("#meterT");
@@ -62,7 +62,7 @@ var DoenerTest;
         }
     }
     DoenerTest.bringTomato = bringTomato;
-    function refillLettuce() {
+    function refillLettuce(_event) {
         DoenerTest.refillLettuceIsClicked = true;
         let meterL = document.querySelector("#meterL").getAttribute("value");
         let amountMissing = 100 - meterL * 100;
@@ -71,7 +71,7 @@ var DoenerTest;
         meterStockL.setAttribute("value", DoenerTest.storageLeft.lettuce / 1000);
     }
     DoenerTest.refillLettuce = refillLettuce;
-    function bringLettuce() {
+    function bringLettuce(_event) {
         if (DoenerTest.workers[0].position.x == 260 && DoenerTest.workers[0].position.y == 120) {
             DoenerTest.backToLettuce = true;
             let meter = document.querySelector("#meterL");
@@ -81,7 +81,7 @@ var DoenerTest;
         }
     }
     DoenerTest.bringLettuce = bringLettuce;
-    function refillOnion() {
+    function refillOnion(_event) {
         DoenerTest.refillOnionIsClicked = true;
         let meterO = document.querySelector("#meterO").getAttribute("value");
         let amountMissing = 100 - meterO * 100;
@@ -90,7 +90,7 @@ var DoenerTest;
         meterStockO.setAttribute("value", DoenerTest.storageLeft.onion / 1000);
     }
     DoenerTest.refillOnion = refillOnion;
-    function bringOnion() {
+    function bringOnion(_event) {
         if (DoenerTest.workers[0].position.x == 360 && DoenerTest.workers[0].position.y == 120) {
             DoenerTest.backToOnion = true;
             let meter = document.querySelector("#meterO");
@@ -100,7 +100,7 @@ var DoenerTest;
         }
     }
     DoenerTest.bringOnion = bringOnion;
-    function refillMeat() {
+    function refillMeat(_event) {
         DoenerTest.refillMeatIsClicked = true;
         let meterM = document.querySelector("#meterM").getAttribute("value");
         let amountMissing = 100 - meterM * 100;
@@ -109,7 +109,7 @@ var DoenerTest;
         meterStockM.setAttribute("value", DoenerTest.storageLeft.meat / 1000);
     }
     DoenerTest.refillMeat = refillMeat;
-    function bringMeat() {
+    function bringMeat(_event) {
         if (DoenerTest.workers[0].position.x == 460 && DoenerTest.workers[0].position.y == 120) {
             DoenerTest.backToMeat = true;
             let meter = document.querySelector("#meterM");
@@ -118,7 +118,7 @@ var DoenerTest;
         }
     }
     DoenerTest.bringMeat = bringMeat;
-    function buyBread() {
+    function buyBread(_event) {
         let stockMeterB = document.querySelector("#stockMeterB").getAttribute("value");
         let amountMissing = 1000 - stockMeterB * 1000;
         DoenerTest.storageLeft.bread += amountMissing;
@@ -129,7 +129,7 @@ var DoenerTest;
         b.setAttribute("value", 1);
     }
     DoenerTest.buyBread = buyBread;
-    function buyTomato() {
+    function buyTomato(_event) {
         let stockMeterT = document.querySelector("#stockMeterT").getAttribute("value");
         let amountMissing = 1000 - stockMeterT * 1000;
         DoenerTest.storageLeft.tomato += amountMissing;
@@ -140,7 +140,7 @@ var DoenerTest;
         t.setAttribute("value", 1);
     }
     DoenerTest.buyTomato = buyTomato;
-    function buyLettuce() {
+    function buyLettuce(_event) {
         let stockMeterL = document.querySelector("#stockMeterL").getAttribute("value");
         let amountMissing = 1000 - stockMeterL * 1000;
         DoenerTest.storageLeft.lettuce += amountMissing;
@@ -151,7 +151,7 @@ var DoenerTest;
         l.setAttribute("value", 1);
     }
     DoenerTest.buyLettuce = buyLettuce;
-    function buyOnion() {
+    function buyOnion(_event) {
         let stockMeterO = document.querySelector("#stockMeterO").getAttribute("value");
         let amountMissing = 1000 - stockMeterO * 1000;
         DoenerTest.storageLeft.onion += amountMissing;
@@ -162,7 +162,7 @@ var DoenerTest;
         o.setAttribute("value", 1);
     }
     DoenerTest.buyOnion = buyOnion;
-    function buyMeat() {
+    function buyMeat(_event) {
         let stockMeterL = document.querySelector("#stockMeterM").getAttribute("value");
         let amountMissing = 1000 - stockMeterL * 1000;
         DoenerTest.storageLeft.meat += amountMissing;

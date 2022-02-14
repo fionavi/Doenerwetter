@@ -2,7 +2,7 @@
 var DoenerTest;
 (function (DoenerTest) {
     DoenerTest.payIsClicked = false;
-    function cashUpOrder() {
+    function cashUpOrder(_event) {
         DoenerTest.payIsClicked = true;
         DoenerTest.ordersMade.push(DoenerTest.currentOrder);
         if (DoenerTest.ordersMade[0].bread == DoenerTest.orders[0].bread && DoenerTest.ordersMade[0].lettuce == DoenerTest.orders[0].lettuce && DoenerTest.ordersMade[0].meat == DoenerTest.orders[0].meat
@@ -23,7 +23,7 @@ var DoenerTest;
                 let sound = "media/bye.wav";
                 let audio = new Audio(sound);
                 audio.play();
-            }, 1000);
+            }, 2000);
             DoenerTest.info.innerHTML = "";
             DoenerTest.info.innerHTML += DoenerTest.displayOrders;
             DoenerTest.currentOrder.bread = 0;
@@ -49,7 +49,7 @@ var DoenerTest;
                 let sound = "media/angry.wav";
                 let audio = new Audio(sound);
                 audio.play();
-            }, 1000);
+            }, 2000);
             DoenerTest.info.innerHTML = "";
             DoenerTest.info.innerHTML += DoenerTest.displayOrders;
             DoenerTest.currentOrder.bread = 0;
