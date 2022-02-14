@@ -1,4 +1,9 @@
 "use strict";
+// Endabgabe Döner-Trainer
+// Name: Fiona Virnich
+// Matrikelnummer: 265115
+// Datum: 14.02.2022
+// Quellen: In Zusammenarbeit mit Jasmin Basler
 var DoenerTest;
 (function (DoenerTest) {
     DoenerTest.workers = [];
