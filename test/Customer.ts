@@ -58,9 +58,9 @@ namespace DoenerTest {
                 crc2.translate(this.position.x, this.position.y);
                 crc2.strokeStyle = "black";
                 crc2.beginPath();
-                crc2.ellipse(5, -65, 2, 2, 2, 20, 40);
-                crc2.moveTo(15, -65);
-                crc2.ellipse(15, -65, 2, 2, 2, 20, 40);
+                crc2.ellipse(5, -60, 1, 1, 2, 20, 40);
+                crc2.moveTo(15, -60);
+                crc2.ellipse(15, -60, 1, 1, 2, 20, 40);
                 crc2.fill();
                 crc2.moveTo(17, -55);
                 crc2.arcTo(7, -50, 5, -55, 5);
