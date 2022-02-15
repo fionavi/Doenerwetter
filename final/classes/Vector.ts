@@ -1,5 +1,5 @@
 // Quelle: https://github.com/JirkaDellOro/EIA2-Inverted/blob/master/X00_Code/L11_Advanced/Asteroids/Vector.ts
-//         von Autor Jirka Dell'Oro-Friedl
+//         von Jirka Dell'Oro-Friedl
 namespace DoenerTest {
     
     export class Vector {
